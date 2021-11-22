@@ -1,8 +1,18 @@
-const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://omar:@cluster0.axm3v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+import mongoose from 'mongoose';
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect('mongodb+srv://omar:omar@main.g3wfw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    //   useCreateIndex: true,
+    })
+
+    console.log(`MongoDB Connected`)
+  } catch (error) {
+    console.error(`Error: ${error.message}`)
+    process.exit(1)
+  }
+}
+
+export default connectDB
