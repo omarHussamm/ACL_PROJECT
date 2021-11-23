@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
             cabin:{type: String,
                required: true}
              ,
-            numOfSeatsAvailable:{type: String,
+            numOfSeatsAvailable:{type: Number,
                required: true}
              
         });

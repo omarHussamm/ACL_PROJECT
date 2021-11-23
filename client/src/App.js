@@ -1,9 +1,17 @@
 import './index.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginForm from './components/loginForm';
+import AdminHome from './components/adminHome';
 
 function App() {
   return (
-    <div className="App">
-      Welcome!!
+    <div>lol
+    <Router>
+      <Routes>
+        <Route path="/" exact element={<LoginForm/>} />
+        <Route path="/admin" exact element={<AdminHome/>} />
+      </Routes>
+    </Router>
     </div>
   );
 }

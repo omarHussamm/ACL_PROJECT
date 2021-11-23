@@ -3,8 +3,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import User from './model/user.js'
 import Flight from './model/flight.js'
-// import flightRoutes from './routes/flightRoutes.js';
-// import AdminRoutes from './routes/adminRoutes.js';
+import flightRoutes from './routes/flightRoutes.js';
+import AdminRoutes from './routes/adminRoutes.js';
 
 import connectDB from './config/db.js';
 
@@ -15,7 +15,8 @@ const app = express();
 app.use(express.json());
 connectDB();
 
-// app.use('/admin', AdminRoutes);
+app.use('/admin', AdminRoutes);
+app.use('/flights', flightRoutes);
 
 const PORT = process.env.PORT || 5000
 
@@ -31,4 +32,7 @@ Flight.find().then(flights => {
 app.listen(PORT);
 app.get('/', (req,res) => {
 res.send('hi')
+})
+app.get('/home',(req,res)=>{
+
 })
