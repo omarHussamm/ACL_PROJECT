@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import './index.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginForm from './components/loginForm';
+import AdminHome from './components/adminHome';
+import CreateFlight from './components/createFlight';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+
+
+  render() {
+    return (
+      <div>
+
+        <AdminHome/>
+        {/* <Router>
+          <Routes>
+            <Route path="/" exact element={<LoginForm />} />
+            <Route path="/admin" exact element={<AdminHome />} />
+            <Route path="/admin/createFlight" exact element={<CreateFlight />} />
+
+          </Routes>
+        </Router> */}
+      </div>
+    ) 
+  }
+
 }
 
 export default App;
