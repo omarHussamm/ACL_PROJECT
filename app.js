@@ -30,4 +30,8 @@ Flight.find().then(flights => {
  });
  
 
+<<<<<<< HEAD
 app.listen(PORT);
+=======
+app.listen(PORT);
+>>>>>>> b14b69ed2d0f905f0851d121cc3bfe2daa6d9d5c

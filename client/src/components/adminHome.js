@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 import CreateFlight from './createFlight';
 import DeleteFlight from './deleteFlight';
 import UpdateFlight from './updateFlight';
@@ -46,3 +47,49 @@ export default function AdminHome() {
         </Router>
     );
 }
+=======
+import axios from 'axios'
+
+
+class adminHome extends React.Component {
+    state = {
+        flights: []
+        }  
+    listflights = ()=>{
+        axios.get("http://localhost:5000/flights").then(res=>{
+            const flights = res.data;
+            this.setState({flights});
+            console.log(flights);
+        });
+        
+        
+    };
+
+    render(){return (
+        <div>
+           <button onClick={this.listflights}>
+               Show All Flights
+           </button>
+           <ul>
+           {this.state.flights.map(flights=> {
+               return(
+                   <div>
+                <li>{flights._id}</li>
+                <li>{flights.from}</li>
+                <li>{flights.to}</li>
+                <li>{flights.date}</li>
+                <li>{flights.cabin}</li>
+                <li>{flights.numOfSeatsAvailable}</li>
+                </div>
+               );
+              
+           })
+        }
+           </ul>
+        </div>
+    )}
+    
+}
+
+export default adminHome;
+>>>>>>> b14b69ed2d0f905f0851d121cc3bfe2daa6d9d5c

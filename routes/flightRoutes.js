@@ -2,6 +2,7 @@ import express from "express";
 import Flight from '../model/flight.js'
 const router = express.Router();
 
+<<<<<<< HEAD
 router.route('/createFlight').post((req, res) => {
     const from = req.body.from;
     const to = req.body.to;
@@ -47,9 +48,14 @@ router.route('/updateFlight').post((req, res) => {
 
 })
 
+=======
+>>>>>>> b14b69ed2d0f905f0851d121cc3bfe2daa6d9d5c
 router.route('/').get((req, res) => {
     Flight.find().then(flights => res.json(flights))
 })
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b14b69ed2d0f905f0851d121cc3bfe2daa6d9d5c
 export default router;
