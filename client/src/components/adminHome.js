@@ -10,8 +10,25 @@ import {
     Link
 } from "react-router-dom";
 
-export default function AdminHome() {
-    return (
+
+import axios from 'axios'
+
+
+class adminHome extends React.Component {
+    state = {
+        flights: []
+        }  
+    listflights = ()=>{
+        axios.get("http://localhost:5000/flights").then(res=>{
+            const flights = res.data;
+            this.setState({flights});
+            console.log(flights);
+        });
+        
+        
+    };
+
+    render(){return (
         <div>
             <ul>
                 <li>
@@ -44,3 +61,6 @@ export default function AdminHome() {
         </div>
     );
 }
+          
+
+export default adminHome;

@@ -82,7 +82,6 @@ class createFlight extends React.Component {
             </ul>
 
             <hr />
-
                 <form onSubmit={this.onSubmit}>
                     <div>
                         <label>

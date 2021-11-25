@@ -11,6 +11,7 @@ router.route('/createFlight').post((req, res) => {
     Flight.insertMany({ from: from, to: to, cabin: cabin, date: date, numOfSeatsAvailable: numOfSeatsAvailable })
 
 
+
 })
 
 
@@ -46,10 +47,8 @@ router.route('/updateFlight').post((req, res) => {
 
 
 })
-
 router.route('/').get((req, res) => {
     Flight.find().then(flights => res.json(flights))
 })
-
 
 export default router;
