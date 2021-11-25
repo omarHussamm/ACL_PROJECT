@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import AdminHome from './adminHome'
 
 class loginForm extends React.Component {
     constructor(props) {
@@ -37,9 +36,8 @@ class loginForm extends React.Component {
         };
         axios.post('http://localhost:5000/admin/login'
             , user).then(res => {
-                if (res.data === 'success') {
-                    res.render('/admin')
-                } else {
+                this.props.onLogIn(res.data);
+                if (!res.data === 'success') {
                     this.setState({
                     userName: "",
                     password: ""
@@ -54,8 +52,7 @@ class loginForm extends React.Component {
     render() {
         return (
             <div>
-                <AdminHome/>
-                {/* <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit}>
                     <div>
                         <label>
                             User Name:
@@ -69,7 +66,7 @@ class loginForm extends React.Component {
                         </label>
                     </div>
                     <input type="submit" value="Submit" />
-                </form> */}
+                </form>
             </div>
         )
     }

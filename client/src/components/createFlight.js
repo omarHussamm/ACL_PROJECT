@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+
+import {Link} from 'react-router-dom'
 class createFlight extends React.Component {
     constructor(props) {
         super(props);
@@ -61,6 +63,26 @@ class createFlight extends React.Component {
     render() {
         return (
             <div>
+                 <ul>
+                <li>
+                    <Link to="/createFlight">Create Flight</Link>
+                </li>
+                <li>
+                    <Link to="/deleteFlight">Delete Flight</Link>
+                </li>
+                <li>
+                    <Link to="/updateFlight">Update Flight</Link>
+                </li>
+                <li>
+                    <Link to="/listAllFlights">List All Flights</Link>
+                </li>
+                <li>
+                    <Link to="/searchFlights">Search for Flights</Link>
+                </li>
+            </ul>
+
+            <hr />
+
                 <form onSubmit={this.onSubmit}>
                     <div>
                         <label>
