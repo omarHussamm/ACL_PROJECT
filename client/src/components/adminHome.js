@@ -61,6 +61,6 @@ class adminHome extends React.Component {
         </div>
     );
 }
-          
+}   
 
-export default adminHome;
+export default adminHome
