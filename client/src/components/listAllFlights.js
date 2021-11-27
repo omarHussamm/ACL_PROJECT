@@ -49,7 +49,7 @@ class deleteFlight extends React.Component {
                                 <li>{flights.from}</li>
                                 <li>{flights.to}</li>
                                 <li>{flights.arrivalDate}</li>
-                                <li>{flights.deaprtureDate}</li>
+                                <li>{flights.departureDate}</li>
                                 <li>{flights.numOfEconomySeatsAvailable}</li>
                                 <li>{flights.numOfBusinessSeatsAvailable}</li>
                                 <li>{flights.numOfFirstClassSeatsAvailable}</li>

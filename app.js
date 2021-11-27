@@ -14,6 +14,7 @@ const app = express();
 app.use(express.json());
 connectDB();
 
+
 app.use(cors())
 
 app.use('/admin', AdminRoutes);
