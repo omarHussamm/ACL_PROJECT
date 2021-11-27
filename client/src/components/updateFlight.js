@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 class deleteFlight extends React.Component {
 
     constructor(props) {
@@ -9,56 +9,62 @@ class deleteFlight extends React.Component {
     }
 
     state = {
-        id: "",
-        from: "",
-        to: "",
-        date: "",
-        cabin: "",
-        numOfSeatsAvailable: ""
+        oldFlightNumber: "",
+        flightNumber: "",
+        arrivalDate: "",
+        departureDate: "",
+        numOfEconomySeatsAvailable: "",
+        numOfBusinessSeatsAvailable: "",
+        numOfFirstClassSeatsAvailable: ""
+    };
+    onChangeOldFlightNumber = e => {
+        this.setState({
+            oldFlightNumber: e.target.value
+        })
+    };
+    onChangeFlightNumber = e => {
+        this.setState({
+            flightNumber: e.target.value
+        })
+    };
+    onChangeArrivalDate = e => {
+        this.setState({
+            arrivalDate: e.target.value
+        })
+    };
+    onChangeDepartureDate = e => {
+        this.setState({
+            departureDate: e.target.value
+        })
+    };
+    onChangeEconomySeats = e => {
+        this.setState({
+            numOfEconomySeatsAvailable: e.target.value
+        })
+    };
+    onChangeBusinessSeats = e => {
+        this.setState({
+            numOfBusinessSeatsAvailable: e.target.value
+        })
+    };
+    onChangeFirstSeats = e => {
+        this.setState({
+            numOfFirstClassSeatsAvailable: e.target.value
+        })
     };
 
-    onChangeId = e => {
-        this.setState({
-            id: e.target.value
-        })
-    };
-    onChangeFrom = e => {
-        this.setState({
-            from: e.target.value
-        })
-    };
-
-    onChangeTo = e => {
-        this.setState({
-            to: e.target.value
-        })
-    };
-    onChangeDate = e => {
-        this.setState({
-            date: e.target.value
-        })
-    };
-    onChangeCabin = e => {
-        this.setState({
-            cabin: e.target.value
-        })
-    };
-    onChangeSeats = e => {
-        this.setState({
-            numOfSeatsAvailable: e.target.value
-        })
-    };
 
 
     onSubmit = e => {
         e.preventDefault();
         const updatedflight = {
-            id: this.state.id,
-            from: this.state.from,
-            to: this.state.to,
-            date: this.state.date,
-            cabin: this.state.cabin,
-            numOfSeatsAvailable: this.state.numOfSeatsAvailable
+            oldFlightNumber: this.state.oldFlightNumber,
+            flightNumber: this.state.flightNumber,
+            arrivalDate: this.state.arrivalDate,
+            deaprtureDate: this.state.departureDate,
+            numOfEconomySeatsAvailable: this.state.numOfEconomySeatsAvailable,
+            numOfBusinessSeatsAvailable: this.state.numOfBusinessSeatsAvailable,
+            numOfFirstClassSeatsAvailable: this.state.numOfFirstClassSeatsAvailable
         };
         console.log("did we get here front end?", updatedflight);
         axios.post('http://localhost:5000/flights/updateFlight'
@@ -72,61 +78,67 @@ class deleteFlight extends React.Component {
     render() {
         return (
             <div>
-                 <ul>
-                <li>
-                    <Link to="/createFlight">Create Flight</Link>
-                </li>
-                <li>
-                    <Link to="/deleteFlight">Delete Flight</Link>
-                </li>
-                <li>
-                    <Link to="/updateFlight">Update Flight</Link>
-                </li>
-                <li>
-                    <Link to="/listAllFlights">List All Flights</Link>
-                </li>
-                <li>
-                    <Link to="/searchFlights">Search for Flights</Link>
-                </li>
-            </ul>
+                <ul>
+                    <li>
+                        <Link to="/createFlight">Create Flight</Link>
+                    </li>
+                    <li>
+                        <Link to="/deleteFlight">Delete Flight</Link>
+                    </li>
+                    <li>
+                        <Link to="/updateFlight">Update Flight</Link>
+                    </li>
+                    <li>
+                        <Link to="/listAllFlights">List All Flights</Link>
+                    </li>
+                    <li>
+                        <Link to="/searchFlights">Search for Flights</Link>
+                    </li>
+                </ul>
 
-            <hr />
+                <hr />
 
                 <form onSubmit={this.onSubmit}>
                     <div>
                         <label>
-                            id:
-                            <input type="text" name="name" value={this.state.id} onChange={this.onChangeId} />
+                            Old Flight Number:
+                            <input type="text" name="name" value={this.state.oldFlightNumber} onChange={this.onChangeOldFlightNumber} />
                         </label>
                     </div>
                     <div>
                         <label>
-                            from:
-                            <input type="text" name="name" value={this.state.from} onChange={this.onChangeFrom} />
+                            Flight Number:
+                            <input type="text" name="name" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
                         </label>
                     </div>
                     <div>
                         <label>
-                            to:
-                            <input type="text" name="name" value={this.state.to} onChange={this.onChangeTo} />
+                            Departure Date:
+                            <input type="text" name="name" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
                         </label>
                     </div>
                     <div>
                         <label>
-                            cabin:
-                            <input type="text" name="name" value={this.state.cabin} onChange={this.onChangeCabin} />
+                            Arrival Date:
+                            <input type="text" name="name" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} />
                         </label>
                     </div>
                     <div>
                         <label>
-                            date:
-                            <input type="text" name="name" value={this.state.date} onChange={this.onChangeDate} />
+                            Number of Economy Seats:
+                            <input type="text" name="name" value={this.state.numOfEconomySeatsAvailable} onChange={this.onChangeEconomySeats} />
                         </label>
                     </div>
                     <div>
                         <label>
-                            Number of seats available:
-                            <input type="text" name="name" value={this.state.numOfSeatsAvailable} onChange={this.onChangeSeats} />
+                        Number of Business Seats:
+                            <input type="text" name="name" value={this.state.numOfBusinessSeatsAvailable} onChange={this.onChangeBusinessSeats} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                        Number of First-Class Seats:
+                            <input type="text" name="name" value={this.state.numOfFirstClassSeatsAvailable} onChange={this.onChangeFirstSeats} />
                         </label>
                     </div>
                     <input type="submit" value="Update" />

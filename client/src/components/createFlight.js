@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 class createFlight extends React.Component {
     constructor(props) {
         super(props);
@@ -9,11 +9,14 @@ class createFlight extends React.Component {
     }
 
     state = {
+        flightNumber: "",
         from: "",
         to: "",
-        date: "",
-        cabin: "",
-        numOfSeatsAvailable: ""
+        arrivalDate: "",
+        departureDate: "",
+        numOfEconomySeatsAvailable: "",
+        numOfBusinessSeatsAvailable: "",
+        numOfFirstClassSeatsAvailable: ""
     };
 
     onChangeFrom = e => {
@@ -21,69 +24,92 @@ class createFlight extends React.Component {
             from: e.target.value
         })
     };
-
+    onChangeFlightNumber = e => {
+        this.setState({
+            flightNumber: e.target.value
+        })
+    };
     onChangeTo = e => {
         this.setState({
             to: e.target.value
         })
     };
-    onChangeDate = e => {
+    onChangeArrivalDate = e => {
         this.setState({
-            date: e.target.value
+            arrivalDate: e.target.value
         })
     };
-    onChangeCabin = e => {
+    onChangeDepartureDate = e => {
         this.setState({
-            cabin: e.target.value
+            departureDate: e.target.value
         })
     };
-    onChangeSeats = e => {
+    onChangeEconomySeats = e => {
         this.setState({
-            numOfSeatsAvailable: e.target.value
+            numOfEconomySeatsAvailable: e.target.value
+        })
+    };
+    onChangeBusinessSeats = e => {
+        this.setState({
+            numOfBusinessSeatsAvailable: e.target.value
+        })
+    };
+    onChangeFirstSeats = e => {
+        this.setState({
+            numOfFirstClassSeatsAvailable: e.target.value
         })
     };
 
 
     onSubmit = e => {
         e.preventDefault();
-        console.log("did we get here front end?");
         const flight = {
             from: this.state.from,
             to: this.state.to,
-            date: this.state.date,
-            cabin: this.state.cabin,
-            numOfSeatsAvailable: this.state.numOfSeatsAvailable
+            flightNumber: this.state.flightNumber,
+            arrivalDate: this.state.arrivalDate,
+            departureDate: this.state.departureDate,
+            numOfEconomySeatsAvailable: this.state.numOfEconomySeatsAvailable,
+            numOfBusinessSeatsAvailable: this.state.numOfBusinessSeatsAvailable,
+            numOfFirstClassSeatsAvailable: this.state.numOfFirstClassSeatsAvailable
         };
+        console.log("did we get here front end?",flight);
         axios.post('http://localhost:5000/flights/createFlight'
             , flight)
-           
+
     }
 
 
     render() {
         return (
             <div>
-                 <ul>
-                <li>
-                    <Link to="/createFlight">Create Flight</Link>
-                </li>
-                <li>
-                    <Link to="/deleteFlight">Delete Flight</Link>
-                </li>
-                <li>
-                    <Link to="/updateFlight">Update Flight</Link>
-                </li>
-                <li>
-                    <Link to="/listAllFlights">List All Flights</Link>
-                </li>
-                <li>
-                    <Link to="/searchFlights">Search for Flights</Link>
-                </li>
-            </ul>
+                <ul>
+                    <li>
+                        <Link to="/createFlight">Create Flight</Link>
+                    </li>
+                    <li>
+                        <Link to="/deleteFlight">Delete Flight</Link>
+                    </li>
+                    <li>
+                        <Link to="/updateFlight">Update Flight</Link>
+                    </li>
+                    <li>
+                        <Link to="/listAllFlights">List All Flights</Link>
+                    </li>
+                    <li>
+                        <Link to="/searchFlights">Search for Flights</Link>
+                    </li>
+                </ul>
 
-            <hr />
+                <hr />
 
                 <form onSubmit={this.onSubmit}>
+                    <div>
+                        <label>
+                            Flight Number:
+                            <input type="text" name="name" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
+                        </label>
+                    </div>
                     <div>
                         <label>
                             from:
@@ -98,20 +124,32 @@ class createFlight extends React.Component {
                     </div>
                     <div>
                         <label>
-                            cabin:
-                            <input type="text" name="name" value={this.state.cabin} onChange={this.onChangeCabin} />
+                            Departure Date:
+                            <input type="text" name="name" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
                         </label>
                     </div>
                     <div>
                         <label>
-                            date:
-                            <input type="text" name="name" value={this.state.date} onChange={this.onChangeDate} />
+                            Arrival Date:
+                            <input type="text" name="name" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} />
                         </label>
                     </div>
                     <div>
                         <label>
-                            Number of seats available:
-                            <input type="text" name="name" value={this.state.numOfSeatsAvailable} onChange={this.onChangeSeats} />
+                            Number of Economy Seats:
+                            <input type="text" name="name" value={this.state.numOfEconomySeatsAvailable} onChange={this.onChangeEconomySeats} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Number of Business Seats:
+                            <input type="text" name="name" value={this.state.numOfBusinessSeatsAvailable} onChange={this.onChangeBusinessSeats} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Number of First-Class Seats:
+                            <input type="text" name="name" value={this.state.numOfFirstClassSeatsAvailable} onChange={this.onChangeFirstSeats} />
                         </label>
                     </div>
                     <input type="submit" value="Create Flight" />
