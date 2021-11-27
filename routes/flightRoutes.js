@@ -24,6 +24,7 @@ router.route('/createFlight').post((req, res) => {
     })
 
 
+
 })
 
 
@@ -75,10 +76,8 @@ router.route('/updateFlight').post((req, res) => {
 
 
 })
-
 router.route('/').get((req, res) => {
     Flight.find().then(flights => res.json(flights))
 })
-
 
 export default router;

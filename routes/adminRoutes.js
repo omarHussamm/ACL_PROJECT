@@ -1,6 +1,4 @@
 import express from "express";
-// import { resolve } from "path";
-import cors from 'cors';
 import User from '../model/user.js'
 const router = express.Router();
 router.options('*', cors())

@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+import AdminHome from './adminHome'
+
 class loginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -46,6 +48,7 @@ class loginForm extends React.Component {
                     
                 }
             })
+
     }
 
 
@@ -57,7 +60,7 @@ class loginForm extends React.Component {
                         <label>
                             User Name:
                             <input type="text" name="name" value={this.state.userName} onChange={this.onChangeUserName} />
-                        </label>
+      </label>
                     </div>
                     <div>
                         <label>

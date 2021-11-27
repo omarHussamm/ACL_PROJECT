@@ -31,7 +31,6 @@ class deleteFlight extends React.Component {
 
     render() {
         return (
-
             <div>
                  <ul>
                 <li>
@@ -53,6 +52,7 @@ class deleteFlight extends React.Component {
 
             <hr />
 
+            <div>
                 <form onSubmit={this.onSubmit}>
                     <div>
                         <label>

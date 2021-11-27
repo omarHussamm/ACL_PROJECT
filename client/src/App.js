@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginForm from './components/loginForm';
 import AdminHome from './components/adminHome';
 import CreateFlight from './components/createFlight';
-
 import DeleteFlight from './components/deleteFlight';
 import UpdateFlight from './components/updateFlight';
 import ListAllFlights from './components/listAllFlights';
@@ -11,7 +10,6 @@ import SearchFlights from './components/searchFlights';
 import React from 'react';
 
 class App extends React.Component {
-
   state = { loggedIn: false }
 
   onLogIn = (res) => {
@@ -22,7 +20,6 @@ class App extends React.Component {
       this.setState({ loggedIn: false })
     }
   }
-
   render() {
     return (
       <div>
