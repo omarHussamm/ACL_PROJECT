@@ -3,12 +3,25 @@ import Flight from '../model/flight.js'
 const router = express.Router();
 
 router.route('/createFlight').post((req, res) => {
+    console.log(req.body,"what is the problem");
+    const flightNumber = Number(req.body.flightNumber);
     const from = req.body.from;
     const to = req.body.to;
-    const cabin = req.body.cabin;
-    const date = Date(req.body.date);
-    const numOfSeatsAvailable = Number(req.body.numOfSeatsAvailable);
-    Flight.insertMany({ from: from, to: to, cabin: cabin, date: date, numOfSeatsAvailable: numOfSeatsAvailable })
+    const departureDate = Date(req.body.departureDate);
+    const arrivalDate = Date(req.body.arrivalDate);
+    const numOfEconomySeatsAvailable = Number(req.body.numOfEconomySeatsAvailable);
+    const numOfBusinessSeatsAvailable = Number(req.body.numOfBusinessSeatsAvailable);
+    const numOfFirstClassSeatsAvailable = Number(req.body.numOfFirstClassSeatsAvailable);
+    Flight.insertMany({
+        flightNumber: flightNumber,
+        from: from,
+        to: to,
+        departureDate: departureDate,
+        arrivalDate: arrivalDate,
+        numOfEconomySeatsAvailable: numOfEconomySeatsAvailable,
+        numOfBusinessSeatsAvailable: numOfBusinessSeatsAvailable,
+        numOfFirstClassSeatsAvailable: numOfFirstClassSeatsAvailable,
+    })
 
 
 
@@ -16,9 +29,11 @@ router.route('/createFlight').post((req, res) => {
 
 
 router.route('/deleteFlight').post((req, res) => {
-    const id = req.body.id;
+    const flightNumber = req.body.flightNumber;
     console.log("are we here backend?", req.body);
-    Flight.findByIdAndDelete(id).then(res => console.log(res))
+    Flight.findOneAndDelete(
+        { flightNumber: flightNumber }
+    ).then(res => console.log(res))
 
 
 })
@@ -26,24 +41,38 @@ router.route('/deleteFlight').post((req, res) => {
 router.route('/searchFlight').post((req, res) => {
     const from = req.body.from;
     const to = req.body.to;
-    const cabin = req.body.cabin;
-    const date = Date(req.body.date);
-    const numOfSeatsAvailable = Number(req.body.numOfSeatsAvailable);
-    console.log("are we here backend?", from, to, cabin, date, numOfSeatsAvailable);
-    Flight.find({ from: from, to: to, cabin: cabin}).then(flights => res.send(flights))
+    const arrivalDate = Date(req.body.arrivalDate);
+    const deprtureDate = Date(req.body.deaprtureDate);
+    const flightNumber = Number(req.body.flightNumber);
+    console.log("are we here backend?", from, to, arrivalDate, deprtureDate, flightNumber);
+    Flight.find({
+        from: from,
+        to: to,
+        // arrivalDate: arrivalDate,
+        // deprtureDate: deprtureDate,
+        flightNumber: flightNumber,
+    }).then(flights => res.json(flights))
 
 
 })
 
 router.route('/updateFlight').post((req, res) => {
-    const id = req.body.id;
-    const from = req.body.from;
-    const to = req.body.to;
-    const cabin = req.body.cabin;
-    const date = Date(req.body.date);
-    const numOfSeatsAvailable = Number(req.body.numOfSeatsAvailable);
-    console.log("are we here backend?", id,from, to, cabin, date, numOfSeatsAvailable);
-    Flight.findByIdAndUpdate(id,{ from: from, to: to, cabin: cabin, date: date, numOfSeatsAvailable: numOfSeatsAvailable }).then(ress =>console.log(res))
+    const oldFlightNumber = Number(req.body.oldFlightNumber);
+    const flightNumber = Number(req.body.flightNumber);
+    const arrivalDate = Date(req.body.arrivalDate);
+    const deaprtureDate = Date(req.body.deaprtureDate);
+    const numOfEconomySeatsAvailable = Number(req.body.numOfEconomySeatsAvailable);
+    const numOfBusinessSeatsAvailable = Number(req.body.numOfBusinessSeatsAvailable);
+    const numOfFirstClassSeatsAvailable = Number(req.body.numOfFirstClassSeatsAvailable);
+    console.log("are we here backend?", oldFlightNumber, flightNumber, arrivalDate, deaprtureDate, numOfEconomySeatsAvailable, numOfBusinessSeatsAvailable, numOfFirstClassSeatsAvailable);
+    Flight.findOneAndUpdate({ flightNumber: oldFlightNumber }, {
+        flightNumber: flightNumber,
+        arrivalDate: arrivalDate,
+        deaprtureDate: deaprtureDate,
+        numOfEconomySeatsAvailable: numOfEconomySeatsAvailable,
+        numOfBusinessSeatsAvailable: numOfBusinessSeatsAvailable,
+        numOfFirstClassSeatsAvailable: numOfFirstClassSeatsAvailable
+    }).then(ress => console.log(res.body))
 
 
 })

@@ -8,11 +8,11 @@ class deleteFlight extends React.Component {
     }
 
     state = {
+        flightNumber: "",
         from: "",
         to: "",
-        date: "",
-        cabin: "",
-        numOfSeatsAvailable: "",
+        arrivalDate: "",
+        departureDate: "",
         flights: []
     };
 
@@ -27,34 +27,34 @@ class deleteFlight extends React.Component {
             to: e.target.value
         })
     };
-    onChangeDate = e => {
+    onChangeArrivalDate = e => {
         this.setState({
-            date: e.target.value
+            arrivalDate: e.target.value
         })
     };
-    onChangeCabin = e => {
+    onChangeFlightNumber = e => {
         this.setState({
-            cabin: e.target.value
+            flightNumber: e.target.value
         })
     };
-    onChangeSeats = e => {
+    onChangeDepartureDate = e => {
         this.setState({
-            numOfSeatsAvailable: e.target.value
+            departureDate: e.target.value
         })
     };
 
 
     onSubmit = e => {
         e.preventDefault();
-        
+
         const flight = {
             from: this.state.from,
             to: this.state.to,
-            date: this.state.date,
-            cabin: this.state.cabin,
-            numOfSeatsAvailable: this.state.numOfSeatsAvailable
+            arrivalDate: this.state.arrivalDate,
+            deaprtureDate: this.state.deaprtureDate,
+            flightNumber: this.state.flightNumber
         };
-        console.log("did we get here front end?",flight);
+        console.log("did we get here front end?", flight);
         axios.post('http://localhost:5000/flights/searchFlight'
             , flight).then(res => {
                 console.log('what about here?', res.data);
@@ -67,28 +67,34 @@ class deleteFlight extends React.Component {
     render() {
         return (
             <div>
-                 <ul>
-                <li>
-                    <Link to="/createFlight">Create Flight</Link>
-                </li>
-                <li>
-                    <Link to="/deleteFlight">Delete Flight</Link>
-                </li>
-                <li>
-                    <Link to="/updateFlight">Update Flight</Link>
-                </li>
-                <li>
-                    <Link to="/listAllFlights">List All Flights</Link>
-                </li>
-                <li>
-                    <Link to="/searchFlights">Search for Flights</Link>
-                </li>
-            </ul>
+                <ul>
+                    <li>
+                        <Link to="/createFlight">Create Flight</Link>
+                    </li>
+                    <li>
+                        <Link to="/deleteFlight">Delete Flight</Link>
+                    </li>
+                    <li>
+                        <Link to="/updateFlight">Update Flight</Link>
+                    </li>
+                    <li>
+                        <Link to="/listAllFlights">List All Flights</Link>
+                    </li>
+                    <li>
+                        <Link to="/searchFlights">Search for Flights</Link>
+                    </li>
+                </ul>
 
-            <hr />
+                <hr />
 
                 <div>
                     <form onSubmit={this.onSubmit}>
+                        <div>
+                            <label>
+                               Flight Number:
+                                <input type="text" name="name" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
+                            </label>
+                        </div>
                         <div>
                             <label>
                                 from:
@@ -103,22 +109,17 @@ class deleteFlight extends React.Component {
                         </div>
                         <div>
                             <label>
-                                cabin:
-                                <input type="text" name="name" value={this.state.cabin} onChange={this.onChangeCabin} />
+                                Departure Date:
+                                <input type="text" name="name" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
                             </label>
                         </div>
                         <div>
                             <label>
-                                date:
-                                <input type="text" name="name" value={this.state.date} onChange={this.onChangeDate} />
+                                Arrival Date:
+                                <input type="text" name="name" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} />
                             </label>
                         </div>
-                        <div>
-                            <label>
-                                Number of seats available:
-                                <input type="text" name="name" value={this.state.numOfSeatsAvailable} onChange={this.onChangeSeats} />
-                            </label>
-                        </div>
+
                         <input type="submit" value="Search" />
                     </form>
                 </div>
@@ -129,12 +130,14 @@ class deleteFlight extends React.Component {
                         {this.state.flights.map(flights => {
                             return (
                                 <div>
-                                    <li>{flights._id}</li>
+                                    <li>{flights.flightNumber}</li>
                                     <li>{flights.from}</li>
                                     <li>{flights.to}</li>
-                                    <li>{flights.date}</li>
-                                    <li>{flights.cabin}</li>
-                                    <li>{flights.numOfSeatsAvailable}</li>
+                                    <li>{flights.arrivalDate}</li>
+                                    <li>{flights.deaprtureDate}</li>
+                                    <li>{flights.numOfEconomySeatsAvailable}</li>
+                                    <li>{flights.numOfBusinessSeatsAvailable}</li>
+                                    <li>{flights.numOfFirstClassSeatsAvailable}</li>
                                 </div>
                             );
 
