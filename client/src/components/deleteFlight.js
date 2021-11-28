@@ -29,7 +29,7 @@ class deleteFlight extends React.Component {
                 )
         }
     }
-
+    }
 
     render() {
         return (
@@ -67,6 +67,7 @@ class deleteFlight extends React.Component {
 
 
                 </div>
+            </div>
             </div>
         )
     }
