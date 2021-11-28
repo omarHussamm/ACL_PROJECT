@@ -71,9 +71,8 @@ class deleteFlight extends React.Component {
 
         )
     }
+
+
+
 }
-
-
-
-
 export default deleteFlight
