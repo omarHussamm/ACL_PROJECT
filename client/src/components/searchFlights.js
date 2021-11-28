@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 class deleteFlight extends React.Component {
     constructor(props) {
         super(props);
@@ -51,7 +51,7 @@ class deleteFlight extends React.Component {
             from: this.state.from,
             to: this.state.to,
             arrivalDate: this.state.arrivalDate,
-            deaprtureDate: this.state.deaprtureDate,
+            departureDate: this.state.departureDate,
             flightNumber: this.state.flightNumber
         };
         console.log("did we get here front end?", flight);
@@ -91,7 +91,7 @@ class deleteFlight extends React.Component {
                     <form onSubmit={this.onSubmit}>
                         <div>
                             <label>
-                               Flight Number:
+                                Flight Number:
                                 <input type="text" name="name" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
                             </label>
                         </div>
@@ -108,6 +108,7 @@ class deleteFlight extends React.Component {
                             </label>
                         </div>
                         <div>
+
                             <label>
                                 Departure Date:
                                 <input type="text" name="name" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
