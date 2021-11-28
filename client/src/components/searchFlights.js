@@ -111,13 +111,25 @@ class deleteFlight extends React.Component {
 
                             <label>
                                 Departure Date:
-                                <input type="text" name="name" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
+                                <form>
+  <div class="nativeDateTimePicker">
+    <input type="datetime-local" id="party" name="bday" value={this.state.departureDate} onChange={this.onChangeDepartureDate}/>
+    <span class="validity"></span>
+  
+  </div>
+</form>
                             </label>
                         </div>
                         <div>
                             <label>
                                 Arrival Date:
-                                <input type="text" name="name" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} />
+                                <form>
+  <div class="nativeDateTimePicker">
+    <input type="datetime-local" id="party" name="bday" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate}/>
+    <span class="validity"></span>
+  
+  </div>
+</form>
                             </label>
                         </div>
 

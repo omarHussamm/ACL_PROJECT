@@ -45,8 +45,8 @@ router.route('/searchFlight').post((req, res) => {
         searchCriteria = { ...searchCriteria, from: req.body.from }
     }
     if (req.body.to !== "") { searchCriteria = { ...searchCriteria, to: req.body.to } }
-    if (req.body.arrivalDate !== "") { searchCriteria = { ...searchCriteria, arrivalDate: Date(req.body.arrivalDate) } }
-    if (req.body.deaprtureDate !== "") { searchCriteria = { ...searchCriteria, deaprtureDate: Date(req.body.deaprtureDate) } }
+    if (req.body.arrivalDate !== "") { searchCriteria = { ...searchCriteria, arrivalDate: Date.parse(req.body.arrivalDate) } }
+    if (req.body.deaprtureDate !== "") { searchCriteria = { ...searchCriteria, departureDate: Date.parse(req.body.departureDate) } }
     if (req.body.flightNumber !== "") { searchCriteria = { ...searchCriteria, flightNumber: Number(req.body.flightNumber) } }
 
     console.log("are we here backend?", searchCriteria);
@@ -60,9 +60,9 @@ router.route('/searchFlight').post((req, res) => {
 router.route('/updateFlight').post((req, res) => {
     let updateCriteria = {};
     const oldFlightNumber = Number(req.body.oldFlightNumber);
-    if (req.body.numOfBusinessSeatsAvailable !== "") { updateCriteria = { ...updateCriteria, from: Number(req.body.numOfBusinessSeatsAvailable) } }
-    if (req.body.numOfEconomySeatsAvailable !== "") { updateCriteria = { ...updateCriteria, to: Number(req.body.numOfEconomySeatsAvailable) } }
-    if (req.body.numOfFirstClassSeatsAvailable !== "") { updateCriteria = { ...updateCriteria, to: Number(req.body.numOfFirstClassSeatsAvailable) } }
+    if (req.body.numOfBusinessSeatsAvailable !== "") { updateCriteria = { ...updateCriteria, numOfBusinessSeatsAvailable: Number(req.body.numOfBusinessSeatsAvailable) } }
+    if (req.body.numOfEconomySeatsAvailable !== "") { updateCriteria = { ...updateCriteria, numOfEconomySeatsAvailable: Number(req.body.numOfEconomySeatsAvailable) } }
+    if (req.body.numOfFirstClassSeatsAvailable !== "") { updateCriteria = { ...updateCriteria, numOfFirstClassSeatsAvailable: Number(req.body.numOfFirstClassSeatsAvailable) } }
     if (req.body.arrivalDate !== "") { updateCriteria = { ...updateCriteria, arrivalDate: Date(req.body.arrivalDate) } }
     if (req.body.deaprtureDate !== "") { updateCriteria = { ...updateCriteria, deaprtureDate: Date(req.body.deaprtureDate) } }
     if (req.body.flightNumber !== "") { updateCriteria = { ...updateCriteria, flightNumber: Number(req.body.flightNumber) } }
