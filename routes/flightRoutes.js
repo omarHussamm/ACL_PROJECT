@@ -45,11 +45,10 @@ router.route('/searchFlight').post((req, res) => {
         searchCriteria = { ...searchCriteria, from: req.body.from }
     }
     if (req.body.to !== "") { searchCriteria = { ...searchCriteria, to: req.body.to } }
-    // if (req.body.arrivalDate !== "") { searchCriteria = {...searchCriteria, arrivalDate: Date(req.body.arrivalDate)} } 
-    // if (req.body.deaprtureDate !== "") { searchCriteria = {...searchCriteria, deaprtureDate: Date(req.body.deaprtureDate)} }
+    if (req.body.arrivalDate !== "") { searchCriteria = { ...searchCriteria, arrivalDate: Date(req.body.arrivalDate) } }
+    if (req.body.deaprtureDate !== "") { searchCriteria = { ...searchCriteria, deaprtureDate: Date(req.body.deaprtureDate) } }
     if (req.body.flightNumber !== "") { searchCriteria = { ...searchCriteria, flightNumber: Number(req.body.flightNumber) } }
 
-    // if(searchCriteria.)
     console.log("are we here backend?", searchCriteria);
     Flight.find(
         searchCriteria
@@ -59,22 +58,16 @@ router.route('/searchFlight').post((req, res) => {
 })
 
 router.route('/updateFlight').post((req, res) => {
+    let updateCriteria = {};
     const oldFlightNumber = Number(req.body.oldFlightNumber);
-    const flightNumber = Number(req.body.flightNumber);
-    const arrivalDate = Date(req.body.arrivalDate);
-    const deaprtureDate = Date(req.body.deaprtureDate);
-    const numOfEconomySeatsAvailable = Number(req.body.numOfEconomySeatsAvailable);
-    const numOfBusinessSeatsAvailable = Number(req.body.numOfBusinessSeatsAvailable);
-    const numOfFirstClassSeatsAvailable = Number(req.body.numOfFirstClassSeatsAvailable);
-    console.log("are we here backend?", oldFlightNumber, flightNumber, arrivalDate, deaprtureDate, numOfEconomySeatsAvailable, numOfBusinessSeatsAvailable, numOfFirstClassSeatsAvailable);
-    Flight.findOneAndUpdate({ flightNumber: oldFlightNumber }, {
-        flightNumber: flightNumber,
-        arrivalDate: arrivalDate,
-        deaprtureDate: deaprtureDate,
-        numOfEconomySeatsAvailable: numOfEconomySeatsAvailable,
-        numOfBusinessSeatsAvailable: numOfBusinessSeatsAvailable,
-        numOfFirstClassSeatsAvailable: numOfFirstClassSeatsAvailable
-    }).then(ress => console.log(res.body))
+    if (req.body.numOfBusinessSeatsAvailable !== "") { updateCriteria = { ...updateCriteria, from: Number(req.body.numOfBusinessSeatsAvailable) } }
+    if (req.body.numOfEconomySeatsAvailable !== "") { updateCriteria = { ...updateCriteria, to: Number(req.body.numOfEconomySeatsAvailable) } }
+    if (req.body.numOfFirstClassSeatsAvailable !== "") { updateCriteria = { ...updateCriteria, to: Number(req.body.numOfFirstClassSeatsAvailable) } }
+    if (req.body.arrivalDate !== "") { updateCriteria = { ...updateCriteria, arrivalDate: Date(req.body.arrivalDate) } }
+    if (req.body.deaprtureDate !== "") { updateCriteria = { ...updateCriteria, deaprtureDate: Date(req.body.deaprtureDate) } }
+    if (req.body.flightNumber !== "") { updateCriteria = { ...updateCriteria, flightNumber: Number(req.body.flightNumber) } }
+
+    Flight.findOneAndUpdate({ flightNumber: oldFlightNumber }, updateCriteria).then(ress => console.log(res.body))
 
 
 })

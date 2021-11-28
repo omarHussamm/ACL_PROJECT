@@ -68,10 +68,10 @@ class deleteFlight extends React.Component {
 
                 </div>
             </div>
-            
-            
+
         )
     }
+}
 
 
 

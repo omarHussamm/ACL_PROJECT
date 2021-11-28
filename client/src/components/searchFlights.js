@@ -127,25 +127,34 @@ class deleteFlight extends React.Component {
 
                 <br />
                 <div>
-                    <ul>
-                        {this.state.flights.map(flights => {
+                    <table>
+                        <tr>
+                            <th>flight Number</th>
+                            <th>from</th>
+                            <th>to</th>
+                            <th>Departure Date</th>
+                            <th>Arrival Date</th>
+                            <th>Economy Seats Available</th>
+                            <th>Business Seats Available</th>
+                            <th>First Class Seats Available</th>
+                        </tr>
+                        {this.state.flights.map(flight => {
                             return (
-                                <div>
-                                    <li>{flights.flightNumber}</li>
-                                    <li>{flights.from}</li>
-                                    <li>{flights.to}</li>
-                                    <li>{flights.arrivalDate}</li>
-                                    <li>{flights.deaprtureDate}</li>
-                                    <li>{flights.numOfEconomySeatsAvailable}</li>
-                                    <li>{flights.numOfBusinessSeatsAvailable}</li>
-                                    <li>{flights.numOfFirstClassSeatsAvailable}</li>
-                                </div>
+                                <tr>
+                                    <td>{flight.flightNumber}</td>
+                                    <td>{flight.from}</td>
+                                    <td>{flight.to}</td>
+                                    <td>{flight.arrivalDate}</td>
+                                    <td>{flight.departureDate}</td>
+                                    <td>{flight.numOfEconomySeatsAvailable}</td>
+                                    <td>{flight.numOfBusinessSeatsAvailable}</td>
+                                    <td>{flight.numOfFirstClassSeatsAvailable}</td>
+                                </tr>
                             );
 
                         })
                         }
-                    </ul>
-
+                    </table>
                 </div>
 
             </div>
