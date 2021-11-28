@@ -2,7 +2,9 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
   flightNumber: {
     type: Number,
-    unique: true
+    unique: true,
+    required: true,
+    dropDups: true
   },
   from: {
     type: String,

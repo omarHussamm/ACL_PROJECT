@@ -2,7 +2,6 @@ import express from "express";
 import User from '../model/user.js'
 import cors from 'cors';
 const router = express.Router();
-router.options('*', cors())
 
 router.route('/').get((req, res) => {
     User.find().then(users => res.json(users))

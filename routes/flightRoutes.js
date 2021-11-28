@@ -3,7 +3,7 @@ import Flight from '../model/flight.js'
 const router = express.Router();
 
 router.route('/createFlight').post((req, res) => {
-    console.log(req.body,"what is the problem");
+    console.log(req.body, "what is the problem");
     const flightNumber = Number(req.body.flightNumber);
     const from = req.body.from;
     const to = req.body.to;
@@ -39,19 +39,21 @@ router.route('/deleteFlight').post((req, res) => {
 })
 
 router.route('/searchFlight').post((req, res) => {
-    const from = req.body.from;
-    const to = req.body.to;
-    const arrivalDate = Date(req.body.arrivalDate);
-    const deprtureDate = Date(req.body.deaprtureDate);
-    const flightNumber = Number(req.body.flightNumber);
-    console.log("are we here backend?", from, to, arrivalDate, deprtureDate, flightNumber);
-    Flight.find({
-        from: from,
-        to: to,
-        // arrivalDate: arrivalDate,
-        // deprtureDate: deprtureDate,
-        flightNumber: flightNumber,
-    }).then(flights => res.json(flights))
+    let searchCriteria = {}
+    if (req.body.from !== "") {
+        console.log(req.body.from);
+        searchCriteria = { ...searchCriteria, from: req.body.from }
+    }
+    if (req.body.to !== "") { searchCriteria = { ...searchCriteria, to: req.body.to } }
+    // if (req.body.arrivalDate !== "") { searchCriteria = {...searchCriteria, arrivalDate: Date(req.body.arrivalDate)} } 
+    // if (req.body.deaprtureDate !== "") { searchCriteria = {...searchCriteria, deaprtureDate: Date(req.body.deaprtureDate)} }
+    if (req.body.flightNumber !== "") { searchCriteria = { ...searchCriteria, flightNumber: Number(req.body.flightNumber) } }
+
+    // if(searchCriteria.)
+    console.log("are we here backend?", searchCriteria);
+    Flight.find(
+        searchCriteria
+    ).then(flights => res.json(flights))
 
 
 })
