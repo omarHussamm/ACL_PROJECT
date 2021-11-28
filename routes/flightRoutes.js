@@ -7,8 +7,8 @@ router.route('/createFlight').post((req, res) => {
     const flightNumber = Number(req.body.flightNumber);
     const from = req.body.from;
     const to = req.body.to;
-    const departureDate = Date(req.body.departureDate);
-    const arrivalDate = Date(req.body.arrivalDate);
+    const departureDate = Date.parse (req.body.departureDate) ;
+    const arrivalDate = Date.parse(req.body.arrivalDate) ;
     const numOfEconomySeatsAvailable = Number(req.body.numOfEconomySeatsAvailable);
     const numOfBusinessSeatsAvailable = Number(req.body.numOfBusinessSeatsAvailable);
     const numOfFirstClassSeatsAvailable = Number(req.body.numOfFirstClassSeatsAvailable);
@@ -16,7 +16,7 @@ router.route('/createFlight').post((req, res) => {
         flightNumber: flightNumber,
         from: from,
         to: to,
-        departureDate: departureDate,
+        departureDate: departureDate ,
         arrivalDate: arrivalDate,
         numOfEconomySeatsAvailable: numOfEconomySeatsAvailable,
         numOfBusinessSeatsAvailable: numOfBusinessSeatsAvailable,
