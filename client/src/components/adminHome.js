@@ -22,7 +22,6 @@ class adminHome extends React.Component {
         axios.get("http://localhost:5000/flights").then(res => {
             const flights = res.data;
             this.setState({ flights });
-            console.log(flights);
         });
 
 

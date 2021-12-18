@@ -31,7 +31,6 @@ class loginForm extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        console.log("did we get here front end?");
         const user = {
             userName: this.state.userName,
             password: this.state.password

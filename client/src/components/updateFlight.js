@@ -61,15 +61,13 @@ class deleteFlight extends React.Component {
             oldFlightNumber: this.state.oldFlightNumber,
             flightNumber: this.state.flightNumber,
             arrivalDate: this.state.arrivalDate,
-            deaprtureDate: this.state.departureDate,
+            departureDate: this.state.departureDate,
             numOfEconomySeatsAvailable: this.state.numOfEconomySeatsAvailable,
             numOfBusinessSeatsAvailable: this.state.numOfBusinessSeatsAvailable,
             numOfFirstClassSeatsAvailable: this.state.numOfFirstClassSeatsAvailable
         };
-        console.log("did we get here front end?", updatedflight);
         axios.post('http://localhost:5000/flights/updateFlight'
             , updatedflight).then(res => {
-                console.log('what about here?', res.data);
             }
             )
     }

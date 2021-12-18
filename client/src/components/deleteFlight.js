@@ -21,10 +21,8 @@ class deleteFlight extends React.Component {
     onSubmit = e => {
         e.preventDefault();
         if (window.confirm("Are you sure you want to delete?")) {
-            console.log("did we get here front end?", this.state.flightNumber);
             axios.post('http://localhost:5000/flights/deleteFlight'
                 , { flightNumber: this.state.flightNumber }).then(res => {
-                    console.log('what about here?', res.data);
                 }
                 )
         }

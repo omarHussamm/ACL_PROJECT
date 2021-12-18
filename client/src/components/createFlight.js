@@ -73,7 +73,6 @@ class createFlight extends React.Component {
             numOfBusinessSeatsAvailable: this.state.numOfBusinessSeatsAvailable,
             numOfFirstClassSeatsAvailable: this.state.numOfFirstClassSeatsAvailable
         };
-        console.log("did we get here front end?",flight);
         axios.post('http://localhost:5000/flights/createFlight'
             , flight)
 

@@ -13,7 +13,6 @@ class App extends React.Component {
   state = { loggedIn: false }
 
   onLogIn = (res) => {
-    console.log(res,"hmm");
     if (res === 'success') {
       this.setState({ loggedIn: true })
     } else {
