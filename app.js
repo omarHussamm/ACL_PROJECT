@@ -22,5 +22,13 @@ app.use('/flights', flightRoutes);
 
 const PORT = process.env.PORT || 5000
 
+User.find().then(users => {
+ console.log("users",users);
+});
+
+Flight.find().then(flights => {
+  console.log("flights",flights);
+ });
+ 
 
 app.listen(PORT);

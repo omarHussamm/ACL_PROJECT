@@ -15,7 +15,19 @@ import React from 'react';
 class App extends React.Component {
   state = {
     loggedIn: false,
-    userType: -1
+    userType: -1,
+    flightChoosen: false,
+    departureFlight: "",
+    arrivalFlight: ""
+  }
+
+  onChooseFlight = (arrFlight, depFlight) => {
+    console.log("haaaaaa");
+    this.setState({
+      flightChoosen: true,
+      departureFlight: depFlight,
+      arrivalFlight: arrFlight
+    })
   }
 
   onLogIn = (res) => {
@@ -36,7 +48,9 @@ class App extends React.Component {
             {!this.state.loggedIn &&
               <Route path="/" exact element={<LoginForm onLogIn={this.onLogIn} />} />}
             {this.state.loggedIn && this.state.userType !== 0 &&
-              <Route path="/" exact element={<Userguest />} />}
+              <Route path="/" exact element={<Userguest flightChoosen={this.state.flightChoosen}
+                departureFlight={this.state.departureFlight}
+                arrivalFlight={this.state.arrivalFlight} />} />}
             {this.state.loggedIn && this.state.userType === 0 &&
               <Route path="/" exact element={<AdminHome />} />}
 
