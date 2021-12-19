@@ -11,21 +11,7 @@ import {
 } from "react-router-dom";
 
 
-import axios from 'axios'
-
-
 class adminHome extends React.Component {
-    state = {
-        flights: []
-    }
-    listflights = () => {
-        axios.get("http://localhost:5000/flights").then(res => {
-            const flights = res.data;
-            this.setState({ flights });
-        });
-
-
-    };
 
     render() {
         return (

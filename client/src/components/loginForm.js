@@ -1,8 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 
-import AdminHome from './adminHome'
-
 class loginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -37,8 +35,9 @@ class loginForm extends React.Component {
         };
         axios.post('http://localhost:5000/admin/login'
             , user).then(res => {
+                console.log(res.data);
                 this.props.onLogIn(res.data);
-                if (!(res.data === 'success')) {
+                if (!(res.data.loggedIN === 'success')) {
                     this.setState({
                     userName: "",
                     password: ""
