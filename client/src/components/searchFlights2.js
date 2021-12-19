@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-class searchFlights extends React.Component {
+class searchFlights2 extends React.Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
@@ -67,19 +67,10 @@ class searchFlights extends React.Component {
             <div>
                 <ul>
                     <li>
-                        <Link to="/createFlight">Create Flight</Link>
+                        <Link to="/searchFlights2">Search for Flights</Link>
                     </li>
                     <li>
-                        <Link to="/deleteFlight">Delete Flight</Link>
-                    </li>
-                    <li>
-                        <Link to="/updateFlight">Update Flight</Link>
-                    </li>
-                    <li>
-                        <Link to="/listAllFlights">List All Flights</Link>
-                    </li>
-                    <li>
-                        <Link to="/searchFlights">Search for Flights</Link>
+                        <Link to="/selectFlight">Select Flight</Link>
                     </li>
                 </ul>
 
@@ -175,4 +166,4 @@ class searchFlights extends React.Component {
 
 }
 
-export default searchFlights
+export default searchFlights2

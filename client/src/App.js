@@ -7,6 +7,8 @@ import DeleteFlight from './components/deleteFlight';
 import UpdateFlight from './components/updateFlight';
 import ListAllFlights from './components/listAllFlights';
 import SearchFlights from './components/searchFlights';
+import SelectFlight from './components/selectFlight';
+import SearchFlights2 from './components/searchFlights2';
 import Userguest from './components/user_guest';
 import React from 'react';
 
@@ -38,12 +40,13 @@ class App extends React.Component {
             {this.state.loggedIn && this.state.userType === 0 &&
               <Route path="/" exact element={<AdminHome />} />}
 
-            {/* <Route path="/admin" exact element={<AdminHome />} /> */}
             <Route path="/createFlight" exact element={<CreateFlight />} />
             <Route path='/deleteFlight' exact element={<DeleteFlight />} />
             <Route path='/updateFlight' exact element={<UpdateFlight />} />
             <Route path='/listAllFlights' exact element={<ListAllFlights />} />
             <Route path='/searchFlights' exact element={<SearchFlights />} />
+            <Route path='/searchFlights2' exact element={<SearchFlights2 />} />
+            <Route path='/selectFlight' exact element={<SelectFlight />} />
           </Routes>
         </Router>
       </div>

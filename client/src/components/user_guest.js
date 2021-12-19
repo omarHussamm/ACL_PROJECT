@@ -1,58 +1,59 @@
 import React from 'react'
-import CreateFlight from './createFlight';
-import DeleteFlight from './deleteFlight';
-import UpdateFlight from './updateFlight';
-import ListAllFlights from './listAllFlights';
-import SearchFlights from './searchFlights';
+import SelectFlight from './selectFlight';
+import SearchFlights2 from './searchFlights2';
 import {
     Routes,
     Route,
     Link
 } from "react-router-dom";
-import axios from 'axios'
 
 
-class adminHome extends React.Component {
-    
+class user_guest extends React.Component {
 
+    state = {
+        flightChoosen: false,
+        departureFlight: "",
+        arrivalFlight: ""
+    }
+
+    onChooseFlight = (arrFlight, depFlight) => {
+        this.setState({
+            flightChoosen: true,
+            departureFlight: depFlight,
+            arrivalFlight: arrFlight
+        })
+    }
 
     render() {
         return (
             <div>
-                userrrr
+                {!this.state.flightChoosen &&
+                    <div>
+                        <ul>
+                            <li>
+                                <Link to="/searchFlights2">Search for Flights</Link>
+                            </li>
+                            <li>
+                                <Link to="/selectFlight">Select Flight</Link>
+                            </li>
+                        </ul>
+
+                        <hr />
+                        <h1> Welcome to BongAirlines! </h1>
+
+                        <Routes>
+                            <Route path='/selectFlight' exact element={<SelectFlight onChooseFlight={this.onChooseFlight} />} />
+                            <Route path='/searchFlights2' exact element={<SearchFlights2 />} />
+                        </Routes>
+                    </div>
+                }
+                {this.state.flightChoosen &&
+                    <div>
+                        ehna geena
+                    </div>
+                }
             </div>
-            // <div>
-            //     <ul>
-            //         <li>
-            //             <Link to="/createFlight">Create Flight</Link>
-            //         </li>
-            //         <li>
-            //             <Link to="/deleteFlight">Delete Flight</Link>
-            //         </li>
-            //         <li>
-            //             <Link to="/updateFlight">Update Flight</Link>
-            //         </li>
-            //         <li>
-            //             <Link to="/listAllFlights">List All Flights</Link>
-            //         </li>
-            //         <li>
-            //             <Link to="/searchFlights">Search for Flights</Link>
-            //         </li>
-            //     </ul>
-
-            //     <hr />
-            //     <h1> Welcome to BongAirlines! </h1>
-
-            //     <Routes>
-            //         <Route path='/createFlight' exact element={<CreateFlight />} />
-            //         <Route path='/deleteFlight' exact element={<DeleteFlight />} />
-            //         <Route path='/updateFlight' exact element={<UpdateFlight />} />
-            //         <Route path='/listAllFlights' exact element={<ListAllFlights />} />
-            //         <Route path='/searchFlights' exact element={<SearchFlights />} />
-            //     </Routes>
-            // </div>
         );
     }
 }
-
-export default adminHome
+export default user_guest

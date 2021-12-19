@@ -62,6 +62,7 @@ class deleteFlight extends React.Component {
                                 <td>{flight.numOfEconomySeatsAvailable}</td>
                                 <td>{flight.numOfBusinessSeatsAvailable}</td>
                                 <td>{flight.numOfFirstClassSeatsAvailable}</td>
+                                <td>{flight.basePrice}</td>
                             </tr>
 
                         );

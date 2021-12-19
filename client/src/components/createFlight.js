@@ -16,7 +16,8 @@ class createFlight extends React.Component {
         departureDate: "",
         numOfEconomySeatsAvailable: "",
         numOfBusinessSeatsAvailable: "",
-        numOfFirstClassSeatsAvailable: ""
+        numOfFirstClassSeatsAvailable: "",
+        basePrice: ""
     };
 
     onChangeFrom = e => {
@@ -59,6 +60,11 @@ class createFlight extends React.Component {
             numOfFirstClassSeatsAvailable: e.target.value
         })
     };
+    onChangeBasePrice = e => {
+        this.setState({
+            from: e.target.basePrice
+        })
+    };
 
 
     onSubmit = e => {
@@ -71,7 +77,8 @@ class createFlight extends React.Component {
             departureDate: this.state.departureDate,
             numOfEconomySeatsAvailable: this.state.numOfEconomySeatsAvailable,
             numOfBusinessSeatsAvailable: this.state.numOfBusinessSeatsAvailable,
-            numOfFirstClassSeatsAvailable: this.state.numOfFirstClassSeatsAvailable
+            numOfFirstClassSeatsAvailable: this.state.numOfFirstClassSeatsAvailable,
+            basePrice: this.state.basePrice
         };
         axios.post('http://localhost:5000/flights/createFlight'
             , flight)
@@ -125,12 +132,12 @@ class createFlight extends React.Component {
                         <label>
                             Departure Date:
                             <form>
-  <div class="nativeDateTimePicker">
-    <input type="datetime-local" id="party" name="bday" value={this.state.departureDate} onChange={this.onChangeDepartureDate}/>
-    <span class="validity"></span>
-  
-  </div>
-</form>
+                                <div class="nativeDateTimePicker">
+                                    <input type="datetime-local" id="party" name="bday" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
+                                    <span class="validity"></span>
+
+                                </div>
+                            </form>
 
                         </label>
                     </div>
@@ -138,12 +145,12 @@ class createFlight extends React.Component {
                         <label>
                             Arrival Date:
                             <form>
-  <div class="nativeDateTimePicker">
-    <input type="datetime-local" id="party" name="bday" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate}/>
-    <span class="validity"></span>
-  
-  </div>
-</form>
+                                <div class="nativeDateTimePicker">
+                                    <input type="datetime-local" id="party" name="bday" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} />
+                                    <span class="validity"></span>
+
+                                </div>
+                            </form>
                         </label>
                     </div>
                     <div>
@@ -162,6 +169,12 @@ class createFlight extends React.Component {
                         <label>
                             Number of First-Class Seats:
                             <input type="text" name="name" value={this.state.numOfFirstClassSeatsAvailable} onChange={this.onChangeFirstSeats} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Base Price:
+                            <input type="text" name="name" value={this.state.basePrice} onChange={this.onChangeBasePrice} />
                         </label>
                     </div>
                     <input type="submit" value="Create Flight" />

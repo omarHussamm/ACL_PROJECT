@@ -13,7 +13,6 @@ router.route('/login').post((req, res) => {
     const password = req.body.password;
     User.find({ userName: userName, password: password })
         .then(users => {
-            console.log("users",users);
             if (users[0]) {
                 console.log("success");
                 res.send({

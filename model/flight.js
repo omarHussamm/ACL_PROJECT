@@ -41,6 +41,10 @@ const userSchema = new mongoose.Schema({
     required: true
   }
   ,
+  basePrice: {
+    type: Number,
+    required: true
+  }
 
 });
 
