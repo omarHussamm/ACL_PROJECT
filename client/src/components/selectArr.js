@@ -13,6 +13,7 @@ class selectArr extends React.Component {
                         <th>Economy Seats Available</th>
                         <th>Business Seats Available</th>
                         <th>First Class Seats Available</th>
+                        <th>Base Price</th>
                     </tr>
                     {this.props.returnFlights.map(flight => {
                         return (

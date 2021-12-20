@@ -1,12 +1,5 @@
 import React from 'react'
-import CreateFlight from './createFlight';
-import DeleteFlight from './deleteFlight';
-import UpdateFlight from './updateFlight';
-import ListAllFlights from './listAllFlights';
-import SearchFlights from './searchFlights';
 import {
-    Routes,
-    Route,
     Link
 } from "react-router-dom";
 
@@ -36,14 +29,6 @@ class adminHome extends React.Component {
 
                 <hr />
                 <h1> Welcome to BongAirlines! </h1>
-
-                <Routes>
-                    <Route path='/createFlight' exact element={<CreateFlight />} />
-                    <Route path='/deleteFlight' exact element={<DeleteFlight />} />
-                    <Route path='/updateFlight' exact element={<UpdateFlight />} />
-                    <Route path='/listAllFlights' exact element={<ListAllFlights />} />
-                    <Route path='/searchFlights' exact element={<SearchFlights />} />
-                </Routes>
             </div>
         );
     }

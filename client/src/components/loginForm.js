@@ -1,5 +1,8 @@
 import React from 'react'
 import axios from 'axios'
+import {
+    Link
+} from "react-router-dom";
 
 class loginForm extends React.Component {
     constructor(props) {
@@ -33,7 +36,7 @@ class loginForm extends React.Component {
             userName: this.state.userName,
             password: this.state.password
         };
-        axios.post('http://localhost:5000/admin/login'
+        axios.post('http://localhost:2600/admin/login'
             , user).then(res => {
                 console.log(res.data);
                 this.props.onLogIn(res.data);
@@ -67,7 +70,9 @@ class loginForm extends React.Component {
                         </label>
                     </div>
                     <input type="submit" value="Submit" />
+                    <br/>
                 </form>
+                <Link to="/user-guest">Continue as a guest</Link>
             </div>
         )
     }

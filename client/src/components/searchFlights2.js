@@ -8,12 +8,14 @@ class searchFlights2 extends React.Component {
     }
 
     state = {
-        flightNumber: "",
         from: "",
         to: "",
         arrivalDate: "",
         departureDate: "",
-        flights: []
+        flights: [],
+        numOfBusinessSeatsAvailable: "",
+        numOfEconomySeatsAvailable: "",
+        numOfFirstClassSeatsAvailable: ""
     };
 
     onChangeFrom = e => {
@@ -32,9 +34,19 @@ class searchFlights2 extends React.Component {
             arrivalDate: e.target.value
         })
     };
-    onChangeFlightNumber = e => {
+    onChangenumOfFirstClassSeatsAvailable = e => {
         this.setState({
-            flightNumber: e.target.value
+            numOfFirstClassSeatsAvailable: e.target.value
+        })
+    };
+    onChangenumOfBusinessSeatsAvailable = e => {
+        this.setState({
+            numOfBusinessSeatsAvailable: e.target.value
+        })
+    };
+    onChangenumOfEconomySeatsAvailable = e => {
+        this.setState({
+            numOfEconomySeatsAvailable: e.target.value
         })
     };
     onChangeDepartureDate = e => {
@@ -52,7 +64,9 @@ class searchFlights2 extends React.Component {
             to: this.state.to,
             arrivalDate: this.state.arrivalDate,
             departureDate: this.state.departureDate,
-            flightNumber: this.state.flightNumber
+            numOfBusinessSeatsAvailable: this.state.numOfBusinessSeatsAvailable,
+            numOfEconomySeatsAvailable: this.state.numOfEconomySeatsAvailable,
+            numOfFirstClassSeatsAvailable: this.state.numOfFirstClassSeatsAvailable
         };
         axios.post('http://localhost:5000/flights/searchFlight'
             , flight).then(res => {
@@ -65,25 +79,41 @@ class searchFlights2 extends React.Component {
     render() {
         return (
             <div>
-                <ul>
-                    <li>
-                        <Link to="/searchFlights2">Search for Flights</Link>
-                    </li>
-                    <li>
-                        <Link to="/selectFlight">Select Flight</Link>
-                    </li>
-                </ul>
+                {this.props.user &&
+                    <ul>
+                        <li>
+                            <Link to="/editProfile">Edit Profile</Link>
+                        </li>
+                        <li>
+                            <Link to="/viewReservation">View Reservations</Link>
+                        </li>
+                        <li>
+                            <Link to="/cancelReservation">Cancel Reservations</Link>
+                        </li>
+                        <li>
+                            <Link to="/searchFlights2">Search for Flights</Link>
+                        </li>
+                        <li>
+                            <Link to="/selectFlight">Select Flight</Link>
+                        </li>
+                    </ul>
+                }
+                {!this.props.user &&
+                    <ul>
+                        <li>
+                            <Link to="/searchFlights2">Search for Flights</Link>
+                        </li>
+                        <li>
+                            <Link to="/selectFlight">Select Flight</Link>
+                        </li>
+                    </ul>
+                }
 
                 <hr />
 
                 <div>
                     <form onSubmit={this.onSubmit}>
-                        <div>
-                            <label>
-                                Flight Number:
-                                <input type="text" name="name" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
-                            </label>
-                        </div>
+
                         <div>
                             <label>
                                 from:
@@ -119,6 +149,24 @@ class searchFlights2 extends React.Component {
 
                                     </div>
                                 </form>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                Number of Economy Seats:
+                                <input type="text" name="name" value={this.state.numOfEconomySeatsAvailable} onChange={this.onChangenumOfEconomySeatsAvailable} />
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                Number of Business Seats:
+                                <input type="text" name="name" value={this.state.numOfBusinessSeatsAvailable} onChange={this.onChangenumOfBusinessSeatsAvailable} />
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                Number of First-Class Seats:
+                                <input type="text" name="name" value={this.state.numOfFirstClassSeatsAvailable} onChange={this.onChangenumOfFirstClassSeatsAvailable} />
                             </label>
                         </div>
 

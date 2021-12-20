@@ -20,7 +20,7 @@ app.use(cors())
 app.use('/admin', AdminRoutes);
 app.use('/flights', flightRoutes);
 
-const PORT = process.env.PORT || 5000
+const PORT = 2600
 
 User.find().then(users => {
  console.log("users",users);

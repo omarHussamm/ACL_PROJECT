@@ -5,14 +5,35 @@ class selectDep extends React.Component {
         return (
             <div>
 
-                <ul>
-                    <li>
-                        <Link to="/searchFlights2">Search for Flights</Link>
-                    </li>
-                    <li>
-                        <Link to="/selectFlight">Select Flight</Link>
-                    </li>
-                </ul>
+                {this.props.user &&
+                    <ul>
+                        <li>
+                            <Link to="/editProfile">Edit Profile</Link>
+                        </li>
+                        <li>
+                            <Link to="/viewReservation">View Reservations</Link>
+                        </li>
+                        <li>
+                            <Link to="/cancelReservation">Cancel Reservations</Link>
+                        </li>
+                        <li>
+                            <Link to="/searchFlights2">Search for Flights</Link>
+                        </li>
+                        <li>
+                            <Link to="/selectFlight">Select Flight</Link>
+                        </li>
+                    </ul>
+                }
+                {!this.props.user &&
+                    <ul>
+                        <li>
+                            <Link to="/searchFlights2">Search for Flights</Link>
+                        </li>
+                        <li>
+                            <Link to="/selectFlight">Select Flight</Link>
+                        </li>
+                    </ul>
+                }
 
                 <hr />
 

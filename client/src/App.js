@@ -10,6 +10,9 @@ import SearchFlights from './components/searchFlights';
 import SelectFlight from './components/selectFlight';
 import SearchFlights2 from './components/searchFlights2';
 import Userguest from './components/user_guest';
+import CancelReservation from './components/cancelReservation';
+import ViewReservation from './components/viewReservation';
+import EditProfile from './components/editProfile';
 import React from 'react';
 
 class App extends React.Component {
@@ -18,16 +21,14 @@ class App extends React.Component {
     userType: -1,
     flightChoosen: false,
     departureFlight: "",
-    arrivalFlight: ""
+    arrivalFlight: "",
   }
 
-  onChooseFlight = (arrFlight, depFlight) => {
-    console.log("haaaaaa");
-    this.setState({
-      flightChoosen: true,
-      departureFlight: depFlight,
-      arrivalFlight: arrFlight
-    })
+  switchToUser = () => {
+    // this.setState({
+    //   user: true
+    // })
+    console.log("yala nenam");
   }
 
   onLogIn = (res) => {
@@ -45,22 +46,24 @@ class App extends React.Component {
       <div>
         <Router>
           <Routes>
-            {!this.state.loggedIn &&
+            {!this.state.loggedIn && 
               <Route path="/" exact element={<LoginForm onLogIn={this.onLogIn} />} />}
-            {this.state.loggedIn && this.state.userType !== 0 &&
-              <Route path="/" exact element={<Userguest flightChoosen={this.state.flightChoosen}
-                departureFlight={this.state.departureFlight}
-                arrivalFlight={this.state.arrivalFlight} />} />}
-            {this.state.loggedIn && this.state.userType === 0 &&
+            {this.state.userType !== 0 && 
+              <Route path="/" exact element={<Userguest user={this.state.loggedIn}/>} />}
+            {this.state.loggedIn && this.state.userType === 0 && 
               <Route path="/" exact element={<AdminHome />} />}
 
             <Route path="/createFlight" exact element={<CreateFlight />} />
+            <Route path="/user-guest" exact element={<Userguest user={this.state.loggedIn}/>} />
             <Route path='/deleteFlight' exact element={<DeleteFlight />} />
             <Route path='/updateFlight' exact element={<UpdateFlight />} />
             <Route path='/listAllFlights' exact element={<ListAllFlights />} />
             <Route path='/searchFlights' exact element={<SearchFlights />} />
-            <Route path='/searchFlights2' exact element={<SearchFlights2 />} />
-            <Route path='/selectFlight' exact element={<SelectFlight />} />
+            <Route path='/cancelReservation' exact element={<CancelReservation />} />
+            <Route path='/viewReservation' exact element={<ViewReservation />} />
+            <Route path='/editProfile' exact element={<EditProfile />} />
+            <Route path='/searchFlights2' exact element={<SearchFlights2 user={this.state.loggedIn} />} />
+            <Route path='/selectFlight' exact element={<SelectFlight user={this.state.loggedIn} switchToUser={this.switchToUser} />} />
           </Routes>
         </Router>
       </div>
