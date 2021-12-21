@@ -6,6 +6,31 @@ import {
 
 class cancelReservation extends React.Component {
 
+
+    constructor(props) {
+        super(props);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    state = {
+        reservationNumber: ""
+    };
+
+    onChangeReservationNumber = e => {
+        this.setState({
+            reservationNumber: e.target.value
+        })
+    };
+
+    onSubmit = e => {
+        e.preventDefault();
+        if (window.confirm("Are you sure you want to delete?")) {
+            // axios.post('http://localhost:5000/flights/deleteFlight'
+            //     , { flightNumber: this.state.flightNumber }).then(res => {
+            //     }
+            //     )
+        }
+    }
     render() {
         return (
             <div>
@@ -31,6 +56,20 @@ class cancelReservation extends React.Component {
 
                     <hr />
                     <h1>cancelReservation</h1>
+
+                    <div>
+                        <form onSubmit={this.onSubmit}>
+                            <div>
+                                <label>
+                                    Reservation Number:
+                                    <input type="text" name="name" value={this.state.reservationNumber} onChange={this.onChangeReservationNumber} />
+                                </label>
+                            </div>
+                            <input type="submit" value="Delete" />
+                        </form>
+
+
+                    </div>
                 </div>
 
             </div>

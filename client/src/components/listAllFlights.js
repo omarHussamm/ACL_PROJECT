@@ -8,7 +8,7 @@ class deleteFlight extends React.Component {
     listflights = () => {
         axios.get("http://localhost:5000/flights").then(res => {
             const flights = res.data;
-            this.setState({ flights });
+            this.setState({ flights:flights });
         });
 
 

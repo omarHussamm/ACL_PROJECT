@@ -1,4 +1,5 @@
 import React from 'react'
+// import axios from 'axios'
 import {
     Link
 } from "react-router-dom";
@@ -6,6 +7,18 @@ import {
 
 class viewReservation extends React.Component {
 
+    state = {
+        flights: []
+    }
+
+    componentDidMount = () => {
+        //get reservations
+        console.log("get reservations");
+        // axios.get("http://localhost:5000/flights").then(res => {
+        //     const flights = res.data;
+        //     this.setState({ flights: flights });
+        // });
+    }
     render() {
         return (
             <div>
@@ -31,6 +44,35 @@ class viewReservation extends React.Component {
 
                     <hr />
                     <h1> viewReservation </h1>
+                    <table>
+                        <tr>
+                            <th>flight Number</th>
+                            <th>from</th>
+                            <th>to</th>
+                            <th>Departure Date</th>
+                            <th>Arrival Date</th>
+                            <th>Economy Seats Available</th>
+                            <th>Business Seats Available</th>
+                            <th>First Class Seats Available</th>
+                            <th>Base Price</th>
+                        </tr>
+                        {this.state.flights.map(flight => {
+                            return (
+                                <tr>
+                                    <td>{flight.flightNumber}</td>
+                                    <td>{flight.from}</td>
+                                    <td>{flight.to}</td>
+                                    <td>{flight.arrivalDate}</td>
+                                    <td>{flight.departureDate}</td>
+                                    <td>{flight.numOfEconomySeatsAvailable}</td>
+                                    <td>{flight.numOfBusinessSeatsAvailable}</td>
+                                    <td>{flight.numOfFirstClassSeatsAvailable}</td>
+                                    <td>{flight.basePrice}</td>
+                                </tr>
+                            )
+                        })}
+                    </table>
+
                 </div>
 
             </div>

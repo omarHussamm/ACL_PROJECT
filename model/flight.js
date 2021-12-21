@@ -45,6 +45,23 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true
   }
+  ,
+  EconomySeatsAvailable: {
+    type: [String],
+    required: true
+  }
+  ,
+  BusinessSeatsAvailable: {
+    type: [String],
+    required: true
+  }
+  ,
+  FirstClassSeatsAvailable: {
+    type: [String],
+    required: true
+  }
+  ,
+
 
 });
 

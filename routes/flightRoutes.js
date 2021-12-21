@@ -66,11 +66,11 @@ router.route('/updateFlight').post((req, res) => {
         updateCriteria = {
             ...updateCriteria, arrivalDate: new Date(req.body.arrivalDate)
         }
-        console.log("updated arrival Date",new Date(req.body.arrivalDate));
+        console.log("updated arrival Date", new Date(req.body.arrivalDate));
     }
     if (req.body.departureDate !== "") {
         updateCriteria = { ...updateCriteria, departureDate: new Date(req.body.departureDate) }
-        console.log("updated departure Date",new Date(req.body.departureDate));
+        console.log("updated departure Date", new Date(req.body.departureDate));
     }
     if (req.body.flightNumber !== "") { updateCriteria = { ...updateCriteria, flightNumber: Number(req.body.flightNumber) } }
 
@@ -80,8 +80,64 @@ router.route('/updateFlight').post((req, res) => {
 
 
 })
+router.route('/searchFlights2').post((req, res) => {
+    let searchCriteria = {}
+    if (req.body.from !== "") {
+        searchCriteria = { ...searchCriteria, from: req.body.from }
+    }
+    if (req.body.to !== "") { searchCriteria = { ...searchCriteria, to: req.body.to } }
+    if (req.body.arrivalDate !== "") { searchCriteria = { ...searchCriteria, arrivalDate: new Date(req.body.arrivalDate) } }
+    if (req.body.departureDate !== "") { searchCriteria = { ...searchCriteria, departureDate: new Date(req.body.departureDate) } }
+    // if (req.body.flightNumber !== "") { searchCriteria = { ...searchCriteria, flightNumber: Number(req.body.flightNumber) } }
+    if (req.body.numOfBusinessSeatsAvailable !== "") { searchCriteria = { ...searchCriteria, numOfBusinessSeatsAvailable: { $gte: req.body.numOfBusinessSeatsAvailable } } }
+    if (req.body.numOfEconomySeatsAvailable !== "") { searchCriteria = { ...searchCriteria, numOfEconomySeatsAvailable: { $gte: req.body.numOfEconomySeatsAvailable } } }
+    if (req.body.numOfFirstClassSeatsAvailable !== "") { searchCriteria = { ...searchCriteria, numOfFirstClassSeatsAvailable: { $gte: req.body.numOfFirstClassSeatsAvailable } } }
+
+    Flight.find(
+        searchCriteria
+    ).then(flights => res.json(flights))
+    // numOfEconomySeatsAvailable : {$gte : req.body.numOfEconomySeatsAvailable},
+    //     numOfBusinessSeatsAvailable : {$gte : req.body.numOfBusinessSeatsAvailable},
+
+})
+router.route('/selectDepFlight').post((req, res) => {
+    let searchCriteria = {}
+    let depFrom = ""
+    let depTo = ""
+    let depFlight = ""
+    let x = ""
+    if (req.body.flightNumber !== "") { searchCriteria = { ...searchCriteria, flightNumber: Number(req.body.flightNumber) } }
+    Flight.find(
+        searchCriteria
+    ).then(flights => {
+        depFlight = flights[0]
+        depFrom = flights[0].from
+        depTo = flights[0].to
+        Flight.find(
+            {
+                from: depTo,
+                to: depFrom
+            }
+        ).then(flights => {
+            x = flights
+            res.json(
+                {
+                    returnFlights: flights,
+                    departureFlight: depFlight
+
+                })
+        }
+        )
+    console.log('hi')
+    console.log(flights)
+    console.log('hiii0')
+    console.log(x)
+})
+        
+})
 router.route('/').get((req, res) => {
     Flight.find().then(flights => res.json(flights))
 })
+
 
 export default router;

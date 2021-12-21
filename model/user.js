@@ -45,6 +45,10 @@ const userSchema = new mongoose.Schema({
     type: {
         type: Number,
         required: true
+    },
+    bookings: {
+        type: [String],
+        required: true
     }
     //type 0 = adminstrator ,type 2 = user ,type 3 = guest
 });

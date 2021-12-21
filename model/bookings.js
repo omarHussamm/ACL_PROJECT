@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
-  flightID: {
+  depFlightID: {
+    type: ObjectId,
+    required: true
+  },
+  arrFlightID: {
     type: ObjectId,
     required: true
   },
@@ -13,21 +17,36 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  numOfEconomySeats: {
-    type: Number,
+  arrEconomySeats: {
+    type: [String],
     required: true
   }
   ,
-  numOfBusinessSeats: {
-    type: Number,
+  arrBusinessSeats: {
+    type: [String],
     required: true
   }
   ,
-  numOfFirstClassSeats: {
-    type: Number,
+  arrFirstClassSeats: {
+    type: [String],
     required: true
   }
   ,
+  depEconomySeats: {
+    type: [String],
+    required: true
+  }
+  ,
+  depBusinessSeats: {
+    type: [String],
+    required: true
+  }
+  ,
+  depFirstClassSeats: {
+    type: [String],
+    required: true
+  }
+
 
 });
 

@@ -36,9 +36,9 @@ class loginForm extends React.Component {
             userName: this.state.userName,
             password: this.state.password
         };
-        axios.post('http://localhost:2600/admin/login'
+        axios.post('http://localhost:5000/admin/login'
             , user).then(res => {
-                console.log(res.data);
+                console.log("????",res.data);
                 this.props.onLogIn(res.data);
                 if (!(res.data.loggedIN === 'success')) {
                     this.setState({
