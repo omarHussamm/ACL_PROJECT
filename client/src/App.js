@@ -31,6 +31,12 @@ class App extends React.Component {
     console.log("yala nenam");
   }
 
+  logged = () =>{
+    this.setState({
+      loggedIn:true
+    })
+  }
+
   onLogIn = (res) => {
     if (res.loggedIN === 'success') {
       this.setState({
@@ -63,7 +69,7 @@ class App extends React.Component {
             <Route path='/viewReservation' exact element={<ViewReservation />} />
             <Route path='/editProfile' exact element={<EditProfile />} />
             <Route path='/searchFlights2' exact element={<SearchFlights2 user={this.state.loggedIn} />} />
-            <Route path='/selectFlight' exact element={<SelectFlight user={this.state.loggedIn} switchToUser={this.switchToUser} />} />
+            <Route path='/selectFlight' exact element={<SelectFlight logged={this.logged} user={this.state.loggedIn} switchToUser={this.switchToUser} />} />
           </Routes>
         </Router>
       </div>

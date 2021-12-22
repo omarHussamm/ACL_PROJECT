@@ -6,6 +6,7 @@ import ArrivalSeats from "./arrivalSeats";
 import DepartureSeats from "./departureSeats";
 import ReservationSummary from "./reservationSummary";
 import SummaryConfirmation from "./summaryConfirmation";
+import NeedToLogIn from './needToLogIn'
 class selectFlight extends React.Component {
   constructor(props) {
     super(props);
@@ -38,8 +39,16 @@ class selectFlight extends React.Component {
     EconomySeats2: "",
     BusinessSeats2: "",
     FirstClassSeats2: "",
-    bookingNumber:"#24366621"
+    bookingNumber: "#24366621"
   };
+
+  logged = () =>{
+    this.props.logged();
+    this.setState({
+      reservationSummary:false,
+      depSeat:true
+    })
+  }
 
   onChangeFlightNumber = (e) => {
     this.setState({
@@ -262,7 +271,8 @@ class selectFlight extends React.Component {
           )}
         {this.state.depSeat &&
           !this.state.arrSeat &&
-          !this.state.reservationSummary && <div>
+          !this.state.reservationSummary && this.props.user &&
+          <div>
             <DepartureSeats
               numOfEconomySeats={this.state.numOfEconomySeats}
               numOfBusinessSeats={this.state.numOfBusinessSeats}
@@ -272,6 +282,13 @@ class selectFlight extends React.Component {
               availableFirstClassSeats={["01A", "01E", "03B"]}
               onSubmit5={this.onSubmit5}
             />
+          </div>}
+
+        {this.state.depSeat &&
+          !this.state.arrSeat &&
+          !this.state.reservationSummary && !this.props.user &&
+          <div>
+            <NeedToLogIn logged={this.logged}/>
           </div>}
 
         {this.state.arrSeat && !this.state.reservationSummary && <div>
@@ -310,7 +327,7 @@ class selectFlight extends React.Component {
             BusinessSeats2={["09F", "23E"]}
             FirstClassSeats2={["02A"]}
             bookingNumber={this.state.bookingNumber}
-            />
+          />
         </div>}
       </div>
     );
