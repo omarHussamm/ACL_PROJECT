@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../BongBoeing.png";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 class arrivalSeats extends React.Component {
   onChangeFirstClassSeats = (e) => {
@@ -66,7 +66,7 @@ class arrivalSeats extends React.Component {
           </form>
         </div>
         <hr />
-        <img src={logo} width="1600" height="550" />
+        <img src={logo} alt="boeing seats" width="1600" height="550" />
       </div>
     );
   }

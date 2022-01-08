@@ -1,35 +1,43 @@
 import React from 'react'
+// import axios from 'axios'
 import {
     Link
 } from "react-router-dom";
 
 
-class cancelReservation extends React.Component {
-
-
+class changePassword extends React.Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
     state = {
-        reservationNumber: ""
+        oldPassword: "",
+        newPassword: "",
     };
 
-    onChangeReservationNumber = e => {
+    onChangeOldPassword = e => {
         this.setState({
-            reservationNumber: e.target.value
+            oldPassword: e.target.value
         })
     };
 
+    onChangeNewPassword = e => {
+        this.setState({
+            newPassword: e.target.value
+        })
+    };
+  
+
     onSubmit = e => {
         e.preventDefault();
-        if (window.confirm("Are you sure you want to delete?")) {
-            // axios.post('http://localhost:5000/flights/deleteFlight'
-            //     , { flightNumber: this.state.flightNumber }).then(res => {
-            //     }
-            //     )
-        }
+
+        
+        // axios.post('http://localhost:5000/flights/searchFlight'
+        //     , newProfile).then(res => {
+        //         this.setState({ flights: res.data })
+        //     }
+        //     )
     }
     render() {
         return (
@@ -58,20 +66,26 @@ class cancelReservation extends React.Component {
 
 
                     <hr />
-                    <h1>cancelReservation</h1>
+                    <h1> Change Password </h1>
 
                     <div>
                         <form onSubmit={this.onSubmit}>
+
                             <div>
                                 <label>
-                                    Reservation Number:
-                                    <input type="text" name="name" value={this.state.reservationNumber} onChange={this.onChangeReservationNumber} />
+                                    Old Password:
+                                    <input type="text" name="name" value={this.state.oldPassword} onChange={this.onChangeOldPassword} />
                                 </label>
                             </div>
-                            <input type="submit" value="Delete" />
+                            <div>
+                                <label>
+                                   New Password:
+                                    <input type="text" name="name" value={this.state.newPassword} onChange={this.onChangeNewPassword} />
+                                </label>
+                            </div>
+                            
+                            <input type="submit" value="Change Password" />
                         </form>
-
-
                     </div>
                 </div>
 
@@ -79,4 +93,4 @@ class cancelReservation extends React.Component {
         );
     }
 }
-export default cancelReservation
+export default changePassword

@@ -1,8 +1,8 @@
 import React from 'react'
 import axios from 'axios'
-import {
-    Link
-} from "react-router-dom";
+// import {
+//     Link
+// } from "react-router-dom";
 
 class loginForm extends React.Component {
     constructor(props) {
@@ -39,9 +39,9 @@ class loginForm extends React.Component {
         axios.post('http://localhost:5000/admin/login'
             , user).then(res => {
                 if (res.data.loggedIN === 'success' && res.data.type === 1) {
-                    this.props.logged();
-
-                 } else {
+                    this.props.logged(res.data.userToken);
+                    console.log(res.data.userToken);
+                } else {
                     this.setState({
                         userName: "",
                         password: ""

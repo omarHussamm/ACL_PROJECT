@@ -34,7 +34,8 @@ router.route('/login').post((req, res) => {
                 console.log("success");
                 res.send({
                     loggedIN: "success",
-                    type: users[0].type
+                    type: users[0].type,
+                    userToken: accesstoken
                 });
             } else {
                 console.log("fail");

@@ -1,11 +1,11 @@
 import React from 'react'
 // import axios from 'axios'
-import {
-    Link
-} from "react-router-dom";
+// import {
+//     Link
+// } from "react-router-dom";
 
 
-class editProfile extends React.Component {
+class signUp extends React.Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
@@ -14,9 +14,13 @@ class editProfile extends React.Component {
     state = {
         firstName: "",
         lastname: "",
+        address:"",
+        countryCode:"",
         passport: "",
         email: "",
-        number: ""
+        number: "",
+        userName:"",
+        password:""
     };
 
     onChangeFirstName = e => {
@@ -40,6 +44,26 @@ class editProfile extends React.Component {
             email: e.target.value
         })
     };
+    onChangeAddress = e => {
+        this.setState({
+            address: e.target.value
+        })
+    };
+    onChangeCountryCode = e => {
+        this.setState({
+            countryCode: e.target.value
+        })
+    };
+    onChangeUserName = e => {
+        this.setState({
+            userName: e.target.value
+        })
+    };
+    onChangePassword = e => {
+        this.setState({
+            password: e.target.value
+        })
+    };
     onChangeNumber = e => {
         this.setState({
             number: e.target.value
@@ -49,14 +73,18 @@ class editProfile extends React.Component {
     onSubmit = e => {
         e.preventDefault();
 
-        const newProfile = {
+        const newUser = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
+            homeAddress: this.state.address,
+            countryCode: this.state.countryCode,
             passport: this.state.passport,
             email: this.state.email,
-            number: this.state.number,
+            telephoneNumber: this.state.number,
+            userName: this.state.userName,
+            password: this.state.password
         };
-        console.log(newProfile);
+        this.props.signUp(newUser);
         // axios.post('http://localhost:5000/flights/searchFlight'
         //     , newProfile).then(res => {
         //         this.setState({ flights: res.data })
@@ -67,31 +95,9 @@ class editProfile extends React.Component {
         return (
             <div>
                 <div>
-                    <ul>
-                        <li>
-                            <Link to="/editProfile">Edit Profile</Link>
-                        </li>
-                        <li>
-                            <Link to="/viewReservation">View Reservations</Link>
-                        </li>
-                        <li>
-                            <Link to="/cancelReservation">Cancel Reservations</Link>
-                        </li>
-                        <li>
-                            <Link to="/searchFlights2">Search for Flights</Link>
-                        </li>
-                        <li>
-                            <Link to="/selectFlight">Select Flight</Link>
-                        </li>
-                        <li>
-                            <Link to="/changePassword">Change Password</Link>
-                        </li>
-                    </ul>
-
-
+                    
+                    <h1> Sign Up </h1>
                     <hr />
-                    <h1> editProfile </h1>
-
                     <div>
                         <form onSubmit={this.onSubmit}>
 
@@ -105,6 +111,18 @@ class editProfile extends React.Component {
                                 <label>
                                     Last Name:
                                     <input type="text" name="name" value={this.state.lastName} onChange={this.onChangeLastName} />
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    Address:
+                                    <input type="text" name="name" value={this.state.address} onChange={this.onChangeAddress} />
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    Country Code:
+                                    <input type="text" name="name" value={this.state.countryCode} onChange={this.onChangeCountryCode} />
                                 </label>
                             </div>
                             <div>
@@ -126,9 +144,21 @@ class editProfile extends React.Component {
                                     <input type="text" name="name" value={this.state.number} onChange={this.onChangeNumber} />
                                 </label>
                             </div>
+                            <div>
+                                <label>
+                                    User Name:
+                                    <input type="text" name="name" value={this.state.userName} onChange={this.onChangeUserName} />
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    Password:
+                                    <input type="text" name="name" value={this.state.password} onChange={this.onChangePassword} />
+                                </label>
+                            </div>
 
 
-                            <input type="submit" value="Search" />
+                            <input type="submit" value="Sign Up" />
                         </form>
                     </div>
                 </div>
@@ -137,4 +167,4 @@ class editProfile extends React.Component {
         );
     }
 }
-export default editProfile
+export default signUp

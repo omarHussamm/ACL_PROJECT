@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Flight from './adminFlight'
 import { Link } from 'react-router-dom'
 class deleteFlight extends React.Component {
     state = {
@@ -40,7 +41,22 @@ class deleteFlight extends React.Component {
                 <button onClick={this.listflights}>
                     Show All Flights
                 </button>
-                <table>
+
+
+                <ul class="list-group">
+                {this.state.flights.map(flight => {
+                        return (
+                            <li key={flight._id}>
+                                <Flight flight={flight} />
+                            </li>
+
+                        );
+
+                    })
+                    }
+                </ul>
+                {/* <table>
+                <tbody>
                     <tr>
                         <th>flight Number</th>
                         <th>from</th>
@@ -50,10 +66,11 @@ class deleteFlight extends React.Component {
                         <th>Economy Seats Available</th>
                         <th>Business Seats Available</th>
                         <th>First Class Seats Available</th>
+                        <th> Base Price </th>
                     </tr>
                     {this.state.flights.map(flight => {
                         return (
-                            <tr>
+                            <tr key={flight._id}>
                                 <td>{flight.flightNumber}</td>
                                 <td>{flight.from}</td>
                                 <td>{flight.to}</td>
@@ -69,7 +86,8 @@ class deleteFlight extends React.Component {
 
                     })
                     }
-                </table>
+                   </tbody>
+                </table> */}
             </div>
         )
     }

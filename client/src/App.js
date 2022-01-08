@@ -13,38 +13,31 @@ import Userguest from './components/user_guest';
 import CancelReservation from './components/cancelReservation';
 import ViewReservation from './components/viewReservation';
 import EditProfile from './components/editProfile';
+import ChangePassword from './components/changePassword';
 import React from 'react';
 
 class App extends React.Component {
   state = {
-    loggedIn: false,
     userType: -1,
     flightChoosen: false,
     departureFlight: "",
     arrivalFlight: "",
+    userToken: 0
   }
 
-  switchToUser = () => {
-    // this.setState({
-    //   user: true
-    // })
-    console.log("yala nenam");
-  }
-
-  logged = () =>{
+  logged = (userToken) => {
     this.setState({
-      loggedIn:true
+      userToken:userToken,
+      userType:1
     })
   }
 
   onLogIn = (res) => {
     if (res.loggedIN === 'success') {
       this.setState({
-        loggedIn: true,
-        userType: res.type
+        userType: res.type,
+        userToken: res.userToken
       })
-    } else {
-      this.setState({ loggedIn: false })
     }
   }
   render() {
@@ -52,24 +45,43 @@ class App extends React.Component {
       <div>
         <Router>
           <Routes>
-            {!this.state.loggedIn && 
+            {this.state.userType=== -1 &&
               <Route path="/" exact element={<LoginForm onLogIn={this.onLogIn} />} />}
-            {this.state.userType !== 0 && 
-              <Route path="/" exact element={<Userguest user={this.state.loggedIn}/>} />}
-            {this.state.loggedIn && this.state.userType === 0 && 
+            {this.state.userType > 0 &&
+              <Route path="/" exact element={<Userguest userToken={this.state.userToken} />} />}
+            {this.state.userType === 0 &&
               <Route path="/" exact element={<AdminHome />} />}
 
             <Route path="/createFlight" exact element={<CreateFlight />} />
-            <Route path="/user-guest" exact element={<Userguest user={this.state.loggedIn}/>} />
+
+            <Route path="/user-guest" exact element={<Userguest userToken={this.state.userToken} />} />
+
             <Route path='/deleteFlight' exact element={<DeleteFlight />} />
+
             <Route path='/updateFlight' exact element={<UpdateFlight />} />
+
             <Route path='/listAllFlights' exact element={<ListAllFlights />} />
+
             <Route path='/searchFlights' exact element={<SearchFlights />} />
-            <Route path='/cancelReservation' exact element={<CancelReservation />} />
-            <Route path='/viewReservation' exact element={<ViewReservation />} />
-            <Route path='/editProfile' exact element={<EditProfile />} />
-            <Route path='/searchFlights2' exact element={<SearchFlights2 user={this.state.loggedIn} />} />
-            <Route path='/selectFlight' exact element={<SelectFlight logged={this.logged} user={this.state.loggedIn} switchToUser={this.switchToUser} />} />
+
+            <Route path='/cancelReservation' exact element={<CancelReservation userToken={this.state.userToken} />} />
+
+            <Route path='/viewReservation' exact element={<ViewReservation userToken={this.state.userToken} />} />
+
+            <Route path='/editProfile' exact element={<EditProfile userToken={this.state.userToken} />} />
+
+            <Route path='/searchFlights2' exact element={
+              <SearchFlights2
+              userToken={this.state.userToken}
+            />} />
+
+            <Route path='/selectFlight' exact element={
+              <SelectFlight
+                logged={this.logged}
+                userToken={this.state.userToken}
+              />} />
+
+            <Route path='/changePassword' exact element={<ChangePassword />} userToken={this.state.userToken} />
           </Routes>
         </Router>
       </div>

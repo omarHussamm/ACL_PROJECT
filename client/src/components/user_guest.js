@@ -10,7 +10,7 @@ class user_guest extends React.Component {
         return (
             <div>
                 <div>
-                    {this.props.user &&
+                    {this.props.userToken !==0 &&
                         <ul>
                             <li>
                                 <Link to="/editProfile">Edit Profile</Link>
@@ -27,9 +27,12 @@ class user_guest extends React.Component {
                             <li>
                                 <Link to="/selectFlight">Select Flight</Link>
                             </li>
+                            <li>
+                                <Link to="/changePassword">Change Password</Link>
+                            </li>
                         </ul>
                     }
-                    {!this.props.user &&
+                    {this.props.userToken ===0 &&
                         <ul>
                             <li>
                                 <Link to="/searchFlights2">Search for Flights</Link>

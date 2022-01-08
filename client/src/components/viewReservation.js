@@ -39,6 +39,9 @@ class viewReservation extends React.Component {
                         <li>
                             <Link to="/selectFlight">Select Flight</Link>
                         </li>
+                        <li>
+                            <Link to="/changePassword">Change Password</Link>
+                        </li>
                     </ul>
 
 

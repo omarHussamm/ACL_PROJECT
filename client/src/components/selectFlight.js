@@ -163,7 +163,6 @@ class selectFlight extends React.Component {
   onSubmit4 = (e) => {
     // after confirmation  --- must log in
     e.preventDefault();
-    // this.props.switchToUser();
     this.setState({
       depSeat: true,
       summary: false
@@ -208,7 +207,7 @@ class selectFlight extends React.Component {
             <div>
               {
                 <SelectDep
-                  user={this.props.user}
+                  userToken={this.props.userToken}
                   onChangeFlightNumber={this.onChangeFlightNumber}
                   onSubmit={this.onSubmit}
                   flightNumber={this.state.flightNumber}
@@ -271,7 +270,7 @@ class selectFlight extends React.Component {
           )}
         {this.state.depSeat &&
           !this.state.arrSeat &&
-          !this.state.reservationSummary && this.props.user &&
+          !this.state.reservationSummary && this.props.userToken!==0 &&
           <div>
             <DepartureSeats
               numOfEconomySeats={this.state.numOfEconomySeats}
@@ -286,7 +285,7 @@ class selectFlight extends React.Component {
 
         {this.state.depSeat &&
           !this.state.arrSeat &&
-          !this.state.reservationSummary && !this.props.user &&
+          !this.state.reservationSummary && this.props.userToken ===0 &&
           <div>
             <NeedToLogIn logged={this.logged}/>
           </div>}

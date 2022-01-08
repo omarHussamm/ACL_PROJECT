@@ -79,7 +79,7 @@ class searchFlights2 extends React.Component {
     render() {
         return (
             <div>
-                {this.props.user &&
+                {this.props.userToken ===0 &&
                     <ul>
                         <li>
                             <Link to="/editProfile">Edit Profile</Link>
@@ -98,7 +98,7 @@ class searchFlights2 extends React.Component {
                         </li>
                     </ul>
                 }
-                {!this.props.user &&
+                {this.props.userToken !==0 &&
                     <ul>
                         <li>
                             <Link to="/searchFlights2">Search for Flights</Link>
