@@ -16,8 +16,12 @@ class flight extends React.Component {
                             <h5 class="card-title">Flight Number: {this.props.flight.flightNumber}</h5>
                             <p class="text-muted">{this.props.flight.from} ------ {this.props.flight.to}</p>
                             <p class="card-text">{this.props.flight.departureDate}    -    {this.props.flight.arrivalDate}</p>
+                            {this.props.user ==='admin' &&
+                            <>
                             <a href="#" class="card-link">Update</a>
                             <a href="#" class="card-link">delete</a>
+                            </>
+                            }
                         </div>
 
                     </div>

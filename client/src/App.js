@@ -14,7 +14,9 @@ import CancelReservation from './components/cancelReservation';
 import ViewReservation from './components/viewReservation';
 import EditProfile from './components/editProfile';
 import ChangePassword from './components/changePassword';
+import EditReservation from './components/editReservation';
 import React from 'react';
+
 
 class App extends React.Component {
   state = {
@@ -82,6 +84,9 @@ class App extends React.Component {
               />} />
 
             <Route path='/changePassword' exact element={<ChangePassword />} userToken={this.state.userToken} />
+
+            <Route path='/editReservation' exact element={<EditReservation />} userToken={this.state.userToken} />
+
           </Routes>
         </Router>
       </div>

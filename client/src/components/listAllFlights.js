@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Flight from './adminFlight'
+import Flight from './flight'
 import { Link } from 'react-router-dom'
 class deleteFlight extends React.Component {
     state = {

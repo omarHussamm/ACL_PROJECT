@@ -1,10 +1,16 @@
 import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
-  depFlightID: {
+  reservationNumber: {
+    type: Number,
+    unique: true,
+    required: true,
+    dropDups: true
+  },
+  depFlightNumber: {
     type: ObjectId,
     required: true
   },
-  arrFlightID: {
+  arrFlightNumber: {
     type: ObjectId,
     required: true
   },

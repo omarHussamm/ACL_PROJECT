@@ -1,5 +1,5 @@
 import React from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 // import {
 //     Link
 // } from "react-router-dom";
@@ -13,14 +13,14 @@ class signUp extends React.Component {
 
     state = {
         firstName: "",
-        lastname: "",
-        address:"",
-        countryCode:"",
+        lastName: "",
+        address: "",
+        countryCode: "",
         passport: "",
         email: "",
         number: "",
-        userName:"",
-        password:""
+        userName: "",
+        password: ""
     };
 
     onChangeFirstName = e => {
@@ -29,9 +29,9 @@ class signUp extends React.Component {
         })
     };
 
-    onChangeLastName = e => {
+    onChangelastName = e => {
         this.setState({
-            lastname: e.target.value
+            lastName: e.target.value
         })
     };
     onChangePassport = e => {
@@ -84,18 +84,16 @@ class signUp extends React.Component {
             userName: this.state.userName,
             password: this.state.password
         };
-        this.props.signUp(newUser);
-        // axios.post('http://localhost:5000/flights/searchFlight'
-        //     , newProfile).then(res => {
-        //         this.setState({ flights: res.data })
-        //     }
-        //     )
+
+        axios.post('http://localhost:5000/userGuest/signup'
+            , { newUser: newUser });
+        // this.props.signUp(newUser);
     }
     render() {
         return (
             <div>
                 <div>
-                    
+
                     <h1> Sign Up </h1>
                     <hr />
                     <div>
@@ -110,7 +108,7 @@ class signUp extends React.Component {
                             <div>
                                 <label>
                                     Last Name:
-                                    <input type="text" name="name" value={this.state.lastName} onChange={this.onChangeLastName} />
+                                    <input type="text" name="name" value={this.state.lastName} onChange={this.onChangelastName} />
                                 </label>
                             </div>
                             <div>

@@ -43,6 +43,9 @@ class cancelReservation extends React.Component {
                             <Link to="/viewReservation">View Reservations</Link>
                         </li>
                         <li>
+                            <Link to="/editReservation">Edit Reservation</Link>
+                        </li>
+                        <li>
                             <Link to="/cancelReservation">Cancel Reservations</Link>
                         </li>
                         <li>
