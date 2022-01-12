@@ -7,15 +7,15 @@ const userSchema = new mongoose.Schema({
     dropDups: true
   },
   depFlightNumber: {
-    type: ObjectId,
+    type: Number,
     required: true
   },
   arrFlightNumber: {
-    type: ObjectId,
+    type: Number,
     required: true
   },
   userID: {
-    type: ObjectId,
+    type: Number,
     required: true
   }
   ,

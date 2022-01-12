@@ -1,14 +1,16 @@
 import React from 'react'
+import axios from 'axios';
 // import axios from 'axios'
 import {
     Link
 } from "react-router-dom";
+//import Booking from '../../../model/bookings';
 
 
 class viewReservation extends React.Component {
 
     state = {
-        flights: []
+        reservations: []
     }
 
     componentDidMount = () => {
@@ -19,9 +21,18 @@ class viewReservation extends React.Component {
         //     this.setState({ flights: flights });
         // });
     }
+    listReservations = () => {
+        axios.get("http://localhost:5000/flights/viewreservation").then(res => {
+            const reservations = res.data;
+            this.setState({ reservations:reservations });
+            console.log(reservations);
+            
+        });
+    };
     render() {
         return (
             <div>
+                
                 <div>
                     <ul>
                         <li>
@@ -45,27 +56,46 @@ class viewReservation extends React.Component {
                         <li>
                             <Link to="/changePassword">Change Password</Link>
                         </li>
+                        
                     </ul>
+                    
 
 
                     <hr />
                     <h1> viewReservation </h1>
-                    <table>
+                    <button onClick={this.listReservations}>
+                    Show All Reservations
+                </button>
+                {/* <ul class="list-group">
+                {this.state.reservations.map(booking => {
+                        return (
+                            <li key={flight._id}>
+                                <Booking booking={flight} />
+                            </li>
+
+                        );
+
+                    })
+                    }
+                </ul> */}
+                    {/* { <table>
                         <tr>
-                            <th>flight Number</th>
-                            <th>from</th>
-                            <th>to</th>
-                            <th>Departure Date</th>
-                            <th>Arrival Date</th>
-                            <th>Economy Seats Available</th>
-                            <th>Business Seats Available</th>
-                            <th>First Class Seats Available</th>
-                            <th>Base Price</th>
+                            <th>Reservation Number</th>
+                            <th>Departure Flight Number</th>
+                            <th>Arrival Flight Number</th>
+                            <th>User ID</th>
+                            <th>Price</th>
+                            <th>Arrival Economy Seats</th>
+                            <th>Arrival Business Seats</th>
+                            <th>Arrival First Class Seats</th>
+                            <th>Departure Economy Seats</th>
+                            <th>Departure Business Seats</th>
+                            <th>Departure First Class Seats</th>
                         </tr>
-                        {this.state.flights.map(flight => {
+                        {this.state.reservations.map(reservation => {
                             return (
                                 <tr>
-                                    <td>{flight.flightNumber}</td>
+                                    <td>{Booking.reservationNum}</td>
                                     <td>{flight.from}</td>
                                     <td>{flight.to}</td>
                                     <td>{flight.arrivalDate}</td>
@@ -77,7 +107,7 @@ class viewReservation extends React.Component {
                                 </tr>
                             )
                         })}
-                    </table>
+                    </table> */}
 
                 </div>
 
