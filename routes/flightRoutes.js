@@ -1,5 +1,6 @@
 import express from "express";
-import Flight from '../model/flight.js'
+import Flight from '../model/flight.js';
+import Booking from '../model/bookings.js';
 const router = express.Router();
 
 router.route('/createFlight').post((req, res) => {
@@ -104,7 +105,7 @@ router.route('/selectDepFlight').post((req, res) => {
     let searchCriteria = {}
     let depFrom = ""
     let depTo = ""
-    let depFlight = ""
+    let depFlight = "" 
     let x = ""
     if (req.body.flightNumber !== "") { searchCriteria = { ...searchCriteria, flightNumber: Number(req.body.flightNumber) } }
     Flight.find(
@@ -135,6 +136,13 @@ router.route('/selectDepFlight').post((req, res) => {
 })
         
 })
+router.route('/viewreservation').get((req, res) => {
+    let searchCriteria = {}
+    //search with username from token
+    searchCriteria = {};
+    Booking.find(searchCriteria).then(bookings => res.json(bookings))
+})
+
 router.route('/').get((req, res) => {
     Flight.find().then(flights => res.json(flights))
 })
