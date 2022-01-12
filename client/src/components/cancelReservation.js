@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import {
     Link
 } from "react-router-dom";
@@ -25,10 +26,10 @@ class cancelReservation extends React.Component {
     onSubmit = e => {
         e.preventDefault();
         if (window.confirm("Are you sure you want to delete?")) {
-            // axios.post('http://localhost:5000/flights/deleteFlight'
-            //     , { flightNumber: this.state.flightNumber }).then(res => {
-            //     }
-            //     )
+            axios.post('http://localhost:5000/user/cancelReservation'
+                , { reservationNumber: this.state.reservationNumber }).then(res => {
+                }
+                )
         }
     }
     render() {

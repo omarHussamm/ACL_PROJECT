@@ -1,5 +1,5 @@
 import React from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 import {
     Link
 } from "react-router-dom";
@@ -57,11 +57,8 @@ class editProfile extends React.Component {
             number: this.state.number,
         };
         console.log(newProfile);
-        // axios.post('http://localhost:5000/flights/searchFlight'
-        //     , newProfile).then(res => {
-        //         this.setState({ flights: res.data })
-        //     }
-        //     )
+        axios.post('http://localhost:5000/user/editProfile'
+            , newProfile)
     }
     render() {
         return (

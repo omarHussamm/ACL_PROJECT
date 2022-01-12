@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 class changeSeat extends React.Component {
     state = {
         oldSeat: "",
@@ -18,6 +19,12 @@ class changeSeat extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
+        axios.post("http://localhost:5000/user/changeSeat",{
+            oldSeat: this.state.oldSeat,
+            newSeat: this.state.newSeat,
+            reservation: this.props.reservation
+
+        })
     }
 
     render() {

@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from "../BongBoeing.png";
-class selectArr extends React.Component {
+import axios from 'axios'
+class changeFlight extends React.Component {
     state = {
         flightNumber: "",
         flightChoosen: false,
@@ -29,30 +30,30 @@ class selectArr extends React.Component {
 
     onChooseFlight = e => {
         e.preventDefault();
-        this.setState({
-            flightChoosen: true,
-            flight: {
-                flightNumber: 1213,
-                from: "happy",
-                to: "sad",
-                departureDate: "2021-12-24T01:34:00.000Z",
-                arrivalDate: "2021-12-24T13:34:00.000Z",
-                numOfEconomySeatsAvailable: 12,
-                numOfBusinessSeatsAvailable: 33,
-                numOfFirstClassSeatsAvailable: 44,
-                __v: 0,
-                basePrice: 10,
-                EconomySeatsAvailable: ["32A", "34B", "32C", "30D", "30E"],
-                BusinessSeatsAvailable: ["09F", "23E", "08C", "22D"],
-                FirstClassSeatsAvailable: ["02A", "01B", "03F"]
-            },
+        axios.post("http://localhost:5000/user/changeFlightNumber", {
+            flightNumber: this.state.flightNumber,
+            reservation: this.props.reservation
+
+        }).then(res => {
+            this.setState({
+                flightChoosen: true,
+                flight: res.data.flight,
+            })
         })
+
     }
 
     onChooseSeats = e => {
         e.preventDefault();
-        this.setState({
-            payment: true
+        axios.post("http://localhost:5000/user/changeFlightSeats", {
+            choosenBusinessSeats: this.state.choosenBusinessSeats,
+            choosenEconomySeats: this.state.choosenEconomySeats,
+            choosenFirstClassSeats: this.state.choosenFirstClassSeats,
+
+        }).then(res => {
+            this.setState({
+                payment: true
+            })
         })
     }
 
@@ -157,4 +158,4 @@ class selectArr extends React.Component {
         )
     }
 }
-export default selectArr
+export default changeFlight

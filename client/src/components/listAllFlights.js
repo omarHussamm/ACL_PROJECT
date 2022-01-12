@@ -11,8 +11,6 @@ class deleteFlight extends React.Component {
             const flights = res.data;
             this.setState({ flights:flights });
         });
-
-
     };
 
     render() {
@@ -55,39 +53,6 @@ class deleteFlight extends React.Component {
                     })
                     }
                 </ul>
-                {/* <table>
-                <tbody>
-                    <tr>
-                        <th>flight Number</th>
-                        <th>from</th>
-                        <th>to</th>
-                        <th>Departure Date</th>
-                        <th>Arrival Date</th>
-                        <th>Economy Seats Available</th>
-                        <th>Business Seats Available</th>
-                        <th>First Class Seats Available</th>
-                        <th> Base Price </th>
-                    </tr>
-                    {this.state.flights.map(flight => {
-                        return (
-                            <tr key={flight._id}>
-                                <td>{flight.flightNumber}</td>
-                                <td>{flight.from}</td>
-                                <td>{flight.to}</td>
-                                <td>{flight.arrivalDate}</td>
-                                <td>{flight.departureDate}</td>
-                                <td>{flight.numOfEconomySeatsAvailable}</td>
-                                <td>{flight.numOfBusinessSeatsAvailable}</td>
-                                <td>{flight.numOfFirstClassSeatsAvailable}</td>
-                                <td>{flight.basePrice}</td>
-                            </tr>
-
-                        );
-
-                    })
-                    }
-                   </tbody>
-                </table> */}
             </div>
         )
     }

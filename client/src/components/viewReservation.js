@@ -1,5 +1,5 @@
 import React from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 import {
     Link
 } from "react-router-dom";
@@ -8,16 +8,16 @@ import {
 class viewReservation extends React.Component {
 
     state = {
-        flights: []
+        reservations: []
     }
 
     componentDidMount = () => {
         //get reservations
         console.log("get reservations");
-        // axios.get("http://localhost:5000/flights").then(res => {
-        //     const flights = res.data;
-        //     this.setState({ flights: flights });
-        // });
+        axios.get("http://localhost:5000/user/reservations").then(res => {
+            const reservations = res.data;
+            this.setState({ reservations: reservations });
+        });
     }
     render() {
         return (
@@ -62,7 +62,7 @@ class viewReservation extends React.Component {
                             <th>First Class Seats Available</th>
                             <th>Base Price</th>
                         </tr>
-                        {this.state.flights.map(flight => {
+                        {this.state.reservations.map(flight => {
                             return (
                                 <tr>
                                     <td>{flight.flightNumber}</td>

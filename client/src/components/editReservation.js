@@ -5,6 +5,7 @@ import ChangeFlight from './changeFlight'
 import {
     Link
 } from "react-router-dom";
+import axios from 'axios';
 
 
 class editReservation extends React.Component {
@@ -71,6 +72,7 @@ class editReservation extends React.Component {
     }
 
     changeArrivalFlight = () => {
+
         this.setState({
             edit: false,
             changeArrivalFlight: true,
@@ -93,59 +95,16 @@ class editReservation extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        this.setState({
-            noAction: false,
-            edit: true,
-            reservation: {
-                depFlightNumber: 1
-                ,
-                arrFlightNumber: 2
-                ,
-                Price: 55,
-                arrEconomySeats: ['11F', '11E']
-                ,
-                arrBusinessSeats: ['7F']
-                ,
-                arrFirstClassSeats: []
-                ,
-                depEconomySeats: ['11F', '11E']
-                ,
-                depBusinessSeats: ['7F']
-                ,
-                depFirstClassSeats: []
-            },
-            departureFlight: {
-                flightNumber: 1211,
-                from: "happy",
-                to: "sad",
-                departureDate: "2021-12-18T01:34:57.000Z",
-                arrivalDate: "2021-12-18T01:34:57.000Z",
-                numOfEconomySeatsAvailable: 12,
-                numOfBusinessSeatsAvailable: 33,
-                numOfFirstClassSeatsAvailable: 44,
-                __v: 0,
-                basePrice: 12,
-                EconomySeatsAvailable: ["34A", "34B", "34C", "30D", "30E"],
-                BusinessSeatsAvailable: ["07F", "07E", "08C", "22D"],
-                FirstClassSeatsAvailable: ["01A", "01E", "03B"]
-            },
-            arrivalFlight: {
-                flightNumber: 1213,
-                from: "happy",
-                to: "sad",
-                departureDate: "2021-12-24T01:34:00.000Z",
-                arrivalDate: "2021-12-24T13:34:00.000Z",
-                numOfEconomySeatsAvailable: 12,
-                numOfBusinessSeatsAvailable: 33,
-                numOfFirstClassSeatsAvailable: 44,
-                __v: 0,
-                basePrice: 10,
-                EconomySeatsAvailable: ["32A", "34B", "32C", "30D", "30E"],
-                BusinessSeatsAvailable: ["09F", "23E", "08C", "22D"],
-                FirstClassSeatsAvailable: ["02A", "01B", "03F"]
-            }
-        })
 
+        axios.post("http://localhost:5000/user/editReservation").then(res => {
+            this.setState({
+                noAction: false,
+                edit: true,
+                reservation: res.data.reservation,
+                departureFlight: res.data.departureFlight,
+                arrivalFlight: res.data.arrivalFlight
+            })
+        });
     }
     render() {
         return (
@@ -219,6 +178,7 @@ class editReservation extends React.Component {
                                 reservedBusinessSeats={this.state.reservation.depBusinessSeats.toString()}
                                 reservedFirstClassSeats={this.state.reservation.depFirstClassSeats.toString()}
                                 flight={this.state.departureFlight}
+                                reservation = {this.state.reservation}
                             />
                         </>
                     }
@@ -229,6 +189,7 @@ class editReservation extends React.Component {
                                 numOfEconomySeats={2}
                                 numOfBusinessSeats={1}
                                 numOfFirstClassSeats={0}
+                                reservation = {this.state.reservation}
                             />
                         </>
                     }
@@ -239,6 +200,7 @@ class editReservation extends React.Component {
                                 reservedBusinessSeats={this.state.reservation.arrBusinessSeats.toString()}
                                 reservedFirstClassSeats={this.state.reservation.arrFirstClassSeats.toString()}
                                 flight={this.state.arrivalFlight}
+                                reservation = {this.state.reservation}
                             />
                         </>
                     }
@@ -249,6 +211,7 @@ class editReservation extends React.Component {
                                 numOfEconomySeats={2}
                                 numOfBusinessSeats={1}
                                 numOfFirstClassSeats={0}
+                                reservation = {this.state.reservation}
                             />
                         </>
                     }
