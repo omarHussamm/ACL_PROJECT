@@ -83,9 +83,9 @@ class App extends React.Component {
                 userToken={this.state.userToken}
               />} />
 
-            <Route path='/changePassword' exact element={<ChangePassword />} userToken={this.state.userToken} />
+            <Route path='/changePassword' exact element={<ChangePassword userToken={this.state.userToken} />}  />
 
-            <Route path='/editReservation' exact element={<EditReservation />} userToken={this.state.userToken} />
+            <Route path='/editReservation' exact element={<EditReservation userToken={this.state.userToken} />}  />
 
           </Routes>
         </Router>
