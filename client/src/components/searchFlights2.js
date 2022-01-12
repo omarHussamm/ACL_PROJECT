@@ -68,7 +68,7 @@ class searchFlights2 extends React.Component {
             numOfEconomySeatsAvailable: this.state.numOfEconomySeatsAvailable,
             numOfFirstClassSeatsAvailable: this.state.numOfFirstClassSeatsAvailable
         };
-        axios.post('http://localhost:5000/flights/searchFlights2'
+        axios.post('http://localhost:5000/userGuest/search'
             , flight).then(res => {
                 this.setState({ flights: res.data })
             }

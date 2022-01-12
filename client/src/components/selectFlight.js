@@ -7,6 +7,7 @@ import DepartureSeats from "./departureSeats";
 import ReservationSummary from "./reservationSummary";
 import SummaryConfirmation from "./summaryConfirmation";
 import NeedToLogIn from './needToLogIn'
+import axios from 'axios';
 class selectFlight extends React.Component {
   constructor(props) {
     super(props);
@@ -42,11 +43,11 @@ class selectFlight extends React.Component {
     bookingNumber: "#24366621"
   };
 
-  logged = () =>{
+  logged = () => {
     this.props.logged();
     this.setState({
-      reservationSummary:false,
-      depSeat:true
+      reservationSummary: false,
+      depSeat: true
     })
   }
 
@@ -65,71 +66,32 @@ class selectFlight extends React.Component {
   onSubmit = (e) => {
     // after choosing departure flight
     e.preventDefault();
-    this.setState({
-      returnFlight: true,
-      returnFlights: [
-        {
-          flightNumber: 1213,
-          from: "sad",
-          to: "happy",
-          departureDate: "2021-12-24T01:34:00.000Z",
-          arrivalDate: "2021-12-24T13:34:00.000Z",
-          numOfEconomySeatsAvailable: 12,
-          numOfBusinessSeatsAvailable: 33,
-          numOfFirstClassSeatsAvailable: 44,
-          __v: 0,
-          basePrice: 10,
-        },
-      ],
-      departureFlight: {
-        flightNumber: 1211,
-        from: "happy",
-        to: "sad",
-        departureDate: "2021-12-18T01:34:57.000Z",
-        arrivalDate: "2021-12-18T01:34:57.000Z",
-        numOfEconomySeatsAvailable: 12,
-        numOfBusinessSeatsAvailable: 33,
-        numOfFirstClassSeatsAvailable: 44,
-        __v: 0,
-        basePrice: 12,
-      },
-    });
-
-    // axios.post('http://localhost:5000/flights/selectDepFlight'
-    //     , { flightNumber: this.state.flightNumber }).then(res => {
-    //         this.setState({
-    //             returnFlight: true,
-    //             returnFlights: res.data.returnFlights,
-    //             departureFlight: res.data.departureFlight
-    //         });
-    //     }
-    //     )
+    axios.post('http://localhost:5000/userGuest/selectDepFlight'
+      , { flightNumber: this.state.flightNumber }).then(res => {
+        this.setState({
+          returnFlight: true,
+          returnFlights: res.data.returnFlights,
+          departureFlight: res.data.departureFlight
+        });
+      }
+      )
   };
+
+
   onSubmit2 = (e) => {
     //after choosing return flight
     e.preventDefault();
-    this.setState({
-      arrivalFlight: {
-        flightNumber: 1213,
-        from: "happy",
-        to: "sad",
-        departureDate: "2021-12-24T01:34:00.000Z",
-        arrivalDate: "2021-12-24T13:34:00.000Z",
-        numOfEconomySeatsAvailable: 12,
-        numOfBusinessSeatsAvailable: 33,
-        numOfFirstClassSeatsAvailable: 44,
-        __v: 0,
-        basePrice: 10,
-      },
-      chooseSeat: true,
-      returnFlight: false,
-    });
 
-    // axios.post('http://localhost:5000/flights/selectArrFlight'
-    //     , { flightNumber: this.state.flightNumber }).then(res => {
 
-    //     }
-    //     )
+    axios.post('http://localhost:5000/userGuest/selectArrFlight'
+      , { flightNumber: this.state.flightNumber }).then(res => {
+        this.setState({
+          arrivalFlight: res.data,
+          chooseSeat: true,
+          returnFlight: false,
+        });
+      }
+      )
   };
 
   onSubmit3 = (
@@ -191,8 +153,17 @@ class selectFlight extends React.Component {
     })
   };
 
-  onSubmit7 = () => {
-
+  onSubmit7 = e => {
+    e.preventDefault()
+    axios.post('http://localhost:5000/user/booking'
+      , { flightNumber: this.state.flightNumber }).then(res => {
+        this.setState({
+          arrivalFlight: res.data,
+          chooseSeat: true,
+          returnFlight: false,
+        });
+      }
+      )
   };
 
   render() {
@@ -270,7 +241,7 @@ class selectFlight extends React.Component {
           )}
         {this.state.depSeat &&
           !this.state.arrSeat &&
-          !this.state.reservationSummary && this.props.userToken!==0 &&
+          !this.state.reservationSummary && this.props.userToken !== 0 &&
           <div>
             <DepartureSeats
               numOfEconomySeats={this.state.numOfEconomySeats}
@@ -285,9 +256,9 @@ class selectFlight extends React.Component {
 
         {this.state.depSeat &&
           !this.state.arrSeat &&
-          !this.state.reservationSummary && this.props.userToken ===0 &&
+          !this.state.reservationSummary && this.props.userToken === 0 &&
           <div>
-            <NeedToLogIn logged={this.logged}/>
+            <NeedToLogIn logged={this.logged} />
           </div>}
 
         {this.state.arrSeat && !this.state.reservationSummary && <div>
