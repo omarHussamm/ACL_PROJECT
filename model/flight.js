@@ -26,18 +26,8 @@ const userSchema = new mongoose.Schema({
     required: true
   }
   ,
-  numOfEconomySeatsAvailable: {
-    type: Number,
-    required: true
-  }
-  ,
-  numOfBusinessSeatsAvailable: {
-    type: Number,
-    required: true
-  }
-  ,
-  numOfFirstClassSeatsAvailable: {
-    type: Number,
+  model:{
+    type: String,
     required: true
   }
   ,
@@ -46,22 +36,36 @@ const userSchema = new mongoose.Schema({
     required: true
   }
   ,
-  EconomySeatsAvailable: {
+  economySeatsAvailable: {
     type: [String],
     required: true
   }
   ,
-  BusinessSeatsAvailable: {
+  businessSeatsAvailable: {
     type: [String],
     required: true
   }
   ,
-  FirstClassSeatsAvailable: {
+  firstClassSeatsAvailable: {
     type: [String],
     required: true
   }
   ,
-
+  numofEconomySeatsAvailable: {
+    type: Number,
+    required: true
+  }
+  ,
+  numofBusinessSeatsAvailable: {
+    type: Number,
+    required: true
+  }
+  ,
+  numofFirstClassSeatsAvailable: {
+    type: Number,
+    required: true
+  }
+  ,
 
 });
 

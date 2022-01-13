@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-
-import { Link } from 'react-router-dom'
+import AdminLinks from './adminLinks';
 class createFlight extends React.Component {
     constructor(props) {
         super(props);
@@ -14,9 +13,7 @@ class createFlight extends React.Component {
         to: "",
         arrivalDate: "",
         departureDate: "",
-        numOfEconomySeatsAvailable: "",
-        numOfBusinessSeatsAvailable: "",
-        numOfFirstClassSeatsAvailable: "",
+        model:"BongBoeing",
         basePrice: ""
     };
 
@@ -45,24 +42,14 @@ class createFlight extends React.Component {
             departureDate: e.target.value
         })
     };
-    onChangeEconomySeats = e => {
+    onChangeModel = e => {
         this.setState({
-            numOfEconomySeatsAvailable: e.target.value
-        })
-    };
-    onChangeBusinessSeats = e => {
-        this.setState({
-            numOfBusinessSeatsAvailable: e.target.value
-        })
-    };
-    onChangeFirstSeats = e => {
-        this.setState({
-            numOfFirstClassSeatsAvailable: e.target.value
+            model: e.target.value
         })
     };
     onChangeBasePrice = e => {
         this.setState({
-            from: e.target.basePrice
+            basePrice: e.target.value
         })
     };
 
@@ -75,12 +62,11 @@ class createFlight extends React.Component {
             flightNumber: this.state.flightNumber,
             arrivalDate: this.state.arrivalDate,
             departureDate: this.state.departureDate,
-            numOfEconomySeatsAvailable: this.state.numOfEconomySeatsAvailable,
-            numOfBusinessSeatsAvailable: this.state.numOfBusinessSeatsAvailable,
-            numOfFirstClassSeatsAvailable: this.state.numOfFirstClassSeatsAvailable,
+            model:this.state.model,
             basePrice: this.state.basePrice
         };
-        axios.post('http://localhost:5000/flights/createFlight'
+        console.log(flight);
+        axios.post('http://localhost:5000/admin/createFlight'
             , flight)
 
     }
@@ -89,23 +75,7 @@ class createFlight extends React.Component {
     render() {
         return (
             <div>
-                <ul>
-                    <li>
-                        <Link to="/createFlight">Create Flight</Link>
-                    </li>
-                    <li>
-                        <Link to="/deleteFlight">Delete Flight</Link>
-                    </li>
-                    <li>
-                        <Link to="/updateFlight">Update Flight</Link>
-                    </li>
-                    <li>
-                        <Link to="/listAllFlights">List All Flights</Link>
-                    </li>
-                    <li>
-                        <Link to="/searchFlights">Search for Flights</Link>
-                    </li>
-                </ul>
+                <AdminLinks />
 
                 <hr />
 
@@ -154,22 +124,13 @@ class createFlight extends React.Component {
                         </label>
                     </div>
                     <div>
-                        <label>
-                            Number of Economy Seats:
-                            <input type="text" name="name" value={this.state.numOfEconomySeatsAvailable} onChange={this.onChangeEconomySeats} />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Number of Business Seats:
-                            <input type="text" name="name" value={this.state.numOfBusinessSeatsAvailable} onChange={this.onChangeBusinessSeats} />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Number of First-Class Seats:
-                            <input type="text" name="name" value={this.state.numOfFirstClassSeatsAvailable} onChange={this.onChangeFirstSeats} />
-                        </label>
+                            <span class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">Airplane Model:</label>
+                                <select class="form-select" id="inputGroupSelect01" onChange={this.onChangeModel}>
+                                    <option disabled>Choose...</option>
+                                    <option Selected value="BongBoeing">BongBoeing</option>
+                                </select>
+                            </span>
                     </div>
                     <div>
                         <label>

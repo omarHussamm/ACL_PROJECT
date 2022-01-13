@@ -1,58 +1,89 @@
 import React from 'react'
 import axios from 'axios'
 import Flight from './flight'
-import { Link } from 'react-router-dom'
+import AdminLinks from './adminLinks'
+import DeleteQuery from './deleteQuery'
+import UpdateQuery from './updateQuery'
 class deleteFlight extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onUpdate = this.onUpdate.bind(this);
+        this.onDelete = this.onDelete.bind(this);
+    }
+
     state = {
-        flights: []
+        flights: [],
+        update: false,
+        delete: false,
+        flight: {}
     }
     listflights = () => {
         axios.get("http://localhost:5000/flights").then(res => {
             const flights = res.data;
-            this.setState({ flights:flights });
+            this.setState({ flights: flights });
         });
     };
+
+    onUpdate = (e, flight) => {
+        e.preventDefault();
+        this.setState({
+            flight: flight,
+            update: true
+        })
+
+    }
+
+    onDelete = (e, flight) => {
+        e.preventDefault();
+        this.setState({
+            flight: flight,
+            delete: true
+        })
+
+    }
+
 
     render() {
         return (
             <div>
-                <ul>
-                    <li>
-                        <Link to="/createFlight">Create Flight</Link>
-                    </li>
-                    <li>
-                        <Link to="/deleteFlight">Delete Flight</Link>
-                    </li>
-                    <li>
-                        <Link to="/updateFlight">Update Flight</Link>
-                    </li>
-                    <li>
-                        <Link to="/listAllFlights">List All Flights</Link>
-                    </li>
-                    <li>
-                        <Link to="/searchFlights">Search for Flights</Link>
-                    </li>
-                </ul>
+                <AdminLinks />
 
                 <hr />
 
-                <button onClick={this.listflights}>
-                    Show All Flights
-                </button>
+                {this.state.update &&
+                    <>
+                        <UpdateQuery flight={this.state.flight} />
+                    </>
+                }
+                
+                {this.state.delete &&
+                    <>
+                        <DeleteQuery flight={this.state.flight} />
+                    </>
+                }
 
+                {!this.state.delete && !this.state.update && <>
 
-                <ul class="list-group">
-                {this.state.flights.map(flight => {
-                        return (
-                            <li key={flight._id}>
-                                <Flight flight={flight} />
-                            </li>
+                    <button onClick={this.listflights}>
+                        Show All Flights
+                    </button>
 
-                        );
-
-                    })
-                    }
-                </ul>
+                    <ul class="list-group">
+                        {this.state.flights.map(flight => {
+                            return (
+                                <li key={flight._id}>
+                                    <Flight
+                                        flight={flight}
+                                        user={'admin'}
+                                        onUpdate={this.onUpdate}
+                                        onDelete={this.onDelete}
+                                    />
+                                </li>
+                            );
+                        })
+                        }
+                    </ul>
+                </>}
             </div>
         )
     }

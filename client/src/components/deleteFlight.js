@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-
-import { Link } from 'react-router-dom'
+import AdminLinks from './adminLinks';
+import DeleteQuery from './deleteQuery';
 class deleteFlight extends React.Component {
     constructor(props) {
         super(props);
@@ -9,7 +9,8 @@ class deleteFlight extends React.Component {
     }
 
     state = {
-        flightNumber: ""
+        flightNumber: "",
+        flightChoosen: false,
     };
 
     onChangeFlightNumber = e => {
@@ -20,51 +21,43 @@ class deleteFlight extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        if (window.confirm("Are you sure you want to delete?")) {
-            axios.post('http://localhost:5000/flights/deleteFlight'
-                , { flightNumber: this.state.flightNumber }).then(res => {
-                }
-                )
+        axios.post('http://localhost:5000/admin/searchbyFlightNumber'
+        , {
+            flightNumber: this.state.flightNumber
+        }).then(res => {
+            this.setState({
+                flight: res.data,
+                flightChoosen: true,
+            })
         }
+        )
+
     }
-    
+
 
     render() {
         return (
             <div>
-                <ul>
-                    <li>
-                        <Link to="/createFlight">Create Flight</Link>
-                    </li>
-                    <li>
-                        <Link to="/deleteFlight">Delete Flight</Link>
-                    </li>
-                    <li>
-                        <Link to="/updateFlight">Update Flight</Link>
-                    </li>
-                    <li>
-                        <Link to="/listAllFlights">List All Flights</Link>
-                    </li>
-                    <li>
-                        <Link to="/searchFlights">Search for Flights</Link>
-                    </li>
-                </ul>
+                <AdminLinks />
 
                 <hr />
+                {this.state.flightChoosen && <>
+                    <DeleteQuery flight={this.state.flight} />
+                </>}
+                {!this.state.flightChoosen &&
+                    <div>
+                        <form onSubmit={this.onSubmit}>
+                            <div>
+                                <label>
+                                    Flight Number:
+                                    <input type="text" name="name" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
+                                </label>
+                            </div>
+                            <input type="submit" value="Delete" />
+                        </form>
 
-                <div>
-                    <form onSubmit={this.onSubmit}>
-                        <div>
-                            <label>
-                                Flight Number:
-                                <input type="text" name="name" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
-                            </label>
-                        </div>
-                        <input type="submit" value="Delete" />
-                    </form>
 
-
-                </div>
+                    </div>}
             </div>
 
         )

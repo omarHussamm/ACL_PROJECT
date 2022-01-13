@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Flight from './flight';
 import { Link } from 'react-router-dom'
 class searchFlights2 extends React.Component {
     constructor(props) {
@@ -79,7 +80,7 @@ class searchFlights2 extends React.Component {
     render() {
         return (
             <div>
-                {this.props.userToken !==0 &&
+                {this.props.userToken !== 0 &&
                     <ul>
                         <li>
                             <Link to="/editProfile">Edit Profile</Link>
@@ -104,7 +105,7 @@ class searchFlights2 extends React.Component {
                         </li>
                     </ul>
                 }
-                {this.props.userToken ===0 &&
+                {this.props.userToken === 0 &&
                     <ul>
                         <li>
                             <Link to="/searchFlights2">Search for Flights</Link>
@@ -182,35 +183,16 @@ class searchFlights2 extends React.Component {
 
                 <br />
                 <div>
-                    <table>
-                        <tr>
-                            <th>flight Number</th>
-                            <th>from</th>
-                            <th>to</th>
-                            <th>Departure Date</th>
-                            <th>Arrival Date</th>
-                            <th>Economy Seats Available</th>
-                            <th>Business Seats Available</th>
-                            <th>First Class Seats Available</th>
-                        </tr>
+                    <ul class="list-group">
                         {this.state.flights.map(flight => {
                             return (
-                                <tr>
-                                    <td>{flight.flightNumber}</td>
-                                    <td>{flight.from}</td>
-                                    <td>{flight.to}</td>
-                                    <td>{flight.arrivalDate}</td>
-                                    <td>{flight.departureDate}</td>
-                                    <td>{flight.numOfEconomySeatsAvailable}</td>
-                                    <td>{flight.numOfBusinessSeatsAvailable}</td>
-                                    <td>{flight.numOfFirstClassSeatsAvailable}</td>
-                                    <td>{flight.basePrice}</td>
-                                </tr>
+                                <li key={flight._id}>
+                                    <Flight flight={flight} user={'user'} />
+                                </li>
                             );
-
                         })
                         }
-                    </table>
+                    </ul>
                 </div>
 
             </div>

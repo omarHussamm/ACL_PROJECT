@@ -36,9 +36,9 @@ router.route('/search').post((req, res) => {
     if (req.body.arrivalDate !== "") { searchCriteria = { ...searchCriteria, arrivalDate: new Date(req.body.arrivalDate) } }
     if (req.body.departureDate !== "") { searchCriteria = { ...searchCriteria, departureDate: new Date(req.body.departureDate) } }
     // if (req.body.flightNumber !== "") { searchCriteria = { ...searchCriteria, flightNumber: Number(req.body.flightNumber) } }
-    if (req.body.numOfBusinessSeatsAvailable !== "") { searchCriteria = { ...searchCriteria, numOfBusinessSeatsAvailable: { $gte: req.body.numOfBusinessSeatsAvailable } } }
-    if (req.body.numOfEconomySeatsAvailable !== "") { searchCriteria = { ...searchCriteria, numOfEconomySeatsAvailable: { $gte: req.body.numOfEconomySeatsAvailable } } }
-    if (req.body.numOfFirstClassSeatsAvailable !== "") { searchCriteria = { ...searchCriteria, numOfFirstClassSeatsAvailable: { $gte: req.body.numOfFirstClassSeatsAvailable } } }
+    if (req.body.numOfBusinessSeatsAvailable !== "") { searchCriteria = { ...searchCriteria, numofBusinessSeatsAvailable: { $gte: req.body.numOfBusinessSeatsAvailable } } }
+    if (req.body.numOfEconomySeatsAvailable !== "") { searchCriteria = { ...searchCriteria, numofEconomySeatsAvailable: { $gte: req.body.numOfEconomySeatsAvailable } } }
+    if (req.body.numOfFirstClassSeatsAvailable !== "") { searchCriteria = { ...searchCriteria, numofFirstClassSeatsAvailable: { $gte: req.body.numOfFirstClassSeatsAvailable } } }
 
     Flight.find(
         searchCriteria
