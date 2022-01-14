@@ -3,25 +3,25 @@ class flight extends React.Component {
 
     render() {
         return (
-            <div class="card mb-3"
-            //  style="max-width: 540px;"
-             >
+            <div class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Flight Number: {this.props.flight.flightNumber}</h5>
                             <p class="text-muted">{this.props.flight.from} ------ {this.props.flight.to}</p>
                             <p class="card-text">{this.props.flight.departureDate}    -    {this.props.flight.arrivalDate}</p>
-                            {this.props.user ==='admin' &&
-                            <>
-                            <button onClick={e=>{this.props.onUpdate(e,this.props.flight)}}>Update</button>
-                            <button onClick={e=>{this.props.onDelete(e,this.props.flight)}}>delete</button>
-                            </>
+                            {this.props.user === 'admin' &&
+                                <div class="row">
+                                    <div class="col-auto me-auto">  <button class="btn btn-primary centre" onClick={e => { this.props.onUpdate(e, this.props.flight) }}>Update</button></div>
+                                    <div class="col-auto"> <button class="btn btn-primary centre" onClick={e => { this.props.onDelete(e, this.props.flight) }}>delete</button></div>
+
+                                </div>
+
                             }
-                            {this.props.user ==='user' &&
-                            <>
-                            <a href="#" class="card-link">book</a>
-                            </>
+                            {this.props.user === 'user' &&
+                                <>
+                                    <a href="#" class="card-link">book</a>
+                                </>
                             }
                         </div>
 

@@ -163,6 +163,8 @@ router.route('/createFlight').post((req, res) => {
         numofBusinessSeatsAvailable: businessSeatsAvailable.length,
         numofFirstClassSeatsAvailable: firstClassSeatsAvailable.length,
         basePrice: basePrice
+    }).then(ress=>{
+        res.send("")
     })
 
 })

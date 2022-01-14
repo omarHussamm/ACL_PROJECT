@@ -44,7 +44,7 @@ class user_guest extends React.Component {
                     }
 
                     <hr />
-                    <h1> Welcome to BongAirlines! </h1>
+                    <h1 class="text-primary"> Welcome to BongAirlines! </h1>
                 </div>
 
             </div>

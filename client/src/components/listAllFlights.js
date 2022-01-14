@@ -11,18 +11,23 @@ class deleteFlight extends React.Component {
         this.onDelete = this.onDelete.bind(this);
     }
 
+    componentDidMount = () => {
+        axios.get("http://localhost:5000/flights").then(res => {
+            const flights = res.data;
+            this.setState({
+                flights: flights,
+                mounted: true
+            });
+        });
+    }
+
     state = {
         flights: [],
         update: false,
         delete: false,
-        flight: {}
+        flight: {},
+        mounted: false
     }
-    listflights = () => {
-        axios.get("http://localhost:5000/flights").then(res => {
-            const flights = res.data;
-            this.setState({ flights: flights });
-        });
-    };
 
     onUpdate = (e, flight) => {
         e.preventDefault();
@@ -48,14 +53,13 @@ class deleteFlight extends React.Component {
             <div>
                 <AdminLinks />
 
-                <hr />
 
                 {this.state.update &&
                     <>
                         <UpdateQuery flight={this.state.flight} />
                     </>
                 }
-                
+
                 {this.state.delete &&
                     <>
                         <DeleteQuery flight={this.state.flight} />
@@ -64,25 +68,29 @@ class deleteFlight extends React.Component {
 
                 {!this.state.delete && !this.state.update && <>
 
-                    <button onClick={this.listflights}>
-                        Show All Flights
-                    </button>
+                    {!this.state.mounted &&
+                        <h1>Loading...</h1>
+                    }
 
-                    <ul class="list-group">
-                        {this.state.flights.map(flight => {
-                            return (
-                                <li key={flight._id}>
-                                    <Flight
-                                        flight={flight}
-                                        user={'admin'}
-                                        onUpdate={this.onUpdate}
-                                        onDelete={this.onDelete}
-                                    />
-                                </li>
-                            );
-                        })
-                        }
-                    </ul>
+                    {this.state.mounted &&
+                        <>
+                            <br />
+                            <ul class="ulnodots ulcentre">
+                                {this.state.flights.map(flight => {
+                                    return (
+                                        <li key={flight._id}>
+                                            <Flight
+                                                flight={flight}
+                                                user={'admin'}
+                                                onUpdate={this.onUpdate}
+                                                onDelete={this.onDelete}
+                                            />
+                                        </li>
+                                    );
+                                })
+                                }
+                            </ul>
+                        </>}
                 </>}
             </div>
         )

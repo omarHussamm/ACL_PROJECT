@@ -1,10 +1,81 @@
 table,
-      th,
-      td {
-        padding: 10px;
-        border: 1px solid black;
-        border-collapse: collapse;
-      }
-.mb-3{
+th,
+td {
+  padding: 10px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.ulnodots {
+  list-style-type: none;
+}
+.mb-3 {
   max-width: 900px;
-}    
+}
+
+.cardWidth {
+  max-width: 900px;
+}
+.loginForm {
+  max-width: 800px;
+  margin: auto;
+}
+.midH {
+  margin: auto;
+  text-align: center;
+}
+
+.m {
+  margin: auto;
+}
+
+.center {
+  margin: auto;
+  margin-top: 10%;
+  padding: 20px 40px;
+  max-width: 800px;
+  border-radius: 10px;
+}
+
+.round2 {
+  padding: 20px 40px;
+  max-width: 1000px;
+  border-radius: 10px;
+}
+
+.smallform {
+  max-width: 300px;
+}
+.centre {
+  margin: auto;
+}
+
+.bgwhite {
+  background-color: rgba(255, 255, 255, 0.185);
+}
+
+.bgwhite2 {
+  background-color: rgba(107, 32, 32, 0.281);
+}
+
+.nav {
+  margin: 0px 10%;
+}
+.nav2 {
+  margin: 0px 20px;
+}
+
+.ulcentre {
+  margin: auto;
+  max-width: 1000px;
+}
+
+.widthsmol{
+  max-width: 300px;
+}
+
+.round3 {
+  padding: 20px 40px;
+  border-radius: 10px;
+  margin: auto;
+}

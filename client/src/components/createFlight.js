@@ -1,6 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import AdminLinks from './adminLinks';
+import {
+    Link
+} from "react-router-dom";
 class createFlight extends React.Component {
     constructor(props) {
         super(props);
@@ -13,8 +16,9 @@ class createFlight extends React.Component {
         to: "",
         arrivalDate: "",
         departureDate: "",
-        model:"BongBoeing",
-        basePrice: ""
+        model: "BongBoeing",
+        basePrice: "",
+        flightCreated: false
     };
 
     onChangeFrom = e => {
@@ -62,12 +66,16 @@ class createFlight extends React.Component {
             flightNumber: this.state.flightNumber,
             arrivalDate: this.state.arrivalDate,
             departureDate: this.state.departureDate,
-            model:this.state.model,
+            model: this.state.model,
             basePrice: this.state.basePrice
         };
         console.log(flight);
         axios.post('http://localhost:5000/admin/createFlight'
-            , flight)
+            , flight).then(res => {
+                this.setState({
+                    flightCreated: true
+                })
+            })
 
     }
 
@@ -77,69 +85,78 @@ class createFlight extends React.Component {
             <div>
                 <AdminLinks />
 
-                <hr />
+                <br />
+                <br />
 
-                <form onSubmit={this.onSubmit}>
-                    <div>
-                        <label>
-                            Flight Number:
-                            <input type="text" name="name" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            from:
-                            <input type="text" name="name" value={this.state.from} onChange={this.onChangeFrom} />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            to:
-                            <input type="text" name="name" value={this.state.to} onChange={this.onChangeTo} />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Departure Date:
-                            <form>
-                                <div class="nativeDateTimePicker">
-                                    <input type="datetime-local" id="party" name="bday" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
-                                    <span class="validity"></span>
+                {this.state.flightCreated && <>
+                    <h1>
+                            <Link to="/">Flight Created Go back to Home Page</Link>
+                        </h1>
+                </>}
 
+
+                {!this.state.flightCreated && <>
+                    <form class="loginForm round2 bgwhite" onSubmit={this.onSubmit}>
+                        <fieldset>
+                            <h2 class="text-primary">CREATE FLIGHT</h2>
+                            <br />
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Flight Number:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} class="form-control" placeholder="Flight Number" />
                                 </div>
-                            </form>
-
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Arrival Date:
-                            <form>
-                                <div class="nativeDateTimePicker">
-                                    <input type="datetime-local" id="party" name="bday" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} />
-                                    <span class="validity"></span>
-
+                            </div>
+                            <br />
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">From:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value={this.state.from} onChange={this.onChangeFrom} class="form-control" placeholder="From" />
                                 </div>
-                            </form>
-                        </label>
-                    </div>
-                    <div>
-                            <span class="input-group mb-3">
-                                <label class="input-group-text" for="inputGroupSelect01">Airplane Model:</label>
-                                <select class="form-select" id="inputGroupSelect01" onChange={this.onChangeModel}>
-                                    <option disabled>Choose...</option>
-                                    <option Selected value="BongBoeing">BongBoeing</option>
-                                </select>
-                            </span>
-                    </div>
-                    <div>
-                        <label>
-                            Base Price:
-                            <input type="text" name="name" value={this.state.basePrice} onChange={this.onChangeBasePrice} />
-                        </label>
-                    </div>
-                    <input type="submit" value="Create Flight" />
-                </form>
+                            </div>
+                            <br />
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">To:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value={this.state.to} onChange={this.onChangeTo} class="form-control" placeholder="To" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row nativeDateTimePicker">
+                                <label class="col-sm-2 col-form-label">Departure Date:</label>
+                                <div class="col-sm-10">
+                                    <input type="datetime-local" value={this.state.departureDate} onChange={this.onChangeDepartureDate} class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row nativeDateTimePicker">
+                                <label class="col-sm-2 col-form-label">Arrival Date:</label>
+                                <div class="col-sm-10">
+                                    <input type="datetime-local" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} class="form-control" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Base Price:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value={this.state.basePrice} onChange={this.onChangeBasePrice} class="form-control" placeholder="Base Price" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row input-group">
+                                <label class="col-sm-2 col-form-label">Airplane Model:</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" onChange={this.onChangeModel}>
+                                        <option disabled>Choose...</option>
+                                        <option Selected value="BongBoeing">BongBoeing</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary centre">Creat Flight</button>
+
+                        </fieldset>
+                    </form>
+                </>}
             </div>
         )
     }

@@ -1,6 +1,10 @@
 import React from 'react'
 import axios from 'axios'
 import AdminLinks from './adminLinks';
+import DeleteQuery from './deleteQuery'
+import UpdateQuery from './updateQuery'
+import Flight from './flight'
+
 class searchFlights extends React.Component {
     constructor(props) {
         super(props);
@@ -13,7 +17,10 @@ class searchFlights extends React.Component {
         to: "",
         arrivalDate: "",
         departureDate: "",
-        flights: []
+        flights: [],
+        update: false,
+        delete: false,
+        flight: {}
     };
 
     onChangeFrom = e => {
@@ -43,6 +50,23 @@ class searchFlights extends React.Component {
         })
     };
 
+    onUpdate = (e, flight) => {
+        e.preventDefault();
+        this.setState({
+            flight: flight,
+            update: true
+        })
+
+    }
+
+    onDelete = (e, flight) => {
+        e.preventDefault();
+        this.setState({
+            flight: flight,
+            delete: true
+        })
+
+    }
 
     onSubmit = e => {
         e.preventDefault();
@@ -67,90 +91,91 @@ class searchFlights extends React.Component {
             <div>
                 <AdminLinks />
 
-                <hr />
 
-                <div>
-                    <form onSubmit={this.onSubmit}>
-                        <div>
-                            <label>
-                                Flight Number:
-                                <input type="text" name="name" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                from:
-                                <input type="text" name="name" value={this.state.from} onChange={this.onChangeFrom} />
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                to:
-                                <input type="text" name="name" value={this.state.to} onChange={this.onChangeTo} />
-                            </label>
-                        </div>
-                        <div>
+                {this.state.update &&
+                    <>
+                        <UpdateQuery flight={this.state.flight} />
+                    </>
+                }
 
-                            <label>
-                                Departure Date:
-                                <form>
-                                    <div class="nativeDateTimePicker">
-                                        <input type="datetime-local" id="party" name="bday" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
-                                        <span class="validity"></span>
+                {this.state.delete &&
+                    <>
+                        <DeleteQuery flight={this.state.flight} />
+                    </>
+                }
 
-                                    </div>
-                                </form>
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                Arrival Date:
-                                <form>
-                                    <div class="nativeDateTimePicker">
-                                        <input type="datetime-local" id="party" name="bday" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} />
-                                        <span class="validity"></span>
 
-                                    </div>
-                                </form>
-                            </label>
-                        </div>
 
-                        <input type="submit" value="Search" />
-                    </form>
-                </div>
 
-                <br />
-                <div>
-                    <table>
-                        <tr>
-                            <th>flight Number</th>
-                            <th>from</th>
-                            <th>to</th>
-                            <th>Departure Date</th>
-                            <th>Arrival Date</th>
-                            <th>Economy Seats Available</th>
-                            <th>Business Seats Available</th>
-                            <th>First Class Seats Available</th>
-                        </tr>
-                        {this.state.flights.map(flight => {
-                            return (
-                                <tr>
-                                    <td>{flight.flightNumber}</td>
-                                    <td>{flight.from}</td>
-                                    <td>{flight.to}</td>
-                                    <td>{flight.arrivalDate}</td>
-                                    <td>{flight.departureDate}</td>
-                                    <td>{flight.numOfEconomySeatsAvailable}</td>
-                                    <td>{flight.numOfBusinessSeatsAvailable}</td>
-                                    <td>{flight.numOfFirstClassSeatsAvailable}</td>
-                                    <td>{flight.basePrice}</td>
-                                </tr>
-                            );
+                {!this.state.update && !this.state.delete &&
+                    <>
+                        <br /><br />
+                        <form class="row row-cols-lg-auto g-3 align-items-center bgwhite2 round3" onSubmit={this.onSubmit}>
+                            <div class="col-12">
+                                <label >
+                                    Flight Number:
+                                    <input type="text" name="name" class="form-control widthsmol" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <label>
+                                    from:
+                                    <input type="text" name="name" class="form-control widthsmol" value={this.state.from} onChange={this.onChangeFrom} />
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <label>
+                                    to:
+                                    <input type="text" name="name" class="form-control widthsmol" value={this.state.to} onChange={this.onChangeTo} />
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <label>
+                                    Departure Date:
+                                    <form>
+                                        <div class="nativeDateTimePicker">
+                                            <input type="datetime-local" class="form-control widthsmol" id="party" name="bday" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
 
-                        })
-                        }
-                    </table>
-                </div>
+                                        </div>
+                                    </form>
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <label>
+                                    Arrival Date:
+                                    <form>
+                                        <div class="nativeDateTimePicker">
+                                            <input type="datetime-local" class="form-control widthsmol" id="party" name="bday" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} />
+
+
+                                        </div>
+                                    </form>
+                                </label>
+                            </div>
+
+                            <div class="col-12">
+                                <input type="submit" class="btn btn-primary" value="Search" />
+                            </div>
+                        </form>
+
+
+                        <br /><br /><br />
+                        <ul class="ulnodots ulcentre">
+                            {this.state.flights.map(flight => {
+                                return (
+                                    <li key={flight._id}>
+                                        <Flight
+                                            flight={flight}
+                                            user={'admin'}
+                                            onUpdate={this.onUpdate}
+                                            onDelete={this.onDelete}
+                                        />
+                                    </li>
+                                );
+                            })
+                            }
+                        </ul>
+                    </>}
 
             </div>
         )

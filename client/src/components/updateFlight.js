@@ -41,7 +41,6 @@ class deleteFlight extends React.Component {
             <div>
                 <AdminLinks />
 
-                <hr />
 
                 {this.state.flightNumberChoosen &&
                     <>
@@ -49,15 +48,22 @@ class deleteFlight extends React.Component {
                     </>
                 }
                 {!this.state.flightNumberChoosen &&
-                    <form onSubmit={this.onSubmitFlightNumber}>
-                        <div>
-                            <label>
-                                Flight Number:
-                                <input type="text" name="name" value={this.state.oldFlightNumber} onChange={this.onChangeOldFlightNumber} />
-                            </label>
-                            <input type="submit" value="Choose Flight" />
+                    <form class="loginForm round2 bgwhite center" onSubmit={this.onSubmitFlightNumber}>
+                    <fieldset>
+                        <h2 class="text-primary">UPDATE FLIGHT</h2>
+                        <br />
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Flight Number:</label>
+                            <div class="col-sm-10">
+                                <input type="text" value={this.state.oldFlightNumber} onChange={this.onChangeOldFlightNumber} class="form-control" placeholder="Flight number to be updated" />
+                            </div>
                         </div>
-                    </form>
+                        
+                        <br />
+                        <button type="submit" class="btn btn-primary centre">Update Flight</button>
+
+                    </fieldset>
+                </form>
                 }
             </div>
         )
