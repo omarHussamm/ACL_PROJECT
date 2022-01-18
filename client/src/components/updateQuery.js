@@ -63,40 +63,49 @@ class updateQuery extends React.Component {
                 }
                 {!this.state.done &&
                     <>
-                        <hr />
-                        <Flight flight={this.props.flight} user={""} />
-                        <form onSubmit={this.onSubmit}>
-                            <div>
-                                <label>
-                                    Flight Number:
-                                    <input type="text" name="name" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                    Departure Date:
-                                    <form>
-                                        <div class="nativeDateTimePicker">
-                                            <input type="datetime-local" id="party" name="bday" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
-                                            <span class="validity"></span>
+                        <br /><br /><br />
+                        <div class="loginForm">
+                            <Flight flight={this.props.flight} user={""} />
+                        </div>
+                        <br />
+                        <form class="loginForm round2 bgwhite" onSubmit={this.onSubmit}>
+                            <fieldset>
+                                <h2 class="text-primary">UPDATE FLIGHT</h2>
+                                <br />
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" >
+                                        Flight Number:
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="name" class="form-control" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-group row nativeDateTimePicker">
+                                    <label class="col-sm-2 col-form-label">
+                                        Departure Date:
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="datetime-local" class="form-control" id="party" name="bday" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
 
-                                        </div>
-                                    </form>
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                    Arrival Date:
-                                    <form>
-                                        <div class="nativeDateTimePicker">
-                                            <input type="datetime-local" id="party" name="bday" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} />
-                                            <span class="validity"></span>
+                                    </div>
 
-                                        </div>
-                                    </form>
-                                </label>
-                            </div>
-                            <input type="submit" value="Update" />
+                                </div>
+                                <br />
+                                <div class="form-group row nativeDateTimePicker">
+                                    <label class="col-sm-2 col-form-label">
+                                        Arrival Date:
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="datetime-local" class="form-control" id="party" name="bday" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} />
+                                    </div>
+
+                                </div>
+                                <br />
+                                <div class="form-group row">
+                                    <input type="submit" class="btn btn-primary" value="Update" />
+                                </div>
+                            </fieldset>
                         </form>
                     </>}
             </div>

@@ -38,12 +38,10 @@ class deleteQuery extends React.Component {
                     </>
                 }
                 {!this.state.done &&
-                    <>
-                        <hr />
+                    <div class="loginForm center">
                         <Flight flight={this.props.flight} user={""} />
-                        <hr />
-                        <button onClick={this.onSubmit}>Delte Flight</button>
-                    </>
+                        <button class="btn btn-primary centre" onClick={this.onSubmit}>Delte Flight</button>
+                    </div>
                 }
             </div>
         )

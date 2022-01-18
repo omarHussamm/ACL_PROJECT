@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Flight from './flight';
-import { Link } from 'react-router-dom'
+import GuestUserLinks from './guestUserLinks';
 class searchFlights2 extends React.Component {
     constructor(props) {
         super(props);
@@ -80,119 +80,88 @@ class searchFlights2 extends React.Component {
     render() {
         return (
             <div>
-                {this.props.userToken !== 0 &&
-                    <ul>
-                        <li>
-                            <Link to="/editProfile">Edit Profile</Link>
-                        </li>
-                        <li>
-                            <Link to="/viewReservation">View Reservations</Link>
-                        </li>
-                        <li>
-                            <Link to="/editReservation">Edit Reservation</Link>
-                        </li>
-                        <li>
-                            <Link to="/cancelReservation">Cancel Reservations</Link>
-                        </li>
-                        <li>
-                            <Link to="/searchFlights2">Search for Flights</Link>
-                        </li>
-                        <li>
-                            <Link to="/selectFlight">Select Flight</Link>
-                        </li>
-                        <li>
-                            <Link to="/changePassword">Change Password</Link>
-                        </li>
-                    </ul>
-                }
-                {this.props.userToken === 0 &&
-                    <ul>
-                        <li>
-                            <Link to="/searchFlights2">Search for Flights</Link>
-                        </li>
-                        <li>
-                            <Link to="/selectFlight">Select Flight</Link>
-                        </li>
-                    </ul>
-                }
 
-                <hr />
+                <GuestUserLinks userToken={this.props.userToken} />
 
                 <div>
-                    <form onSubmit={this.onSubmit}>
+                    <>
+                        <br /><br />
+                        <form class="row row-cols-lg-auto g-3 align-items-center bgwhite2 round3" onSubmit={this.onSubmit}>
+                            <div class="col-12">
+                                <label>
+                                    from:
+                                    <input type="text" name="name" class="form-control widthsmol" value={this.state.from} onChange={this.onChangeFrom} />
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <label>
+                                    to:
+                                    <input type="text" name="name" class="form-control widthsmol" value={this.state.to} onChange={this.onChangeTo} />
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <label>
+                                    Departure Date:
+                                    <form>
+                                        <div class="nativeDateTimePicker">
+                                            <input type="datetime-local" class="form-control widthsmol" id="party" name="bday" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
 
-                        <div>
-                            <label>
-                                from:
-                                <input type="text" name="name" value={this.state.from} onChange={this.onChangeFrom} />
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                to:
-                                <input type="text" name="name" value={this.state.to} onChange={this.onChangeTo} />
-                            </label>
-                        </div>
-                        <div>
+                                        </div>
+                                    </form>
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <label>
+                                    Arrival Date:
+                                    <form>
+                                        <div class="nativeDateTimePicker">
+                                            <input type="datetime-local" class="form-control widthsmol" id="party" name="bday" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} />
 
-                            <label>
-                                Departure Date:
-                                <form>
-                                    <div class="nativeDateTimePicker">
-                                        <input type="datetime-local" id="party" name="bday" value={this.state.departureDate} onChange={this.onChangeDepartureDate} />
-                                        <span class="validity"></span>
 
-                                    </div>
-                                </form>
+                                        </div>
+                                    </form>
+                                </label>
+                            </div>
+                            <div class="col-12">
+                            <label>
+                                Economy Seats:
+                                <input type="text" name="name" class="form-control widthsmol" value={this.state.numOfEconomySeatsAvailable} onChange={this.onChangenumOfEconomySeatsAvailable} />
                             </label>
                         </div>
-                        <div>
+                        <div class="col-12">
                             <label>
-                                Arrival Date:
-                                <form>
-                                    <div class="nativeDateTimePicker">
-                                        <input type="datetime-local" id="party" name="bday" value={this.state.arrivalDate} onChange={this.onChangeArrivalDate} />
-                                        <span class="validity"></span>
-
-                                    </div>
-                                </form>
+                                Business Seats:
+                                <input type="text" name="name" class="form-control widthsmol" value={this.state.numOfBusinessSeatsAvailable} onChange={this.onChangenumOfBusinessSeatsAvailable} />
                             </label>
                         </div>
-                        <div>
+                        <div class="col-12">
                             <label>
-                                Number of Economy Seats:
-                                <input type="text" name="name" value={this.state.numOfEconomySeatsAvailable} onChange={this.onChangenumOfEconomySeatsAvailable} />
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                Number of Business Seats:
-                                <input type="text" name="name" value={this.state.numOfBusinessSeatsAvailable} onChange={this.onChangenumOfBusinessSeatsAvailable} />
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                Number of First-Class Seats:
-                                <input type="text" name="name" value={this.state.numOfFirstClassSeatsAvailable} onChange={this.onChangenumOfFirstClassSeatsAvailable} />
+                                First-Class Seats:
+                                <input type="text" name="name" class="form-control widthsmol" value={this.state.numOfFirstClassSeatsAvailable} onChange={this.onChangenumOfFirstClassSeatsAvailable} />
                             </label>
                         </div>
 
-                        <input type="submit" value="Search" />
-                    </form>
-                </div>
+                            <div class="col-12">
+                                <input type="submit" class="btn btn-primary" value="Search" />
+                            </div>
+                        </form>
 
-                <br />
-                <div>
-                    <ul class="list-group">
-                        {this.state.flights.map(flight => {
-                            return (
-                                <li key={flight._id}>
-                                    <Flight flight={flight} user={'user'} />
-                                </li>
-                            );
-                        })
-                        }
-                    </ul>
+
+                        <br /><br /><br />
+                        <ul class="ulnodots ulcentre">
+                            {this.state.flights.map(flight => {
+                                return (
+                                    <li key={flight._id}>
+                                        <Flight
+                                            flight={flight}
+                                            user={'user'}
+                                        />
+                                    </li>
+                                );
+                            })
+                            }
+                        </ul>
+                    </>
                 </div>
 
             </div>

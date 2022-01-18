@@ -2,10 +2,8 @@ import React from 'react'
 import Flight from './flight'
 import ChangeSeat from './changeSeat'
 import ChangeFlight from './changeFlight'
-import {
-    Link
-} from "react-router-dom";
 import axios from 'axios';
+import UserLinks from './userLinks';
 
 
 class editReservation extends React.Component {
@@ -110,27 +108,8 @@ class editReservation extends React.Component {
         return (
             <div>
                 <div>
-                    <ul>
-                        <li>
-                            <Link to="/editProfile">Edit Profile</Link>
-                        </li>
-                        <li>
-                            <Link to="/viewReservation">View Reservations</Link>
-                        </li>
-                        <li>
-                            <Link to="/cancelReservation">Cancel Reservations</Link>
-                        </li>
-                        <li>
-                            <Link to="/searchFlights2">Search for Flights</Link>
-                        </li>
-                        <li>
-                            <Link to="/selectFlight">Select Flight</Link>
-                        </li>
-                        <li>
-                            <Link to="/changePassword">Change Password</Link>
-                        </li>
-                    </ul>
-
+                    
+                    <UserLinks />
 
                     <hr />
                     <h1>Edit Reservation</h1>

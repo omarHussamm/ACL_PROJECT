@@ -1,4 +1,5 @@
 import React from 'react'
+import Flight from './flight';
 class numOfSeats extends React.Component {
     constructor(props) {
         super(props);
@@ -61,107 +62,61 @@ class numOfSeats extends React.Component {
     render() {
         return (
             <div>
-                <h1>
-                    Departure Flight
-                </h1>
-                <table>
-                    <tr>
-                        <th>flight Number</th>
-                        <th>from</th>
-                        <th>to</th>
-                        <th>Departure Date</th>
-                        <th>Arrival Date</th>
-                        <th>Economy Seats Available</th>
-                        <th>Business Seats Available</th>
-                        <th>First Class Seats Available</th>
-                        <th>Base Price</th>
-                    </tr>
-                    <tr>
-                        <td>{this.props.departureFlight.flightNumber}</td>
-                        <td>{this.props.departureFlight.from}</td>
-                        <td>{this.props.departureFlight.to}</td>
-                        <td>{this.props.departureFlight.arrivalDate}</td>
-                        <td>{this.props.departureFlight.departureDate}</td>
-                        <td>{this.props.departureFlight.numOfEconomySeatsAvailable}</td>
-                        <td>{this.props.departureFlight.numOfBusinessSeatsAvailable}</td>
-                        <td>{this.props.departureFlight.numOfFirstClassSeatsAvailable}</td>
-                        <td>{this.props.departureFlight.basePrice}</td>
-                    </tr>
-                </table>
-                <div>
-                    <div>
-                        <label>
-                            Number of Economy Seats:
-                            <input type="text" name="name" value={this.state.numOfEconomySeatsAvailable} onChange={this.onChangenumOfEconomySeatsAvailable} />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Number of Business Seats:
-                            <input type="text" name="name" value={this.state.numOfBusinessSeatsAvailable} onChange={this.onChangenumOfBusinessSeatsAvailable} />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Number of First-Class Seats:
-                            <input type="text" name="name" value={this.state.numOfFirstClassSeatsAvailable} onChange={this.onChangenumOfFirstClassSeatsAvailable} />
-                        </label>
-                    </div>
-
+                <br />
+                <div class="loginForm">
+                    <h2 class="text-primary"> DEPARTURE FLIGHT </h2>
+                    <Flight flight={this.props.departureFlight} user={""} />
                 </div>
-                <hl />
-                <h1>
-                    Arrival Flight
-                </h1>
-                <table>
-                    <tr>
-                        <th>flight Number</th>
-                        <th>from</th>
-                        <th>to</th>
-                        <th>Departure Date</th>
-                        <th>Arrival Date</th>
-                        <th>Economy Seats Available</th>
-                        <th>Business Seats Available</th>
-                        <th>First Class Seats Available</th>
-                        <th>Base Price</th>
-                    </tr>
-                    <tr>
-                        <td>{this.props.arrivalFlight.flightNumber}</td>
-                        <td>{this.props.arrivalFlight.from}</td>
-                        <td>{this.props.arrivalFlight.to}</td>
-                        <td>{this.props.arrivalFlight.arrivalDate}</td>
-                        <td>{this.props.arrivalFlight.departureDate}</td>
-                        <td>{this.props.arrivalFlight.numOfEconomySeatsAvailable}</td>
-                        <td>{this.props.arrivalFlight.numOfBusinessSeatsAvailable}</td>
-                        <td>{this.props.arrivalFlight.numOfFirstClassSeatsAvailable}</td>
-                        <td>{this.props.arrivalFlight.basePrice}</td>
-                    </tr>
-                </table>
-                <div>
-                    <div>
-                        <label>
-                            Number of Economy Seats:
-                            <input type="text" name="name" value={this.state.numOfEconomySeatsAvailable2} onChange={this.onChangenumOfEconomySeatsAvailable2} />
-                        </label>
+                <div class="seatsForm">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Number of Economy Seats:</label>
+                        <div class="col-sm-10">
+                            <input type="text" value={this.state.numOfEconomySeatsAvailable} onChange={this.onChangenumOfEconomySeatsAvailable} class="form-control" placeholder="Number of Economy Seats" />
+                        </div>
                     </div>
-                    <div>
-                        <label>
-                            Number of Business Seats:
-                            <input type="text" name="name" value={this.state.numOfBusinessSeatsAvailable2} onChange={this.onChangenumOfBusinessSeatsAvailable2} />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Number of Business Seats:</label>
+                        <div class="col-sm-10">
+                            <input type="text" value={this.state.numOfBusinessSeatsAvailable} onChange={this.onChangenumOfBusinessSeatsAvailable} class="form-control" placeholder="Number of Business Seats" />
+                        </div>
                     </div>
-                    <div>
-                        <label>
-                            Number of First-Class Seats:
-                            <input type="text" name="name" value={this.state.numOfFirstClassSeatsAvailable2} onChange={this.onChangenumOfFirstClassSeatsAvailable2} />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Number of First-Class Seats:</label>
+                        <div class="col-sm-10">
+                            <input type="text" value={this.state.numOfFirstClassSeatsAvailable} onChange={this.onChangenumOfFirstClassSeatsAvailable} class="form-control" placeholder="Number of First-Class Seats" />
+                        </div>
                     </div>
-
                 </div>
-                <div>
+                <hr />
+                <div class="loginForm">
+                    <h2 class="text-primary"> ARRIVAL FLIGHT </h2>
+                    <Flight flight={this.props.departureFlight} user={""} />
+                </div>
+                <div class="seatsForm">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Number of Economy Seats:</label>
+                        <div class="col-sm-10">
+                            <input type="text" value={this.state.numOfEconomySeatsAvailable2} onChange={this.onChangenumOfEconomySeatsAvailable2} class="form-control" placeholder="Number of Economy Seats" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Number of Business Seats:</label>
+                        <div class="col-sm-10">
+                            <input type="text" value={this.state.numOfBusinessSeatsAvailable2} onChange={this.onChangenumOfBusinessSeatsAvailable2} class="form-control" placeholder="Number of Business Seats" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Number of First-Class Seats:</label>
+                        <div class="col-sm-10">
+                            <input type="text" value={this.state.numOfFirstClassSeatsAvailable2} onChange={this.onChangenumOfFirstClassSeatsAvailable2} class="form-control" placeholder="Number of First-Class Seats" />
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="loginForm padding">
                     <form onSubmit={this.onSubmit}>
-                        
-                        <input type="submit" value="Confirm Number of Seats" />
+
+                        <input type="submit" class="btn btn-primary" value="Confirm Number of Seats" />
                     </form>
 
                 </div>

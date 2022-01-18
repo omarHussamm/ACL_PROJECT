@@ -197,6 +197,7 @@ class selectFlight extends React.Component {
                 <SelectArr
                   onChangeFlightNumber2={this.onChangeFlightNumber2}
                   onSubmit2={this.onSubmit2}
+                  flight = {this.state.departureFlight}
                   flightNumber2={this.state.flightNumber2}
                   returnFlights={this.state.returnFlights}
                 />

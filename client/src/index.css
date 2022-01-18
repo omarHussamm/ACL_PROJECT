@@ -16,10 +16,27 @@ td {
 .cardWidth {
   max-width: 900px;
 }
+
+.padding{
+  padding: 30px;
+}
+.signupForm{
+  margin: auto;
+  padding: 20px 40px;
+  border-radius: 10px;
+  max-width: 1200px;
+}
+
+
 .loginForm {
   max-width: 800px;
   margin: auto;
 }
+.seatsForm {
+  max-width: 1400px;
+  margin: auto;
+}
+
 .midH {
   margin: auto;
   text-align: center;
@@ -70,7 +87,7 @@ td {
   max-width: 1000px;
 }
 
-.widthsmol{
+.widthsmol {
   max-width: 300px;
 }
 

@@ -40,24 +40,27 @@ class deleteFlight extends React.Component {
             <div>
                 <AdminLinks />
 
-                <hr />
                 {this.state.flightChoosen && <>
                     <DeleteQuery flight={this.state.flight} />
                 </>}
                 {!this.state.flightChoosen &&
-                    <div>
-                        <form onSubmit={this.onSubmit}>
-                            <div>
-                                <label>
-                                    Flight Number:
-                                    <input type="text" name="name" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
-                                </label>
-                            </div>
-                            <input type="submit" value="Delete" />
-                        </form>
+                <form class="loginForm round2 bgwhite center" onSubmit={this.onSubmit}>
+                <fieldset>
+                    <h2 class="text-primary">DELETE FLIGHT</h2>
+                    <br />
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Flight Number:</label>
+                        <div class="col-sm-10">
+                            <input type="text" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} class="form-control" placeholder="Flight number to be deleted" />
+                        </div>
+                    </div>
+                    
+                    <br />
+                    <button type="submit" class="btn btn-primary centre">Delete Flight</button>
 
-
-                    </div>}
+                </fieldset>
+            </form>
+                    }
             </div>
 
         )
