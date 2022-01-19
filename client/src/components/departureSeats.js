@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "../BongBoeing.png";
-// import { Link } from "react-router-dom";
 
 class departureSeats extends React.Component {
   onChangeFirstClassSeats = (e) => {
@@ -54,7 +53,7 @@ class departureSeats extends React.Component {
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label">Business Seats:</label>
                   <div class="col-sm-10">
-                    <input type="text" value={this.state.lastName} onChange={this.onChangeLastName} class="form-control" placeholder="Business Seats" />
+                    <input type="text" value={this.state.BusinessSeats} onChange={this.onChangeBusinessSeats} class="form-control" placeholder="Business Seats" />
                     choose {this.props.numOfBusinessSeats} seat(s) from {this.props.availableBusinessSeats.toString()}
                   </div>
                 </div>
@@ -62,7 +61,7 @@ class departureSeats extends React.Component {
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label">First-Class Seats:</label>
                   <div class="col-sm-10">
-                    <input type="text" value={this.state.passport} onChange={this.onChangePassport} class="form-control" placeholder="First-Class Seats" />
+                    <input type="text" value={this.state.FirstClassSeats} onChange={this.onChangeFirstClassSeats} class="form-control" placeholder="First-Class Seats" />
                     choose {this.props.numOfFirstClassSeats} seat(s) from {this.props.availableFirstClassSeats.toString()}
                   </div>
                 </div>

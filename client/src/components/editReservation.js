@@ -24,7 +24,8 @@ class editReservation extends React.Component {
         changeArrivalSeats: false,
         changeArrivalFlight: false,
         alternativeFlights: "",
-
+        departureFlight: {},
+        arrivalFlight: {}
     };
 
     onChangeReservationNumber = e => {
@@ -178,6 +179,7 @@ class editReservation extends React.Component {
                                 numOfEconomySeats={2}
                                 numOfBusinessSeats={1}
                                 numOfFirstClassSeats={0}
+                                flight={this.state.departureFlight}
                                 reservation={this.state.reservation}
                             />
                         </>
@@ -200,6 +202,7 @@ class editReservation extends React.Component {
                                 numOfEconomySeats={2}
                                 numOfBusinessSeats={1}
                                 numOfFirstClassSeats={0}
+                                flight={this.state.arrivalFlight}
                                 reservation={this.state.reservation}
                             />
                         </>

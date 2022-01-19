@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from "../BongBoeing.png";
 import axios from 'axios'
+import Flight from './flight';
 class changeFlight extends React.Component {
     state = {
         flightNumber: "",
@@ -67,86 +68,96 @@ class changeFlight extends React.Component {
         return (
             <div>
                 {!this.state.flightChoosen && !this.state.payment &&
-                    <>
-                        <table>
-                            <tr>
-                                <th>flight Number</th>
-                                <th>from</th>
-                                <th>to</th>
-                                <th>Departure Date</th>
-                                <th>Arrival Date</th>
-                                <th>Economy Seats Available</th>
-                                <th>Business Seats Available</th>
-                                <th>First Class Seats Available</th>
-                                <th>Base Price</th>
-                            </tr>
-                            {this.props.alternativeFlights.map(flight => {
-                                return (
-                                    <tr>
-                                        <td>{flight.flightNumber}</td>
-                                        <td>{flight.from}</td>
-                                        <td>{flight.to}</td>
-                                        <td>{flight.arrivalDate}</td>
-                                        <td>{flight.departureDate}</td>
-                                        <td>{flight.numOfEconomySeatsAvailable}</td>
-                                        <td>{flight.numOfBusinessSeatsAvailable}</td>
-                                        <td>{flight.numOfFirstClassSeatsAvailable}</td>
-                                        <td>{flight.basePrice}</td>
-                                    </tr>
-                                );
-                            })
-                            }</table>
-                        <div>
-                            <form onSubmit={this.onChooseFlight}>
-                                <div>
-                                    <label>
-                                        New Flight Number:
-                                        <input type="text" name="name" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} />
-                                    </label>
-                                </div>
-                                <input type="submit" value="Select Flight" />
-                            </form>
 
+                    <>
+                        <div>
+                            <br /><br /><br />
+                            <div class="loginForm">
+                                <h2 class="text-primary"> YOYR FLIGHT </h2>
+                                <Flight flight={this.props.flight} user={""} />
+                            </div>
+                            <br />
+                            <div class="loginForm">
+                                <h2 class="text-primary">POSSIBLE ALTERNATIVE FLIGHTS</h2>
+                            </div>
+                            <ul class="ulnodots ulcentre">
+                                {this.props.alternativeFlights.map(flight => {
+                                    return (
+                                        <li key={flight._id}>
+                                            <Flight
+                                                flight={flight}
+                                                user={''}
+                                            />
+                                        </li>
+                                    );
+                                })
+                                }
+                            </ul>
+                            <div>
+                                <form class="loginForm round2 bgwhite" onSubmit={this.onChooseFlight}>
+                                    <fieldset>
+                                        <h2 class="text-primary">SELECT AN ALTERNATIVE FLIGHT</h2>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Flight Number:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" value={this.props.flightNumber} onChange={this.props.onChangeFlightNumber} class="form-control" placeholder="Flight number" />
+                                            </div>
+                                        </div>
+
+                                        <br />
+                                        <button type="submit" class="btn btn-primary centre">Select Flight</button>
+
+                                    </fieldset>
+                                </form>
+                            </div>
                         </div>
                     </>
                 }
                 {this.state.flightChoosen && !this.state.payment &&
                     <>
-                        <div>
-                            <h1>Choose Seats</h1>
+                        <div class="loginForm">
                             <div>
-                                <form onSubmit={this.onChooseSeats}>
-                                    write seats comma seperated ex: 01A,01B,01E
+                                <br /> <br />
+                                <form class="signupForm bgwhite" onSubmit={this.onChooseSeats}>
+                                    <fieldset>
 
-                                    <div>
-                                        <label>
-                                            Economy Seats:
-                                            <input type="text" name="name" value={this.state.choosenEconomySeats} onChange={this.onChangeEconomySeats} />
-                                            choose {this.props.numOfEconomySeats} seat(s) from {this.state.flight.EconomySeatsAvailable.map(res => res + " ,")}
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label>
-                                            Business Seats:
-                                            <input type="text" name="name" value={this.state.choosenBusinessSeats} onChange={this.onChangeBusinessSeats} />
-                                            choose {this.props.numOfBusinessSeats} seat(s) from {this.state.flight.BusinessSeatsAvailable.map(res => res + " ,")}
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label>
-                                            First-Class Seats:
-                                            <input type="text" name="name" value={this.state.choosenFirstClassSeats} onChange={this.onChangeFirstClassSeats} />
-                                            choose {this.props.numOfFirstClassSeats} seat(s) from {this.state.flight.FirstClassSeatsAvailable.map(res => res + " ,")}
-                                        </label>
-                                    </div>
+                                        <h2 class="text-primary">Choose Seats</h2>
+                                        write seats comma seperated ex: 01A,01B,01E
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label"> Economy Seats:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" value={this.state.choosenEconomySeats} onChange={this.onChangeEconomySeats} class="form-control" placeholder="Economy Seats" />
+                                                choose {this.props.numOfEconomySeats} seat(s) from {this.props.flight.EconomySeatsAvailable.toString()}
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Business Seats:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" value={this.state.choosenBusinessSeats} onChange={this.onChangeBusinessSeats} class="form-control" placeholder="Business Seats" />
+                                                choose {this.props.numOfBusinessSeats} seat(s) from {this.props.flight.BusinessSeatsAvailable.toString()}
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">First-Class Seats:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" value={this.state.choosenFirstClassSeats} onChange={this.onChangeFirstClassSeats} class="form-control" placeholder="First-Class Seats" />
+                                                choose {this.props.numOfFirstClassSeats} seat(s) from {this.props.flight.FirstClassSeatsAvailable.toString()}
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <button type="submit" class="btn btn-primary centre">Choose Seats</button>
 
-
-                                    <input type="submit" value="Submit Seats" />
+                                    </fieldset>
                                 </form>
                             </div>
                             <hr />
-                            <img src={logo} alt="boeing seats" width="1600" height="550" />
                         </div>
+                        <div class="loginForm">
+                            <img src={logo} alt="boeing seats" width="800" height="300" />
+                        </div>
+                        <br /><br />
                     </>
                 }
                 {this.state.payment &&

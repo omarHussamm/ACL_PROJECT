@@ -13,7 +13,23 @@ function getNextSequenceValue() {
 }
 
 router.route('/booking').post((req, res) => {
-  //////THIS IS DUMMY DATA TO BE REPLACED WITH REAL CODE//////
+  router.route('/booking').post((req, res) => {
+    const insertBooking={
+      reservationNumber:'111',
+      depFlightNumber:parseInt(req.body.depFlightNumber),
+      arrFlightNumber:parseInt(req.body.arrFlightNumber),
+      userID:req.body.userID,
+      Price:req.body.price,
+      arrEconomySeats:(req.body.arrEconomySeats),
+      arrBusinessSeats:(req.body.arrBusinessSeats),
+      arrFirstClassSeats:(req.body.arrFirstClassSeats),
+      depEconomySeats:(req.body.depEconomySeats),
+      depFirstClassSeats:(req.body.depFirstClassSeats),
+      depBusinessSeats:(req.body.depBusinessSeats)
+    }
+    Booking.insertMany(insertBooking);
+  });
+  res.send();
   
 });
 
@@ -123,6 +139,7 @@ router.route('/editReservation').post((req, res) => {
 
 router.route('/changeSeat').post((req, res) => {
   //////THIS IS DUMMY DATA TO BE REPLACED WITH REAL CODE//////
+  res.send();
 });
 
 router.route('/changeFlightNumber').post((req, res) => {

@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
     telephoneNumber: {
         type: [String],
         required: true
+    },
+    Passportnumber: {
+        type: String,
+        required: true
     }
     ,
     userName: {
