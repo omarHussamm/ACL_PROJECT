@@ -35,6 +35,11 @@ class editReservation extends React.Component {
     };
 
     changeDepartureSeats = () => {
+
+        // axios.post("http://localhost:5000/user/editDepartureSeats", { reservationNumber: this.state.reservationNumber }).then(res => {
+        //     this.setState({})
+        // })
+
         this.setState({
             edit: false,
             changeDepartureSeats: true
@@ -42,6 +47,11 @@ class editReservation extends React.Component {
     }
 
     changeDepartureFlight = () => {
+
+        // axios.post("http://localhost:5000/user/editDepartureFlight", { reservationNumber: this.state.reservationNumber }).then(res => {
+        //     this.setState({})
+        // })
+
         this.setState({
             edit: false,
             changeDepartureFlight: true,
@@ -64,6 +74,9 @@ class editReservation extends React.Component {
     }
 
     changeArrivalSeats = () => {
+        // axios.post("http://localhost:5000/user/editArrivalSeats", { reservationNumber: this.state.reservationNumber }).then(res => {
+        //     this.setState({})
+        // })
         this.setState({
             edit: false,
             changeArrivalSeats: true
@@ -71,6 +84,9 @@ class editReservation extends React.Component {
     }
 
     changeArrivalFlight = () => {
+
+        // axios.post("http://localhost:5000/user/editArrivalFlight", { reservationNumber: this.state.reservationNumber }).then(res => {
+        //     this.setState({})
 
         this.setState({
             edit: false,
@@ -95,7 +111,10 @@ class editReservation extends React.Component {
     onSubmit = e => {
         e.preventDefault();
 
-        axios.post("http://localhost:5000/user/editReservation").then(res => {
+        axios.post("http://localhost:5000/user/editReservation", {
+            reservationNumber: this.state.reservationNumber,
+            userToken: this.props.userToken
+        }).then(res => {
             this.setState({
                 noAction: false,
                 edit: true,
@@ -164,6 +183,7 @@ class editReservation extends React.Component {
                     {this.state.changeDepartureSeats &&
                         <>
                             <ChangeSeat
+                                way={"dep"}
                                 reservedEconomySeats={this.state.reservation.depEconomySeats.toString()}
                                 reservedBusinessSeats={this.state.reservation.depBusinessSeats.toString()}
                                 reservedFirstClassSeats={this.state.reservation.depFirstClassSeats.toString()}
@@ -187,6 +207,7 @@ class editReservation extends React.Component {
                     {this.state.changeArrivalSeats &&
                         <>
                             <ChangeSeat
+                                way={"arr"}
                                 reservedEconomySeats={this.state.reservation.arrEconomySeats.toString()}
                                 reservedBusinessSeats={this.state.reservation.arrBusinessSeats.toString()}
                                 reservedFirstClassSeats={this.state.reservation.arrFirstClassSeats.toString()}
@@ -209,7 +230,7 @@ class editReservation extends React.Component {
                     }
                 </div>
 
-            </div>
+            </div >
         );
     }
 }

@@ -1,4 +1,4 @@
-// import Counters from './model/counters.js'
+import Counter from './model/counter.js'
 import express from 'express';
 import dotenv from 'dotenv';
 // import User from './model/user.js'
@@ -33,6 +33,17 @@ const PORT = 5000
 // Flight.find().then(flights => {
 //   console.log("flights", flights);
 // });
+function getNextSequenceValue() {
+    var sequenceDocument = Counter.findByIdAndUpdate("61da248fb7ec7bace2763773",
+    {
+       $inc: { sequence: 1 } ,
+    }).then(res => {
+        console.log(res.sequence);
+      return res.sequence;
+     
+    }); 
+}
 
+getNextSequenceValue();
 
 app.listen(PORT);

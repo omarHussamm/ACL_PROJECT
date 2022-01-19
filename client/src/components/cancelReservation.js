@@ -25,36 +25,39 @@ class cancelReservation extends React.Component {
         e.preventDefault();
 
         if (window.confirm("Are you sure you want to cancel?")) {
-             axios.post('http://localhost:5000/user/cancelReservation'
-                 , { reservationNumber: this.state.reservationNumber }).then(res => {
-                 }
-                 )
+            axios.post('http://localhost:5000/user/cancelReservation'
+                , {
+                    reservationNumber: this.state.reservationNumber,
+                    userToken: this.props.userToken
+                }).then(res => {
+                }
+                )
         }
     }
     render() {
         return (
             <div>
                 <div>
-                    
+
                     <UserLinks />
 
                     <div>
-                    <form class="loginForm round2 bgwhite center" onSubmit={this.onSubmit}>
-                        <fieldset>
-                            <h2 class="text-primary">CANCEL RESERVATION</h2>
-                            <br />
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"> Reservation Number:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" value={this.state.reservationNumber} onChange={this.onChangeReservationNumber} class="form-control" placeholder="Reservation number to be canceled" />
+                        <form class="loginForm round2 bgwhite center" onSubmit={this.onSubmit}>
+                            <fieldset>
+                                <h2 class="text-primary">CANCEL RESERVATION</h2>
+                                <br />
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"> Reservation Number:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" value={this.state.reservationNumber} onChange={this.onChangeReservationNumber} class="form-control" placeholder="Reservation number to be canceled" />
+                                    </div>
                                 </div>
-                            </div>
 
-                            <br />
-                            <button type="submit" class="btn btn-primary centre">Cancel Reservation</button>
+                                <br />
+                                <button type="submit" class="btn btn-primary centre">Cancel Reservation</button>
 
-                        </fieldset>
-                    </form>
+                            </fieldset>
+                        </form>
                     </div>
                 </div>
 

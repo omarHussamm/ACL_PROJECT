@@ -126,12 +126,13 @@ class selectFlight extends React.Component {
     });
   };
 
-  onSubmit4 = (e) => {
+  onSubmit4 = (e,price) => {
     // after confirmation  --- must log in
     e.preventDefault();
     this.setState({
       depSeat: true,
-      summary: false
+      summary: false,
+      price:price
     })
   };
 

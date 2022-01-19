@@ -11,7 +11,7 @@ class editProfile extends React.Component {
 
     state = {
         firstName: "",
-        lastname: "",
+        lastName: "",
         passport: "",
         email: "",
         number: ""
@@ -25,7 +25,7 @@ class editProfile extends React.Component {
 
     onChangeLastName = e => {
         this.setState({
-            lastname: e.target.value
+            lastName: e.target.value
         })
     };
     onChangePassport = e => {
@@ -53,6 +53,7 @@ class editProfile extends React.Component {
             passport: this.state.passport,
             email: this.state.email,
             number: this.state.number,
+            userToken: this.props.userToken
         };
         console.log(newProfile);
         axios.post('http://localhost:5000/user/editProfile'

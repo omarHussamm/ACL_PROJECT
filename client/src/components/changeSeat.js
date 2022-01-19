@@ -29,6 +29,7 @@ class changeSeat extends React.Component {
             oldSeat: this.state.oldSeat,
             newSeat: this.state.newSeat,
             reservation: this.props.reservation,
+            way:this.props.way
 
         }).then(res => {
             this.setState({
@@ -72,9 +73,9 @@ class changeSeat extends React.Component {
                         <p>First-Class Seat(s): {this.props.reservedFirstClassSeats.toString()}</p>
                         <hr />
                         <h3 class="text-primary">Available Seats</h3>
-                        <p>Economy Seat(s): {this.props.flight.EconomySeatsAvailable.toString()}</p>
-                        <p>Business Seat(s): {this.props.flight.BusinessSeatsAvailable.toString()}</p>
-                        <p>First-Class Seat(s): {this.props.flight.FirstClassSeatsAvailable.toString()}</p>
+                        <p>Economy Seat(s): {this.props.flight.economySeatsAvailable.toString()}</p>
+                        <p>Business Seat(s): {this.props.flight.businessSeatsAvailable.toString()}</p>
+                        <p>First-Class Seat(s): {this.props.flight.firstClassSeatsAvailable.toString()}</p>
 
                         <hr />
 
