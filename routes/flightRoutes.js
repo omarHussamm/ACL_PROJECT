@@ -40,10 +40,12 @@ router.route('/selectDepFlight').post((req, res) => {
         depFlight = flights[0]
         depFrom = flights[0].from
         depTo = flights[0].to
+        depDate = Date(flights[0].departureDate)
         Flight.find(
             {
                 from: depTo,
-                to: depFrom
+                to: depFrom,
+                departureDate: {$gte: ISODate(depDate)}
             }
         ).then(flights => {
             x = flights
@@ -60,13 +62,14 @@ router.route('/selectDepFlight').post((req, res) => {
     console.log('hiii0')
     console.log(x)
 })
-        
+
 })
-router.route('/viewreservation').get((req, res) => {
-    let searchCriteria = {}
-    //search with username from token
-    searchCriteria = {};
-    Booking.find(searchCriteria).then(bookings => res.json(bookings))
+router.route('/viewreservation').post((req, res) => {
+    console.log(req.body.userToken)
+    Booking.find({userID:req.body.userToken}).then(bookings =>{ 
+        console.log(bookings)
+        res.send(bookings)
+    })
 })
 
 router.route('/').get((req, res) => {

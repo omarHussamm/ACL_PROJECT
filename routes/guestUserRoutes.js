@@ -56,16 +56,21 @@ router.route('/selectDepFlight').post((req, res) => {
     let depTo = ""
     let depFlight = "" 
     let x = ""
+    let depDate = ""
+    if (req.body.flightNumber !== "") { searchCriteria = { ...searchCriteria, flightNumber: Number(req.body.flightNumber) } }
     Flight.find(
         {flightNumber: Number(req.body.flightNumber)}
     ).then(flights => {
         depFlight = flights[0]
         depFrom = flights[0].from
         depTo = flights[0].to
+        depDate = flights[0].departureDate
+        console.log(depDate + 'test')
         Flight.find(
             {
                 from: depTo,
-                to: depFrom
+                to: depFrom,
+                departureDate: {$gte: (depDate)}
             }
         ).then(flights => {
             x = flights
@@ -86,6 +91,9 @@ router.route('/selectDepFlight').post((req, res) => {
 });
 
 router.route('/selectArrFlight').post((req, res) => {
+    let searchCriteria = {}
+    let returnFlight = "";
+    if (req.body.flightNumber2 !== "") { searchCriteria = { ...searchCriteria, flightNumber: Number(req.body.flightNumber2 ) } }
     Flight.findOne({
         flightNumber : Number(req.body.flightNumber2 )
     }
@@ -94,6 +102,22 @@ router.route('/selectArrFlight').post((req, res) => {
         res.json(flights)})
     
     
+    
+    //////THIS IS DUMMY DATA TO BE REPLACED WITH REAL CODE//////
+
+
+    // res.send({
+    //     flightNumber: 1213,
+    //     from: "happy",
+    //     to: "sad",
+    //     departureDate: "2021-12-24T01:34:00.000Z",
+    //     arrivalDate: "2021-12-24T13:34:00.000Z",
+    //     numOfEconomySeatsAvailable: 12,
+    //     numOfBusinessSeatsAvailable: 33,
+    //     numOfFirstClassSeatsAvailable: 44,
+    //     __v: 0,
+    //     basePrice: 10,
+    // })
 });
 
 

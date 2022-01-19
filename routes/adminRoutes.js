@@ -182,7 +182,11 @@ router.route('/deleteFlight').post((req, res) => {
         { flightNumber: flightNumber }
     ).then(ress => {
         console.log("deleted flight", ress);
-        res.send("");
+        if(ress==null)
+        res.send({success : false, message: "This flight cannot be found. Please enter a valid flight number."});
+        else 
+        res.send({success : true, message: "This flight has been deleted successfully"});
+    
     });
 
 

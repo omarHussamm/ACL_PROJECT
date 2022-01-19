@@ -93,7 +93,9 @@ class selectFlight extends React.Component {
           arrivalFlight: res.data,
           chooseSeat: true,
           returnFlight: false,
+          
         });
+        console.log(res)
       }
       )
   };

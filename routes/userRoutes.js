@@ -293,12 +293,26 @@ router.route('/changeFlightSeats').post((req, res) => {
 router.route('/cancelReservation').post((req, res) => {
   const reservationNumber = (Number(req.body.reservationNumber));
   console.log(Number(reservationNumber))
+<<<<<<< HEAD
   //search if the current user has this reservation number if yes remove it
   Booking.findOneAndDelete({ reservationNumber: reservationNumber }).then(ress => {
     console.log("cancelled flight", ress)
   })
 
 
+=======
+  Booking.findOne({reservationNumber: Number(reservationNumber)}).then(ress =>{ 
+    console.log('dfssdfd', req.body.userToken)
+    console.log(ress)
+   console.log('bbb',ress.userID)
+  if(req.body.userToken==ress.userID){
+  Booking.findOneAndDelete({reservationNumber:reservationNumber}).then(ress => {
+          console.log("cancelled flight", ress)})
+  }else{
+    console.log("cannot cancel this reservation because it belongs to another user")
+  }
+})
+>>>>>>> 6d6ac5b56d4dc9e0ba3efbd88232d7fcca0ca339
 })
 
 router.route('/changePassword').post((req, res) => {
@@ -318,5 +332,6 @@ router.route('/changePassword').post((req, res) => {
 
   });
 })
+
 
 export default router;
