@@ -1,10 +1,10 @@
-// import Counters from '../model/counters.js'
+import Counter from '../model/counter.js'
 import express from "express";
 import Booking from '../model/bookings.js';
 const router = express.Router();
 
 function getNextSequenceValue() {
-    var sequenceDocument = Counters.findByIdAndUpdate("61da248fb7ec7bace2763773",
+    var sequenceDocument = Counter.findByIdAndUpdate("61da248fb7ec7bace2763773",
     {
        $inc: { sequence: 1 } ,
     }).then(res => {

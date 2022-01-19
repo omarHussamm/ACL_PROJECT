@@ -22,15 +22,15 @@ class deleteFlight extends React.Component {
     onSubmit = e => {
         e.preventDefault();
         axios.post('http://localhost:5000/admin/searchbyFlightNumber'
-        , {
-            flightNumber: this.state.flightNumber
-        }).then(res => {
-            this.setState({
-                flight: res.data,
-                flightChoosen: true,
-            })
-        }
-        )
+            , {
+                flightNumber: this.state.flightNumber
+            }).then(res => {
+                this.setState({
+                    flight: res.data,
+                    flightChoosen: true,
+                })
+            }
+            )
 
     }
 
@@ -44,23 +44,23 @@ class deleteFlight extends React.Component {
                     <DeleteQuery flight={this.state.flight} />
                 </>}
                 {!this.state.flightChoosen &&
-                <form class="loginForm round2 bgwhite center" onSubmit={this.onSubmit}>
-                <fieldset>
-                    <h2 class="text-primary">DELETE FLIGHT</h2>
-                    <br />
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Flight Number:</label>
-                        <div class="col-sm-10">
-                            <input type="text" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} class="form-control" placeholder="Flight number to be deleted" />
-                        </div>
-                    </div>
-                    
-                    <br />
-                    <button type="submit" class="btn btn-primary centre">Delete Flight</button>
+                    <form class="loginForm round2 bgwhite center" onSubmit={this.onSubmit}>
+                        <fieldset>
+                            <h2 class="text-primary">DELETE FLIGHT</h2>
+                            <br />
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Flight Number:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value={this.state.flightNumber} onChange={this.onChangeFlightNumber} class="form-control" placeholder="Flight number to be deleted" />
+                                </div>
+                            </div>
 
-                </fieldset>
-            </form>
-                    }
+                            <br />
+                            <button type="submit" class="btn btn-primary centre">Delete Flight</button>
+
+                        </fieldset>
+                    </form>
+                }
             </div>
 
         )

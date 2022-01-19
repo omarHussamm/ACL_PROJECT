@@ -43,28 +43,30 @@ class changePassword extends React.Component {
                 <div>
                     <UserLinks />
 
-
-                    <hr />
-                    <h1> Change Password </h1>
-
                     <div>
-                        <form onSubmit={this.onSubmit}>
+                    <form class="loginForm round2 bgwhite center" onSubmit={this.onSubmit}>
+                        <fieldset>
+                            <h2 class="text-primary">CHANGE PASSWORD</h2>
+                            <br />
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Old Password:</label>
+                                <div class="col-sm-10">
+                                    <input type="password" value={this.state.oldPassword} onChange={this.onChangeOldPassword} class="form-control" placeholder="Old password" />
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">New Password:</label>
+                                <div class="col-sm-10">
+                                    <input type="password" value={this.state.newPassword} onChange={this.onChangeNewPassword} class="form-control" placeholder="New password" />
+                                </div>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary centre">Change Password</button>
 
-                            <div>
-                                <label>
-                                    Old Password:
-                                    <input type="text" name="name" value={this.state.oldPassword} onChange={this.onChangeOldPassword} />
-                                </label>
-                            </div>
-                            <div>
-                                <label>
-                                   New Password:
-                                    <input type="text" name="name" value={this.state.newPassword} onChange={this.onChangeNewPassword} />
-                                </label>
-                            </div>
-                            
-                            <input type="submit" value="Change Password" />
-                        </form>
+                        </fieldset>
+                    </form>
+                        
                     </div>
                 </div>
 

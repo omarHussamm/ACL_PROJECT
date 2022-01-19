@@ -38,22 +38,23 @@ class cancelReservation extends React.Component {
                     
                     <UserLinks />
 
-
-                    <hr />
-                    <h1>cancel Reservation</h1>
-
                     <div>
-                        <form onSubmit={this.onSubmit}>
-                            <div>
-                                <label>
-                                    Reservation Number:
-                                    <input type="text" name="name" value={this.state.reservationNumber} onChange={this.onChangeReservationNumber} />
-                                </label>
+                    <form class="loginForm round2 bgwhite center" onSubmit={this.onSubmit}>
+                        <fieldset>
+                            <h2 class="text-primary">CANCEL RESERVATION</h2>
+                            <br />
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"> Reservation Number:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value={this.state.reservationNumber} onChange={this.onChangeReservationNumber} class="form-control" placeholder="Reservation number to be canceled" />
+                                </div>
                             </div>
-                            <input type="submit" value="Cancel" />
-                        </form>
 
+                            <br />
+                            <button type="submit" class="btn btn-primary centre">Cancel Reservation</button>
 
+                        </fieldset>
+                    </form>
                     </div>
                 </div>
 

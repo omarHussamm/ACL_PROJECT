@@ -51,34 +51,68 @@ router.route('/search').post((req, res) => {
 router.route('/selectDepFlight').post((req, res) => {
     //////THIS IS DUMMY DATA TO BE REPLACED WITH REAL CODE//////
 
-    res.send({
-        returnFlights: [
+    let searchCriteria = {}
+    let depFrom = ""
+    let depTo = ""
+    let depFlight = "" 
+    let x = ""
+    if (req.body.flightNumber !== "") { searchCriteria = { ...searchCriteria, flightNumber: Number(req.body.flightNumber) } }
+    Flight.find(
+        searchCriteria
+    ).then(flights => {
+        depFlight = flights[0]
+        depFrom = flights[0].from
+        depTo = flights[0].to
+        Flight.find(
             {
-                flightNumber: 1213,
-                from: "sad",
-                to: "happy",
-                departureDate: "2021-12-24T01:34:00.000Z",
-                arrivalDate: "2021-12-24T13:34:00.000Z",
-                numOfEconomySeatsAvailable: 12,
-                numOfBusinessSeatsAvailable: 33,
-                numOfFirstClassSeatsAvailable: 44,
-                __v: 0,
-                basePrice: 10,
-            },
-        ],
-        departureFlight: {
-            flightNumber: 1211,
-            from: "happy",
-            to: "sad",
-            departureDate: "2021-12-18T01:34:57.000Z",
-            arrivalDate: "2021-12-18T01:34:57.000Z",
-            numOfEconomySeatsAvailable: 12,
-            numOfBusinessSeatsAvailable: 33,
-            numOfFirstClassSeatsAvailable: 44,
-            __v: 0,
-            basePrice: 12,
-        },
-    })
+                from: depTo,
+                to: depFrom
+            }
+        ).then(flights => {
+            x = flights
+            res.json(
+                {
+                    returnFlights: flights,
+                    departureFlight: depFlight
+
+                })
+        }
+        )
+    console.log('hi')
+    console.log(flights)
+    console.log('hiii0')
+    console.log(x)
+})
+        
+
+    // res.send({
+    //     returnFlights: [
+    //         {
+    //             flightNumber: 1213,
+    //             from: "sad",
+    //             to: "happy",
+    //             departureDate: "2021-12-24T01:34:00.000Z",
+    //             arrivalDate: "2021-12-24T13:34:00.000Z",
+    //             numOfEconomySeatsAvailable: 12,
+    //             numOfBusinessSeatsAvailable: 33,
+    //             numOfFirstClassSeatsAvailable: 44,
+    //             __v: 0,
+    //             basePrice: 10,
+    //         },
+    //     ],
+    //     departureFlight: {
+    //         flightNumber: 1211,
+    //         from: "happy",
+    //         to: "sad",
+    //         departureDate: "2021-12-18T01:34:57.000Z",
+    //         arrivalDate: "2021-12-18T01:34:57.000Z",
+    //         numOfEconomySeatsAvailable: 12,
+    //         numOfBusinessSeatsAvailable: 33,
+    //         numOfFirstClassSeatsAvailable: 44,
+    //         __v: 0,
+    //         basePrice: 12,
+    //     },
+    // })
 });
 
 router.route('/selectArrFlight').post((req, res) => {

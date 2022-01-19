@@ -108,46 +108,56 @@ class editReservation extends React.Component {
         return (
             <div>
                 <div>
-                    
+
                     <UserLinks />
 
-                    <hr />
-                    <h1>Edit Reservation</h1>
-                    <hr />
                     {this.state.noAction &&
-
-
-                        <div>
-                            <form onSubmit={this.onSubmit}>
-                                <div>
-                                    <label>
-                                        Reservation Number:
-                                        <input type="text" name="name" value={this.state.reservationNumber} onChange={this.onChangeReservationNumber} />
-                                    </label>
+                        <form class="loginForm round2 bgwhite center" onSubmit={this.onSubmit}>
+                            <fieldset>
+                                <h2 class="text-primary">Edit Resrervation</h2>
+                                <br />
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Reservation Number:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" value={this.state.reservationNumber} onChange={this.onChangeReservationNumber} class="form-control" placeholder="Reservation number to be edited" />
+                                    </div>
                                 </div>
-                                <input type="submit" value="Edit" />
-                            </form>
 
+                                <br />
+                                <button type="submit" class="btn btn-primary centre">Choose Reservations</button>
 
-                        </div>}
+                            </fieldset>
+                        </form>
+                    }
                     {this.state.edit &&
-                        <div>
-                            <h2>Departure Flight</h2>
-                            <p>Economy Seat(s): {this.state.reservation.depEconomySeats.toString()}</p>
-                            <p>Business Seat(s): {this.state.reservation.depBusinessSeats.toString()}</p>
-                            <p>First-Class Seat(s): {this.state.reservation.depFirstClassSeats.toString()}</p>
-                            <button onClick={this.changeDepartureSeats}>Change Seats</button>
-                            <button onClick={this.changeDepartureFlight}>Change Flight</button>
-                            <Flight user="user" flight={this.state.departureFlight} />
+                        <div><br /><br />
+                            <div class="loginForm">
+                                <h2 class="text-primary">Departure Flight</h2>
+                                <p>Economy Seat(s): {this.state.reservation.depEconomySeats.toString()}</p>
+                                <p>Business Seat(s): {this.state.reservation.depBusinessSeats.toString()}</p>
+                                <p>First-Class Seat(s): {this.state.reservation.depFirstClassSeats.toString()}</p>
+                                <div class="row">
+                                    <div class="col-auto me-auto"> <button class="btn btn-primary" onClick={this.changeDepartureSeats}>Change Seats</button></div>
+                                    <div class="col-auto">  <button class="btn btn-primary" onClick={this.changeDepartureFlight}>Change Flight</button></div>
+                                </div>
+                                <br />
+                                <Flight user="" flight={this.state.departureFlight} />
+                            </div>
+
 
                             <hr />
-                            <h2>Return Flight</h2>
-                            <p>Economy Seat(s): {this.state.reservation.arrEconomySeats.toString()}</p>
-                            <p>Business Seat(s): {this.state.reservation.arrBusinessSeats.toString()}</p>
-                            <p>First-Class Seat(s): {this.state.reservation.arrFirstClassSeats.toString()}</p>
-                            <button onClick={this.changeArrivalSeats}>Change Seats</button>
-                            <button onClick={this.changeArrivalFlight}>Change Flight</button>
-                            <Flight user="user" flight={this.state.arrivalFlight} />
+                            <div class="loginForm">
+                                <h2 class="text-primary" >Return Flight</h2>
+                                <p>Economy Seat(s): {this.state.reservation.arrEconomySeats.toString()}</p>
+                                <p>Business Seat(s): {this.state.reservation.arrBusinessSeats.toString()}</p>
+                                <p>First-Class Seat(s): {this.state.reservation.arrFirstClassSeats.toString()}</p>
+                                <div class="row">
+                                    <div class="col-auto me-auto">  <button class="btn btn-primary" onClick={this.changeArrivalSeats}>Change Seats</button></div>
+                                    <div class="col-auto"> <button class="btn btn-primary" onClick={this.changeArrivalFlight}>Change Flight</button></div>
+                                </div>
+                                <br />
+                                <Flight user="" flight={this.state.arrivalFlight} />
+                            </div>
                         </div>}
 
                     {this.state.changeDepartureSeats &&
@@ -157,7 +167,7 @@ class editReservation extends React.Component {
                                 reservedBusinessSeats={this.state.reservation.depBusinessSeats.toString()}
                                 reservedFirstClassSeats={this.state.reservation.depFirstClassSeats.toString()}
                                 flight={this.state.departureFlight}
-                                reservation = {this.state.reservation}
+                                reservation={this.state.reservation}
                             />
                         </>
                     }
@@ -168,7 +178,7 @@ class editReservation extends React.Component {
                                 numOfEconomySeats={2}
                                 numOfBusinessSeats={1}
                                 numOfFirstClassSeats={0}
-                                reservation = {this.state.reservation}
+                                reservation={this.state.reservation}
                             />
                         </>
                     }
@@ -179,7 +189,7 @@ class editReservation extends React.Component {
                                 reservedBusinessSeats={this.state.reservation.arrBusinessSeats.toString()}
                                 reservedFirstClassSeats={this.state.reservation.arrFirstClassSeats.toString()}
                                 flight={this.state.arrivalFlight}
-                                reservation = {this.state.reservation}
+                                reservation={this.state.reservation}
                             />
                         </>
                     }
@@ -190,7 +200,7 @@ class editReservation extends React.Component {
                                 numOfEconomySeats={2}
                                 numOfBusinessSeats={1}
                                 numOfFirstClassSeats={0}
-                                reservation = {this.state.reservation}
+                                reservation={this.state.reservation}
                             />
                         </>
                     }
