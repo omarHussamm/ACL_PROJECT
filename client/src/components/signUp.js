@@ -71,8 +71,22 @@ class signUp extends React.Component {
     onSubmit = e => {
         e.preventDefault();
 
+        if(this.state.firstName===""
+        ||this.state.lastName===""
+        ||this.state.address===""
+        ||this.state.countryCode===""
+        ||this.state.passport===""
+        ||this.state.email===""
+        ||this.state.number===""
+        ||this.state.userName===""
+        ||this.state.password===""
+        ){
+            this.setState({
+                validationMessage:"Please fill the missing information"
+            })
 
-
+        }
+else{
         const newUser = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
@@ -87,7 +101,8 @@ class signUp extends React.Component {
 
         axios.post('http://localhost:5000/userGuest/signup'
             , { newUser: newUser });
-        // this.props.signUp(newUser);
+        this.props.signUp(newUser);
+    }
     }
     render() {
         return (
@@ -95,6 +110,7 @@ class signUp extends React.Component {
                 <br/><br/><br/>
                 <form class="signupForm bgwhite" onSubmit={this.onSubmit}>
                         <fieldset>
+                            <h6 class="text-warning">{this.state.validationMessage}</h6> 
                             <h2 class="text-primary">SIGN UP</h2>
                             <br />
                             <div class="form-group row">
@@ -168,6 +184,7 @@ class signUp extends React.Component {
 
                         </fieldset>
                     </form>
+                    <br />
             </div>
         );
     }

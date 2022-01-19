@@ -43,7 +43,8 @@ class selectFlight extends React.Component {
     EconomySeats2: "",
     BusinessSeats2: "",
     FirstClassSeats2: "",
-    bookingNumber: "#24366621"
+    bookingNumber: "#24366621",
+    price:100
   };
 
   logged = () => {
@@ -87,7 +88,7 @@ class selectFlight extends React.Component {
 
 
     axios.post('http://localhost:5000/userGuest/selectArrFlight'
-      , { flightNumber: this.state.flightNumber }).then(res => {
+      , { flightNumber2: this.state.flightNumber2 }).then(res => {
         this.setState({
           arrivalFlight: res.data,
           chooseSeat: true,
@@ -108,18 +109,18 @@ class selectFlight extends React.Component {
     // after choosing num of seats
 
     this.setState({
-      // numOfEconomySeats: numOfEconomySeats,
-      // numOfBusinessSeats: numOfBusinessSeats,
-      // numOfFirstClassSeats: numOfFirstClassSeats,
-      // numOfEconomySeats2: numOfEconomySeats2,
-      // numOfBusinessSeats2: numOfBusinessSeats2,
-      // numOfFirstClassSeats2: numOfFirstClassSeats2
-      numOfEconomySeats: 3,
-      numOfBusinessSeats: 2,
-      numOfFirstClassSeats: 1,
-      numOfEconomySeats2: 3,
-      numOfBusinessSeats2: 2,
-      numOfFirstClassSeats2: 1,
+      numOfEconomySeats: numOfEconomySeats,
+      numOfBusinessSeats: numOfBusinessSeats,
+      numOfFirstClassSeats: numOfFirstClassSeats,
+      numOfEconomySeats2: numOfEconomySeats2,
+      numOfBusinessSeats2: numOfBusinessSeats2,
+      numOfFirstClassSeats2: numOfFirstClassSeats2,
+      // numOfEconomySeats: 3,
+      // numOfBusinessSeats: 2,
+      // numOfFirstClassSeats: 1,
+      // numOfEconomySeats2: 3,
+      // numOfBusinessSeats2: 2,
+      // numOfFirstClassSeats2: 1,
       summary: true,
       returnFlight: false,
     });
@@ -159,7 +160,18 @@ class selectFlight extends React.Component {
   onSubmit7 = e => {
     e.preventDefault()
     axios.post('http://localhost:5000/user/booking'
-      , { flightNumber: this.state.flightNumber }).then(res => {
+      , { 
+        depFlightNumber:this.state.flightNumber,
+        arrFlightNumber:this.state.flightNumber2,
+        userID:this.props.userToken,
+        price:this.state.price,
+        arrEconomySeats:this.state.EconomySeats,
+        arrBusinessSeats:this.state.BusinessSeats,
+        arrFirstClassSeats:this.state.FirstClassSeats,
+        depEconomySeats:this.state.EconomySeats2,
+        depFirstClassSeats:this.state.BusinessSeats2,
+        depBusinessSeats:this.state.FirstClassSeats2
+       }).then(res => {
         this.setState({
           arrivalFlight: res.data,
           chooseSeat: true,
@@ -201,7 +213,7 @@ class selectFlight extends React.Component {
                 <SelectArr
                   onChangeFlightNumber2={this.onChangeFlightNumber2}
                   onSubmit2={this.onSubmit2}
-                  flight={this.state.departureFlight}
+                  flight = {this.state.departureFlight}
                   flightNumber2={this.state.flightNumber2}
                   returnFlights={this.state.returnFlights}
                 />
@@ -252,9 +264,9 @@ class selectFlight extends React.Component {
               numOfEconomySeats={this.state.numOfEconomySeats}
               numOfBusinessSeats={this.state.numOfBusinessSeats}
               numOfFirstClassSeats={this.state.numOfFirstClassSeats}
-              availableEconomySeats={["34A", "34B", "34C", "30D", "30E"]}
-              availableBusinessSeats={["07F", "07E", "08C", "22D"]}
-              availableFirstClassSeats={["01A", "01E", "03B"]}
+              availableEconomySeats={this.state.departureFlight.economySeatsAvailable}
+              availableBusinessSeats={this.state.departureFlight.businessSeatsAvailable}
+              availableFirstClassSeats={this.state.departureFlight.firstClassSeatsAvailable}
               onSubmit5={this.onSubmit5}
             />
           </div>}
@@ -272,9 +284,9 @@ class selectFlight extends React.Component {
             numOfEconomySeats2={this.state.numOfEconomySeats2}
             numOfBusinessSeats2={this.state.numOfBusinessSeats2}
             numOfFirstClassSeats2={this.state.numOfFirstClassSeats2}
-            availableEconomySeats2={["32A", "34B", "32C", "30D", "30E"]}
-            availableBusinessSeats2={["09F", "23E", "08C", "22D"]}
-            availableFirstClassSeats2={["02A", "01B", "03F"]}
+            availableEconomySeats2={this.state.arrivalFlight.economySeatsAvailable}
+            availableBusinessSeats2={this.state.arrivalFlight.businessSeatsAvailable}
+            availableFirstClassSeats2={this.state.arrivalFlight.firstClassSeatsAvailable}
             onSubmit6={this.onSubmit6} />
         </div>}
 
@@ -289,18 +301,12 @@ class selectFlight extends React.Component {
             numOfEconomySeats2={this.state.numOfEconomySeats2}
             numOfBusinessSeats2={this.state.numOfBusinessSeats2}
             numOfFirstClassSeats2={this.state.numOfFirstClassSeats2}
-            // EconomySeats={this.state.EconomySeats}
-            // BusinessSeats={this.state.BusinessSeats}
-            // FirstClassSeats={this.state.FirstClassSeats}
-            // EconomySeats2={this.state.EconomySeats2}
-            // BusinessSeats2={this.state.BusinessSeats2}
-            // FirstClassSeats2={this.state.FirstClassSeats2}
-            EconomySeats={["34A", "34B", "34C"]}
-            BusinessSeats={["07F", "07E"]}
-            FirstClassSeats={["01A"]}
-            EconomySeats2={["32A", "34B", "32C"]}
-            BusinessSeats2={["09F", "23E"]}
-            FirstClassSeats2={["02A"]}
+            EconomySeats={this.state.EconomySeats}
+            BusinessSeats={this.state.BusinessSeats}
+            FirstClassSeats={this.state.FirstClassSeats}
+            EconomySeats2={this.state.EconomySeats2}
+            BusinessSeats2={this.state.BusinessSeats2}
+            FirstClassSeats2={this.state.FirstClassSeats2}
             bookingNumber={this.state.bookingNumber}
           />
         </div>}

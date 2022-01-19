@@ -56,9 +56,8 @@ router.route('/selectDepFlight').post((req, res) => {
     let depTo = ""
     let depFlight = "" 
     let x = ""
-    if (req.body.flightNumber !== "") { searchCriteria = { ...searchCriteria, flightNumber: Number(req.body.flightNumber) } }
     Flight.find(
-        searchCriteria
+        {flightNumber: Number(req.body.flightNumber)}
     ).then(flights => {
         depFlight = flights[0]
         depFrom = flights[0].from
@@ -84,54 +83,18 @@ router.route('/selectDepFlight').post((req, res) => {
     console.log(x)
 })
         
-
-    // res.send({
-    //     returnFlights: [
-    //         {
-    //             flightNumber: 1213,
-    //             from: "sad",
-    //             to: "happy",
-    //             departureDate: "2021-12-24T01:34:00.000Z",
-    //             arrivalDate: "2021-12-24T13:34:00.000Z",
-    //             numOfEconomySeatsAvailable: 12,
-    //             numOfBusinessSeatsAvailable: 33,
-    //             numOfFirstClassSeatsAvailable: 44,
-    //             __v: 0,
-    //             basePrice: 10,
-    //         },
-    //     ],
-    //     departureFlight: {
-    //         flightNumber: 1211,
-    //         from: "happy",
-    //         to: "sad",
-    //         departureDate: "2021-12-18T01:34:57.000Z",
-    //         arrivalDate: "2021-12-18T01:34:57.000Z",
-    //         numOfEconomySeatsAvailable: 12,
-    //         numOfBusinessSeatsAvailable: 33,
-    //         numOfFirstClassSeatsAvailable: 44,
-    //         __v: 0,
-    //         basePrice: 12,
-    //     },
-    // })
 });
 
 router.route('/selectArrFlight').post((req, res) => {
-    //////THIS IS DUMMY DATA TO BE REPLACED WITH REAL CODE//////
-
-    res.send({
-        flightNumber: 1213,
-        from: "happy",
-        to: "sad",
-        departureDate: "2021-12-24T01:34:00.000Z",
-        arrivalDate: "2021-12-24T13:34:00.000Z",
-        numOfEconomySeatsAvailable: 12,
-        numOfBusinessSeatsAvailable: 33,
-        numOfFirstClassSeatsAvailable: 44,
-        __v: 0,
-        basePrice: 10,
-    })
+    Flight.findOne({
+        flightNumber : Number(req.body.flightNumber2 )
+    }
+    ).then(flights =>  {
+        console.log(flights);
+        res.json(flights)})
+    
+    
 });
-
 
 
 
