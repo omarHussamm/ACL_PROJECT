@@ -84,12 +84,14 @@ class selectFlight extends React.Component {
 
 
     axios.post('http://localhost:5000/userGuest/selectArrFlight'
-      , { flightNumber: this.state.flightNumber }).then(res => {
+      , { flightNumber2: this.state.flightNumber2 }).then(res => {
         this.setState({
           arrivalFlight: res.data,
           chooseSeat: true,
           returnFlight: false,
+          
         });
+        console.log(res)
       }
       )
   };
