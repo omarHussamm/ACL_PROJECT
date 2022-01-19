@@ -80,7 +80,7 @@ router.route('/editProfile').post((req, res) => {
       if(req.body.lastName!==null){updateCriteria = { ...updateCriteria, lastName: req.body.lastName} }
       if(req.body.passport!==null){updateCriteria = { ...updateCriteria, passport: req.body.passport} }
       if(req.body.number!==null){updateCriteria = { ...updateCriteria, passport: req.body.number}}
-      if(user.email!==null){updateCriteria = { ...updateCriteria, email: req.body.email} }
+      if(user.email!==''){updateCriteria = { ...updateCriteria, email: req.body.email} }
       console.log(user[0].userName)
 
       User.findOneAndUpdate({userName:user[0].userName},updateCriteria).then(ress => {

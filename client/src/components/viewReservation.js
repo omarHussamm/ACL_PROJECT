@@ -1,12 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import UserLinks from './userLinks';
-<<<<<<< HEAD
 import Reservation from './reservation'
 //import Booking from '../../../model/bookings';
-=======
-
->>>>>>> 6d6ac5b56d4dc9e0ba3efbd88232d7fcca0ca339
 
 
 class viewReservation extends React.Component {
@@ -27,24 +23,6 @@ class viewReservation extends React.Component {
             });
         });
     }
-<<<<<<< HEAD
-=======
-    listReservations = () => {
-        axios.post('http://localhost:5000/flights/viewreservation'
-            , {userToken: this.props.userToken}).then(res => {
-                const reservations = res.data;
-            this.setState({ reservations:reservations });
-            console.log(reservations);
-            }
-            )
-        // axios.get("http://localhost:5000/flights/viewreservation",{userToken: this.props.userToken}).then(res => {
-        //     const reservations = res.data;
-        //     this.setState({ reservations:reservations });
-        //     console.log(reservations);
-            
-        // });
-    };
->>>>>>> 6d6ac5b56d4dc9e0ba3efbd88232d7fcca0ca339
     render() {
         return (
             <div>

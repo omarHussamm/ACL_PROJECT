@@ -25,7 +25,6 @@ class cancelReservation extends React.Component {
         e.preventDefault();
 
         if (window.confirm("Are you sure you want to cancel?")) {
-<<<<<<< HEAD
             axios.post('http://localhost:5000/user/cancelReservation'
                 , {
                     reservationNumber: this.state.reservationNumber,
@@ -33,13 +32,6 @@ class cancelReservation extends React.Component {
                 }).then(res => {
                 }
                 )
-=======
-             axios.post('http://localhost:5000/user/cancelReservation'
-                 , { reservationNumber: this.state.reservationNumber ,
-                userToken: this.props.userToken}).then(res => {
-                 }
-                 )
->>>>>>> 6d6ac5b56d4dc9e0ba3efbd88232d7fcca0ca339
         }
     }
     render() {
