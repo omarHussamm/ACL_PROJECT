@@ -1,6 +1,7 @@
 import Counter from '../model/counter.js'
 import express from "express";
 import Booking from '../model/bookings.js';
+import Flight from '../model/flight.js';
 const router = express.Router();
 
 function getNextSequenceValue() {
@@ -84,6 +85,8 @@ router.route('/create-checkout-session').get( async (req, res) => {
 });
 
 router.route('/editReservation').post((req, res) => {
+
+
   //////THIS IS DUMMY DATA TO BE REPLACED WITH REAL CODE//////
   res.send({
       reservation: {
