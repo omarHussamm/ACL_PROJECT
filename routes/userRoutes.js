@@ -22,7 +22,7 @@ function getNextSequenceValue() {
 router.route('/booking').post((req, res) => {
   var sequenceDocument = Counter.findByIdAndUpdate("61da248fb7ec7bace2763773",
     {
-      $inc: { sequence: 1 },
+      $inc: { sequence : 1 },
     }).then(ressss => {
       sequenceDocument = ressss.sequence;
 
