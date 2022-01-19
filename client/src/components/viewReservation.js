@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import UserLinks from './userLinks';
 import Reservation from './reservation'
+//import Booking from '../../../model/bookings';
 
 
 class viewReservation extends React.Component {
