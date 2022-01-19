@@ -28,7 +28,7 @@ class guestUserLinks extends React.Component {
                                     <Link class="nav-link" to="/searchFlights2">Search for Flights</Link>
                                 </li>
                                 <li class="nav-item nav2">
-                                    <Link class="nav-link" to="/selectFlight">Select Flight</Link>
+                                    <Link class="nav-link" to="/selectFlight">Book a Flight</Link>
                                 </li>
                                 <li class="nav-item nav2">
                                     <Link class="nav-link" to="/changePassword">Change Password</Link>

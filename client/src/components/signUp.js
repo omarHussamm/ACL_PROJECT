@@ -17,7 +17,8 @@ class signUp extends React.Component {
         email: "",
         number: "",
         userName: "",
-        password: ""
+        password: "",
+        validationMessage:""
     };
 
     onChangeFirstName = e => {
@@ -69,6 +70,8 @@ class signUp extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
+
+
 
         const newUser = {
             firstName: this.state.firstName,
@@ -157,7 +160,11 @@ class signUp extends React.Component {
                                 </div>
                             </div>
                             <br />
-                            <button type="submit" class="btn btn-primary centre">SignUp</button>
+                            <div class="row">
+                                        <div class="col-auto me-auto"> <button type="submit" class="btn btn-primary centre">SignUp</button></div>
+                                        <div class="col-auto"> <button type="button" onClick={this.props.back} class="btn btn-primary">Already Have an Account? Log In</button></div>
+
+                                    </div>
 
                         </fieldset>
                     </form>

@@ -70,6 +70,11 @@ class loginForm extends React.Component {
         // axios.post('http://localhost:5000/admin/login'
         //     , newUser)
     }
+    back = () => {
+        this.setState({
+            signUp: false
+        });
+    }
 
 
     render() {
@@ -82,7 +87,7 @@ class loginForm extends React.Component {
 
 
                     <div>
-                        <SignUp signUp={this.signUp2} />
+                        <SignUp signUp={this.signUp2} back={this.back} />
                     </div>
 
                 }
@@ -93,7 +98,7 @@ class loginForm extends React.Component {
                         <div class="loginForm">
                             <form class="loginForm" onSubmit={this.onSubmit}>
                                 <fieldset>
-                                    <h2 class="text-primary">BONG AIRLINES</h2>
+                                    <h2 class="text-primary">BNG AIRLINES</h2>
                                     <div class="form-group row">
                                         <label for="exampleInputEmail1" class="col-sm-2 col-form-label">User Name</label>
                                         <div class="col-sm-10">

@@ -14,6 +14,7 @@ function getNextSequenceValue() {
 
 router.route('/booking').post((req, res) => {
   //////THIS IS DUMMY DATA TO BE REPLACED WITH REAL CODE//////
+  res.send();
   
 });
 
@@ -123,6 +124,7 @@ router.route('/editReservation').post((req, res) => {
 
 router.route('/changeSeat').post((req, res) => {
   //////THIS IS DUMMY DATA TO BE REPLACED WITH REAL CODE//////
+  res.send();
 });
 
 router.route('/changeFlightNumber').post((req, res) => {

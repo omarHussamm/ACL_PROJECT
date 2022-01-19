@@ -7,6 +7,7 @@ import DepartureSeats from "./departureSeats";
 import ReservationSummary from "./reservationSummary";
 import SummaryConfirmation from "./summaryConfirmation";
 import NeedToLogIn from './needToLogIn'
+import ReservationResult from "./reservationResult";
 import axios from 'axios';
 class selectFlight extends React.Component {
   constructor(props) {
@@ -28,6 +29,8 @@ class selectFlight extends React.Component {
     depSeat: false,
     arrSeat: false,
     reservationSummary: false,
+    reservationResult: false,
+    reservationSuccess: false,
     numOfEconomySeats: "",
     numOfBusinessSeats: "",
     numOfFirstClassSeats: "",
@@ -161,6 +164,7 @@ class selectFlight extends React.Component {
           arrivalFlight: res.data,
           chooseSeat: true,
           returnFlight: false,
+          reservationResult:true
         });
       }
       )
@@ -197,7 +201,7 @@ class selectFlight extends React.Component {
                 <SelectArr
                   onChangeFlightNumber2={this.onChangeFlightNumber2}
                   onSubmit2={this.onSubmit2}
-                  flight = {this.state.departureFlight}
+                  flight={this.state.departureFlight}
                   flightNumber2={this.state.flightNumber2}
                   returnFlights={this.state.returnFlights}
                 />
@@ -274,7 +278,7 @@ class selectFlight extends React.Component {
             onSubmit6={this.onSubmit6} />
         </div>}
 
-        {this.state.reservationSummary && <div>
+        {this.state.reservationSummary && !this.state.reservationResult && <div>
           <ReservationSummary
             onSubmit7={this.onSubmit7}
             departureFlight={this.state.departureFlight}
@@ -299,6 +303,9 @@ class selectFlight extends React.Component {
             FirstClassSeats2={["02A"]}
             bookingNumber={this.state.bookingNumber}
           />
+        </div>}
+        {this.state.reservationResult && <div>
+          <ReservationResult success={this.state.reservationSuccess} />
         </div>}
       </div>
     );

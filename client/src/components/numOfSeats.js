@@ -90,7 +90,7 @@ class numOfSeats extends React.Component {
                 <hr />
                 <div class="loginForm">
                     <h2 class="text-primary"> ARRIVAL FLIGHT </h2>
-                    <Flight flight={this.props.departureFlight} user={""} />
+                    <Flight flight={this.props.arrivalFlight} user={""} />
                 </div>
                 <div class="seatsForm">
                     <div class="form-group row">
