@@ -1,5 +1,11 @@
 import React from 'react'
 class summaryConfirmation extends React.Component {
+
+    onSubmit = (e,price) =>{
+            e.preventDefault();
+            this.props.onSubmit4(e,price);
+
+    } 
     render() {
 
         return (
@@ -38,7 +44,8 @@ class summaryConfirmation extends React.Component {
                     <h1 class="text-primary">Entire Price:  {this.props.arrivalFlight.basePrice * (this.props.numOfEconomySeats2 * 1 + this.props.numOfBusinessSeats2 * 1.5 + this.props.numOfFirstClassSeats2 * 2) +
                         this.props.departureFlight.basePrice * (this.props.numOfEconomySeats * 1 + this.props.numOfBusinessSeats * 1.5 + this.props.numOfFirstClassSeats * 2)}$</h1>
 
-                    <form onSubmit={this.props.onSubmit4}>
+                    <form onSubmit={ e =>{this.onSubmit(e,this.props.arrivalFlight.basePrice * (this.props.numOfEconomySeats2 * 1 + this.props.numOfBusinessSeats2 * 1.5 + this.props.numOfFirstClassSeats2 * 2) +
+                        this.props.departureFlight.basePrice * (this.props.numOfEconomySeats * 1 + this.props.numOfBusinessSeats * 1.5 + this.props.numOfFirstClassSeats * 2))}}>
 
                         <input class="btn btn-primary" type="submit" value="Confirm" />
                     </form>

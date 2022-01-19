@@ -1,23 +1,34 @@
 import React from 'react'
 import axios from 'axios'
 import UserLinks from './userLinks';
+<<<<<<< HEAD
+import Reservation from './reservation'
+//import Booking from '../../../model/bookings';
+=======
 
+>>>>>>> 6d6ac5b56d4dc9e0ba3efbd88232d7fcca0ca339
 
 
 class viewReservation extends React.Component {
 
     state = {
-        reservations: []
+        reservations: [],
+        mounted: false
     }
 
     componentDidMount = () => {
         //get reservations
         console.log("get reservations");
-        axios.get("http://localhost:5000/user/reservations").then(res => {
+        axios.post("http://localhost:5000/user/viewreservation", { userToken: this.props.userToken }).then(res => {
             const reservations = res.data;
-            this.setState({ reservations: reservations });
+            this.setState({
+                reservations: reservations,
+                mounted: true
+            });
         });
     }
+<<<<<<< HEAD
+=======
     listReservations = () => {
         axios.post('http://localhost:5000/flights/viewreservation'
             , {userToken: this.props.userToken}).then(res => {
@@ -33,68 +44,38 @@ class viewReservation extends React.Component {
             
         // });
     };
+>>>>>>> 6d6ac5b56d4dc9e0ba3efbd88232d7fcca0ca339
     render() {
         return (
             <div>
-                
-                <div>
-                    
-                    <UserLinks />
-                    
 
 
-                    <hr />
-                    <h1> viewReservation </h1>
-                    <button onClick={this.listReservations}>
-                    Show All Reservations
-                </button>
-                {/* <ul class="list-group">
-                {this.state.reservations.map(booking => {
-                        return (
-                            <li key={flight._id}>
-                                <Booking booking={flight} />
-                            </li>
+                <UserLinks />
 
-                        );
 
-                    })
-                    }
-                </ul> */}
-                    {/* { <table>
-                        <tr>
-                            <th>Reservation Number</th>
-                            <th>Departure Flight Number</th>
-                            <th>Arrival Flight Number</th>
-                            <th>User ID</th>
-                            <th>Price</th>
-                            <th>Arrival Economy Seats</th>
-                            <th>Arrival Business Seats</th>
-                            <th>Arrival First Class Seats</th>
-                            <th>Departure Economy Seats</th>
-                            <th>Departure Business Seats</th>
-                            <th>Departure First Class Seats</th>
-                        </tr>
 
-                        {this.state.reservations.map(reservation => {
-                            return (
-                                <tr>
-                                    <td>{Booking.reservationNum}</td>
-                                    <td>{flight.from}</td>
-                                    <td>{flight.to}</td>
-                                    <td>{flight.arrivalDate}</td>
-                                    <td>{flight.departureDate}</td>
-                                    <td>{flight.numOfEconomySeatsAvailable}</td>
-                                    <td>{flight.numOfBusinessSeatsAvailable}</td>
-                                    <td>{flight.numOfFirstClassSeatsAvailable}</td>
-                                    <td>{flight.basePrice}</td>
-                                </tr>
-                            )
-                        })}
-                    </table> */}
+                {!this.state.mounted &&
+                    <h1>Loading...</h1>
+                }
 
-                </div>
+                {this.state.mounted &&
+                    <>
+                        <br />
+                        <ul class="ulnodots ulcentre">
+                            {this.state.reservations.map(flight => {
+                                return (
+                                    <li key={flight._id}>
+                                        <Reservation
+                                            reservation={flight}
+                                        />
+                                    </li>
+                                );
+                            })
+                            }
+                        </ul>
+                    </>}
 
-            </div>
+            </div >
         );
     }
 }
