@@ -34,41 +34,50 @@ class departureSeats extends React.Component {
   render() {
 
     return (
-      <div>
-        <h1>Departure Seats</h1>
-        <div>
-          <form onSubmit={this.onSubmit}>
-            write seats comma seperated ex: 01A,01B,01E
+      <>
+        <div class="loginForm">
+          <div>
+            <br /> <br />
+            <form class="signupForm bgwhite" onSubmit={this.onSubmit}>
+              <fieldset>
 
-            <div>
-              <label>
-                Economy Seats:
-                <input type="text" name="name" value={this.state.EconomySeats} onChange={this.onChangeEconomySeats} />
-                choose {this.props.numOfEconomySeats} seat(s) from {this.props.availableEconomySeats.map(res => res + " ,")}
-              </label>
-            </div>
-            <div>
-              <label>
-                Business Seats:
-                <input type="text" name="name" value={this.state.BusinessSeats} onChange={this.onChangeBusinessSeats} />
-                choose {this.props.numOfBusinessSeats} seat(s) from {this.props.availableBusinessSeats.map(res => res + " ,")}
-              </label>
-            </div>
-            <div>
-              <label>
-                First-Class Seats:
-                <input type="text" name="name" value={this.state.FirstClassSeats} onChange={this.onChangeFirstClassSeats} />
-                choose {this.props.numOfFirstClassSeats} seat(s) from {this.props.availableFirstClassSeats.map(res => res + " ,")}
-              </label>
-            </div>
+                <h2 class="text-primary">Departure Seats</h2>
+                write seats comma seperated ex: 01A,01B,01E
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label"> Economy Seats:</label>
+                  <div class="col-sm-10">
+                    <input type="text" value={this.state.EconomySeats} onChange={this.onChangeEconomySeats} class="form-control" placeholder="Economy Seats" />
+                    choose {this.props.numOfEconomySeats} seat(s) from {this.props.availableEconomySeats.toString()}
+                  </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Business Seats:</label>
+                  <div class="col-sm-10">
+                    <input type="text" value={this.state.lastName} onChange={this.onChangeLastName} class="form-control" placeholder="Business Seats" />
+                    choose {this.props.numOfBusinessSeats} seat(s) from {this.props.availableBusinessSeats.toString()}
+                  </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">First-Class Seats:</label>
+                  <div class="col-sm-10">
+                    <input type="text" value={this.state.passport} onChange={this.onChangePassport} class="form-control" placeholder="First-Class Seats" />
+                    choose {this.props.numOfFirstClassSeats} seat(s) from {this.props.availableFirstClassSeats.toString()}
+                  </div>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary centre">Choose Seats</button>
 
-
-            <input type="submit" value="Submit Seats" />
-          </form>
+              </fieldset>
+            </form>
+          </div>
+          <hr />
         </div>
-        <hr />
-        <img src={logo} alt="boeing seats" width="1600" height="550" />
-      </div>
+        <div class="loginForm">
+          <img src={logo} alt="boeing seats" width="800" height="300" />
+        </div>
+      </>
     );
   }
 }

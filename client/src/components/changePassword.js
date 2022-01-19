@@ -1,5 +1,5 @@
 import React from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 import UserLinks from './userLinks';
 
 
@@ -29,14 +29,17 @@ class changePassword extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
+        const newProfile={
+            oldPassword:this.state.oldPassword,
+            newPassword:this.state.newPassword,
+            userToken:this.props.userToken
+        }
 
         
-        // axios.post('http://localhost:5000/flights/searchFlight'
-        //     , newProfile).then(res => {
-        //         this.setState({ flights: res.data })
-        //     }
-        //     )
+        axios.post('http://localhost:5000/user/changePassword'
+            , newProfile)
     }
+    
     render() {
         return (
             <div>

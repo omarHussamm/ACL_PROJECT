@@ -16,9 +16,22 @@ router.route('/booking').post((req, res) => {
   //////THIS IS DUMMY DATA TO BE REPLACED WITH REAL CODE//////
   
 });
+
 router.route('/editProfile').post((req, res) => {
-  //////THIS IS DUMMY DATA TO BE REPLACED WITH REAL CODE//////
-  
+  let updateCriteria = {};
+  jwt.verify(req.body.userToken, process.env.ACCESS_TOKEN_SECRET, async (err, user) => { 
+    const user22=user;
+    User.find({userName: user22}).then(user=>{
+      if(req.body.firstName!==null){updateCriteria = { ...updateCriteria, firstName: req.body.firstName} }
+      if(req.body.lastName!==null){updateCriteria = { ...updateCriteria, lastName: req.body.lastName} }
+      if(req.body.passport!==null){updateCriteria = { ...updateCriteria, passport: req.body.passport} }
+      if(user.email!==null){updateCriteria = { ...updateCriteria, email: req.body.email} }
+
+      User.findByIdAndUpdate(user[0]._id,updateCriteria).then(ress => {
+        console.log("updated profile", ress);
+    });
+    })
+  })
 });
 
 router.route('/reservations').get((req, res) => {
@@ -26,6 +39,33 @@ router.route('/reservations').get((req, res) => {
   
 });
 
+
+router.route('/create-checkout-session').get( async (req, res) => {
+  console.log("DAkhalt el method")
+  const amount = parseInt(req.body.amount)
+  console.log("Amount is ")
+  console.log(amount)
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        price_data: {
+          currency: 'eur',
+          product_data: {
+            name: 'Flights',
+          },
+          unit_amount: amount,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: 'http://localhost:3000/success.html',
+    cancel_url: 'http://localhost:3000/cancel.html',
+  });
+  console.log("redirecting to url")
+  console.log(session.url);
+  res.redirect(303, session.url);
+});
 
 router.route('/editReservation').post((req, res) => {
   //////THIS IS DUMMY DATA TO BE REPLACED WITH REAL CODE//////
@@ -121,5 +161,23 @@ router.route('/cancelReservation').post((req, res) => {
       
   
 })
+
+router.route('/changePassword').post((req,res)=>{
+  jwt.verify(req.body.userToken, process.env.ACCESS_TOKEN_SECRET, async (err, user) => { 
+    const user22=user;
+    User.find({userName: user22}).then(user=>{
+      if(user[0].password===req.body.oldPassword){
+         User.findByIdAndUpdate(user[0]._id,{password:req.body.newPassword}).then(res=>{
+           console.log("res",res);
+         });
+      }
+      else{
+        //raga3 error 3ala el front end
+        console.log("8alat");
+      }
+    })
+  
+});
+ })
 
 export default router;
