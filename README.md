@@ -37,14 +37,13 @@ Stripes
 
 WORK LOAD
 ---------
-Ahmed Yasser: List all flights, update flight ,search flights, make a reservation , view reservations , cancel reservation
+Ahmed Yasser: List all flights, update flight ,search flights, make a reservation , view reservations , cancel reservation backend
 
-Omar Elersh: Login, create flight , edit profile, change password, sending mails , payment, accesstoken and authentication
+Omar Elersh: Login, create flight , edit profile, change password, sending mails , payment, accesstoken and authentication backend
+
+Youssef Nabawy: Delete flight populate db and requirements 18-23 backend
 
 Omar Hussam: Front end and rest of backend
-
-Youssef Nabawy: Delete flight populate db
-
 
 
 
